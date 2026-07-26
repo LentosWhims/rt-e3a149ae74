@@ -110,15 +110,15 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Sunday, July 26, 2026 · 1:40 PM ET</div>
+    <div class="updated">Last updated Sunday, July 26, 2026 · 2:39 PM ET</div>
   </header>
 
   <section class="hero">
     <div class="label">Today so far — Sunday, Jul 26 · POS revenue + machine cycle revenue</div>
-    <div class="value" id="todayValue">$431.94</div>
+    <div class="value" id="todayValue">$526.08</div>
     <div id="todayBar" style="margin-top:14px"></div>
     <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">POS figures are fresh as of 1:40 PM. Machine-side figures (washers, dryers, vending) are as of the 12:38 PM pull — the machine portal signed itself out and needs a re-login to refresh. $169.00 had been loaded onto laundry cards by 12:38 PM (tracked separately from machine usage).</div>
+    <div class="note" style="margin-top:10px">POS figures are fresh as of 2:39 PM. Machine-side figures (washers, dryers, vending) are still as of the 12:38 PM pull — the machine portal remains signed out and needs a re-login to refresh. $169.00 had been loaded onto laundry cards by 12:38 PM (tracked separately from machine usage).</div>
     <div class="warn">⚠ Machine portal session expired — please sign back in (in Chrome) to resume machine-data refreshes.</div>
   </section>
 
@@ -144,8 +144,8 @@
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — last 30 days</div>
-      <div class="value">$20,082.24</div>
-      <div class="basis">Jun 26 – Jul 26 · in-store $16,152.03 · pickup &amp; delivery $3,881.61 · uncategorized $48.60</div>
+      <div class="value">$20,176.38</div>
+      <div class="basis">Jun 26 – Jul 26 · in-store $16,246.17 · pickup &amp; delivery $3,881.61 · uncategorized $48.60</div>
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — last 30 days</div>
@@ -174,12 +174,12 @@
     <table>
       <thead><tr><th>Source</th><th class="num">Today so far (Sun 7/26)</th><th class="num">Yesterday (Sat 7/25)</th><th class="num">Friday (7/24)</th><th class="num">Δ Sat vs Fri</th></tr></thead>
       <tbody>
-        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$182.34</td><td class="num">$491.42</td><td class="num">$427.89</td><td class="num" style="color:var(--delta-good)">+$63.53 (+14.8%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$276.48</td><td class="num">$491.42</td><td class="num">$427.89</td><td class="num" style="color:var(--delta-good)">+$63.53 (+14.8%)</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</td><td class="num">$65.38</td><td class="num">$168.45</td><td class="num">$0.00</td><td class="num" style="color:var(--delta-good)">+$168.45</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers</td><td class="num">$148.00*</td><td class="num">$295.50</td><td class="num">$214.00</td><td class="num" style="color:var(--delta-good)">+$81.50 (+38.1%)</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers</td><td class="num">$34.22*</td><td class="num">$82.23</td><td class="num">$56.55</td><td class="num" style="color:var(--delta-good)">+$25.68 (+45.4%)</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">$2.00*</td><td class="num">$6.00</td><td class="num">$10.00</td><td class="num" style="color:var(--delta-bad)">−$4.00 (−40.0%)</td></tr>
-        <tr class="totalrow"><td>Combined</td><td class="num">$431.94</td><td class="num">$1,043.60</td><td class="num">$708.44</td><td class="num" style="color:var(--delta-good)">+$335.16 (+47.3%)</td></tr>
+        <tr class="totalrow"><td>Combined</td><td class="num">$526.08</td><td class="num">$1,043.60</td><td class="num">$708.44</td><td class="num" style="color:var(--delta-good)">+$335.16 (+47.3%)</td></tr>
       </tbody>
     </table>
     <div class="foot" style="margin-top:8px">* as of 12:38 PM pull (machine portal needs re-login).</div>
@@ -234,10 +234,10 @@ const CC30 = [
   ["2026-07-12",750.70],["2026-07-13",705.92],["2026-07-14",460.46],["2026-07-15",420.17],
   ["2026-07-16",366.95],["2026-07-17",635.55],["2026-07-18",427.54],["2026-07-19",1229.52],
   ["2026-07-20",605.38],["2026-07-21",597.28],["2026-07-22",846.06],["2026-07-23",1176.27],
-  ["2026-07-24",427.89],["2026-07-25",659.87],["2026-07-26",247.72]
+  ["2026-07-24",427.89],["2026-07-25",659.87],["2026-07-26",341.86]
 ];
-// Today-so-far breakdown — POS values read this run (1:40 PM); machine values from the 12:38 PM pull (portal login required to refresh)
-const TODAY = { d:"2026-07-26", wf:182.34, pd:65.38, wash:148.00, dry:34.22, vend:2.00, oth:0 };
+// Today-so-far breakdown — POS values read this run (2:39 PM); machine values from the 12:38 PM pull (portal login required to refresh)
+const TODAY = { d:"2026-07-26", wf:276.48, pd:65.38, wash:148.00, dry:34.22, vend:2.00, oth:0 };
 const fmt = v => "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 const fmt0 = v => "$" + Math.round(v).toLocaleString("en-US");
 const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
