@@ -102,15 +102,15 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Sunday, July 26, 2026 · 4:44 PM ET</div>
+    <div class="updated">Last updated Sunday, July 26, 2026 · 5:44 PM ET</div>
   </header>
 
   <section class="hero">
     <div class="label">Today so far — Sunday, Jul 26 · POS revenue + machine cycle revenue</div>
-    <div class="value" id="todayValue">$899.07</div>
+    <div class="value" id="todayValue">$943.11</div>
     <div id="todayBar" style="margin-top:14px"></div>
     <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">All figures read fresh from both systems at 4:44 PM. $508.00 has been loaded onto laundry cards so far today (tracked separately from machine usage).</div>
+    <div class="note" style="margin-top:10px">All figures read fresh from both systems at 5:44 PM. $538.00 has been loaded onto laundry cards so far today (tracked separately from machine usage).</div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
@@ -140,8 +140,8 @@
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — last 30 days</div>
-      <div class="value">$14,353.00</div>
-      <div class="basis">Jun 27 – Jul 26 card payments · cycle revenue $13,416.25 (washers $9,873.00 / dryers $2,877.12 / vending $665.00 / POS reader $1.13)</div>
+      <div class="value">$14,383.00</div>
+      <div class="basis">Jun 27 – Jul 26 card payments · cycle revenue $13,460.87 (washers $9,909.50 / dryers $2,885.24 / vending $665.00 / POS reader $1.13)</div>
     </div>
   </div>
 
@@ -161,16 +161,16 @@
 
   <section class="card">
     <h2>Day-over-day detail</h2>
-    <div class="sub">Most recent complete day (Sat, Jul 25) vs the day before, by revenue source. Today's column is as of the 4:44 PM pull.</div>
+    <div class="sub">Most recent complete day (Sat, Jul 25) vs the day before, by revenue source. Today's column is as of the 5:44 PM pull.</div>
     <table>
       <thead><tr><th>Source</th><th class="num">Today so far (Sun 7/26)</th><th class="num">Yesterday (Sat 7/25)</th><th class="num">Friday (7/24)</th><th class="num">Δ Sat vs Fri</th></tr></thead>
       <tbody>
         <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$302.59</td><td class="num">$491.42</td><td class="num">$427.89</td><td class="num" style="color:var(--delta-good)">+$63.53 (+14.8%)</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</td><td class="num">$125.54</td><td class="num">$168.45</td><td class="num">$0.00</td><td class="num" style="color:var(--delta-good)">+$168.45</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers</td><td class="num">$358.50</td><td class="num">$295.50</td><td class="num">$214.00</td><td class="num" style="color:var(--delta-good)">+$81.50 (+38.1%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers</td><td class="num">$100.44</td><td class="num">$82.23</td><td class="num">$56.55</td><td class="num" style="color:var(--delta-good)">+$25.68 (+45.4%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers</td><td class="num">$395.00</td><td class="num">$295.50</td><td class="num">$214.00</td><td class="num" style="color:var(--delta-good)">+$81.50 (+38.1%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers</td><td class="num">$107.98</td><td class="num">$82.23</td><td class="num">$56.55</td><td class="num" style="color:var(--delta-good)">+$25.68 (+45.4%)</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">$12.00</td><td class="num">$6.00</td><td class="num">$10.00</td><td class="num" style="color:var(--delta-bad)">−$4.00 (−40.0%)</td></tr>
-        <tr class="totalrow"><td>Combined</td><td class="num">$899.07</td><td class="num">$1,043.60</td><td class="num">$708.44</td><td class="num" style="color:var(--delta-good)">+$335.16 (+47.3%)</td></tr>
+        <tr class="totalrow"><td>Combined</td><td class="num">$943.11</td><td class="num">$1,043.60</td><td class="num">$708.44</td><td class="num" style="color:var(--delta-good)">+$335.16 (+47.3%)</td></tr>
       </tbody>
     </table>
   </section>
@@ -191,7 +191,7 @@
   <div class="foot">
     "Uncategorized" is revenue the POS total reports but its order-type filter does not attribute — shown as reported, not guessed.
     Card-system payments (money loaded onto cards) and machine cycle revenue (machine usage) are both shown; the stacked chart uses cycle revenue because that's what splits by machine type.
-    Machine status: <strong>2 machine problems</strong> reported as of the 4:44 PM check.
+    Machine status: <strong>2 machine problems</strong> reported as of the 5:44 PM check.
     Refreshes hourly; ask Claude to "update revenue" for an on-demand pull.
   </div>
 </div>
@@ -226,8 +226,8 @@ const CC30 = [
   ["2026-07-20",605.38],["2026-07-21",597.28],["2026-07-22",846.06],["2026-07-23",1176.27],
   ["2026-07-24",427.89],["2026-07-25",659.87],["2026-07-26",428.13]
 ];
-// Today-so-far breakdown — all values read this run (4:44 PM) from both systems
-const TODAY = { d:"2026-07-26", wf:302.59, pd:125.54, wash:358.50, dry:100.44, vend:12.00, oth:0 };
+// Today-so-far breakdown — all values read this run (5:44 PM) from both systems
+const TODAY = { d:"2026-07-26", wf:302.59, pd:125.54, wash:395.00, dry:107.98, vend:12.00, oth:0 };
 const fmt = v => "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 const fmt0 = v => "$" + Math.round(v).toLocaleString("en-US");
 const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
