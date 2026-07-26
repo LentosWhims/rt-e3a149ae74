@@ -1,4 +1,5 @@
-<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
@@ -68,7 +69,6 @@
   .delta.up { color: var(--delta-good); }
   .delta.down { color: var(--delta-bad); }
   .hero .note { font-size:12px; color: var(--text-muted); margin-top:8px; }
-  .warn { display:inline-block; font-size:12px; border:1px solid var(--delta-bad); color:var(--delta-bad); border-radius:8px; padding:3px 10px; margin-top:10px; }
 
   .tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:12px; }
   .tile { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
@@ -110,16 +110,15 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Sunday, July 26, 2026 · 2:39 PM ET</div>
+    <div class="updated">Last updated Sunday, July 26, 2026 · 12:38 PM ET</div>
   </header>
 
   <section class="hero">
     <div class="label">Today so far — Sunday, Jul 26 · POS revenue + machine cycle revenue</div>
-    <div class="value" id="todayValue">$526.08</div>
+    <div class="value" id="todayValue">$401.47</div>
     <div id="todayBar" style="margin-top:14px"></div>
     <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">POS figures are fresh as of 2:39 PM. Machine-side figures (washers, dryers, vending) are still as of the 12:38 PM pull — the machine portal remains signed out and needs a re-login to refresh. $169.00 had been loaded onto laundry cards by 12:38 PM (tracked separately from machine usage).</div>
-    <div class="warn">⚠ Machine portal session expired — please sign back in (in Chrome) to resume machine-data refreshes.</div>
+    <div class="note" style="margin-top:10px">$169.00 loaded onto laundry cards today (tracked separately from machine usage). Refreshes hourly.</div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
@@ -144,13 +143,13 @@
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — last 30 days</div>
-      <div class="value">$20,176.38</div>
-      <div class="basis">Jun 26 – Jul 26 · in-store $16,246.17 · pickup &amp; delivery $3,881.61 · uncategorized $48.60</div>
+      <div class="value">$20,051.77</div>
+      <div class="basis">Jun 26 – Jul 26 · in-store $16,121.56 · pickup &amp; delivery $3,881.61 · uncategorized $48.60</div>
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — last 30 days</div>
       <div class="value">$14,014.00</div>
-      <div class="basis">As of 12:38 PM · Jun 27 – Jul 26 card payments · cycle revenue $13,130.98 (washers $9,662.50 / dryers $2,812.35 / vending $655.00 / POS reader $1.13)</div>
+      <div class="basis">Jun 27 – Jul 26 card payments · cycle revenue $13,130.98 (washers $9,662.50 / dryers $2,812.35 / vending $655.00 / POS reader $1.13)</div>
     </div>
   </div>
 
@@ -170,19 +169,18 @@
 
   <section class="card">
     <h2>Day-over-day detail</h2>
-    <div class="sub">Most recent complete day (Sat, Jul 25) vs the day before, by revenue source. Today's machine rows (washers/dryers/vending) are as of 12:38 PM — portal re-login needed to refresh.</div>
+    <div class="sub">Most recent complete day (Sat, Jul 25) vs the day before, by revenue source.</div>
     <table>
       <thead><tr><th>Source</th><th class="num">Today so far (Sun 7/26)</th><th class="num">Yesterday (Sat 7/25)</th><th class="num">Friday (7/24)</th><th class="num">Δ Sat vs Fri</th></tr></thead>
       <tbody>
-        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$276.48</td><td class="num">$491.42</td><td class="num">$427.89</td><td class="num" style="color:var(--delta-good)">+$63.53 (+14.8%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$151.87</td><td class="num">$491.42</td><td class="num">$427.89</td><td class="num" style="color:var(--delta-good)">+$63.53 (+14.8%)</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</td><td class="num">$65.38</td><td class="num">$168.45</td><td class="num">$0.00</td><td class="num" style="color:var(--delta-good)">+$168.45</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers</td><td class="num">$148.00*</td><td class="num">$295.50</td><td class="num">$214.00</td><td class="num" style="color:var(--delta-good)">+$81.50 (+38.1%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers</td><td class="num">$34.22*</td><td class="num">$82.23</td><td class="num">$56.55</td><td class="num" style="color:var(--delta-good)">+$25.68 (+45.4%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">$2.00*</td><td class="num">$6.00</td><td class="num">$10.00</td><td class="num" style="color:var(--delta-bad)">−$4.00 (−40.0%)</td></tr>
-        <tr class="totalrow"><td>Combined</td><td class="num">$526.08</td><td class="num">$1,043.60</td><td class="num">$708.44</td><td class="num" style="color:var(--delta-good)">+$335.16 (+47.3%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers</td><td class="num">$148.00</td><td class="num">$295.50</td><td class="num">$214.00</td><td class="num" style="color:var(--delta-good)">+$81.50 (+38.1%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers</td><td class="num">$34.22</td><td class="num">$82.23</td><td class="num">$56.55</td><td class="num" style="color:var(--delta-good)">+$25.68 (+45.4%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">$2.00</td><td class="num">$6.00</td><td class="num">$10.00</td><td class="num" style="color:var(--delta-bad)">−$4.00 (−40.0%)</td></tr>
+        <tr class="totalrow"><td>Combined</td><td class="num">$401.47</td><td class="num">$1,043.60</td><td class="num">$708.44</td><td class="num" style="color:var(--delta-good)">+$335.16 (+47.3%)</td></tr>
       </tbody>
     </table>
-    <div class="foot" style="margin-top:8px">* as of 12:38 PM pull (machine portal needs re-login).</div>
   </section>
 
   <section class="card">
@@ -201,7 +199,7 @@
   <div class="foot">
     "Uncategorized" is revenue the POS total reports but its order-type filter does not attribute — shown as reported, not guessed.
     Card-system payments (money loaded onto cards) and machine cycle revenue (machine usage) are both shown; the stacked chart uses cycle revenue because that's what splits by machine type.
-    Machine status: <strong>2 machine problems</strong> as of the 12:38 PM check (status unavailable this run — machine portal needs re-login).
+    Machine status: <strong>2 machine problems</strong> currently flagged.
     Refreshes hourly; ask Claude to "update revenue" for an on-demand pull.
   </div>
 </div>
@@ -234,10 +232,10 @@ const CC30 = [
   ["2026-07-12",750.70],["2026-07-13",705.92],["2026-07-14",460.46],["2026-07-15",420.17],
   ["2026-07-16",366.95],["2026-07-17",635.55],["2026-07-18",427.54],["2026-07-19",1229.52],
   ["2026-07-20",605.38],["2026-07-21",597.28],["2026-07-22",846.06],["2026-07-23",1176.27],
-  ["2026-07-24",427.89],["2026-07-25",659.87],["2026-07-26",341.86]
+  ["2026-07-24",427.89],["2026-07-25",659.87],["2026-07-26",217.25]
 ];
-// Today-so-far breakdown — POS values read this run (2:39 PM); machine values from the 12:38 PM pull (portal login required to refresh)
-const TODAY = { d:"2026-07-26", wf:276.48, pd:65.38, wash:148.00, dry:34.22, vend:2.00, oth:0 };
+// Today-so-far breakdown — values read directly from the sites this run; null = no data reported yet
+const TODAY = { d:"2026-07-26", wf:151.87, pd:65.38, wash:148.00, dry:34.22, vend:2.00, oth:0 };
 const fmt = v => "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 const fmt0 = v => "$" + Math.round(v).toLocaleString("en-US");
 const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
