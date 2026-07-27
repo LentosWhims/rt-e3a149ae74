@@ -102,7 +102,7 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Monday, July 27, 2026 · 2:43 AM ET</div>
+    <div class="updated">Last updated Monday, July 27, 2026 · 3:40 AM ET</div>
   </header>
 
   <section class="hero">
@@ -110,7 +110,7 @@
     <div class="value" id="todayValue">$0.00</div>
     <div id="todayBar" style="margin-top:14px"></div>
     <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">All figures read fresh from both systems at 2:43 AM. The POS reports $0.00 and the machine system has no data yet for today — normal in the early morning. Card loads today: no data yet.</div>
+    <div class="note" style="margin-top:10px">All figures read fresh from both systems at 3:40 AM. The POS reports $0.00 and the machine system has no data yet for today — normal in the early morning. Card loads today: no data yet.</div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
@@ -161,7 +161,7 @@
 
   <section class="card">
     <h2>Day-over-day detail</h2>
-    <div class="sub">Most recent complete day (Sun, Jul 26) vs the day before, by revenue source. Today's column is as of the 2:43 AM pull.</div>
+    <div class="sub">Most recent complete day (Sun, Jul 26) vs the day before, by revenue source. Today's column is as of the 3:40 AM pull.</div>
     <table>
       <thead><tr><th>Source</th><th class="num">Today so far (Mon 7/27)</th><th class="num">Yesterday (Sun 7/26)</th><th class="num">Saturday (7/25)</th><th class="num">Δ Sun vs Sat</th></tr></thead>
       <tbody>
@@ -191,7 +191,7 @@
   <div class="foot">
     "Uncategorized" is revenue the POS total reports but its order-type filter does not attribute — shown as reported, not guessed.
     Card-system payments (money loaded onto cards) and machine cycle revenue (machine usage) are both shown; the stacked chart uses cycle revenue because that's what splits by machine type.
-    Machine status: <strong>2 machine problems</strong> reported as of the 2:43 AM check.
+    Machine status: <strong>2 machine problems</strong> reported as of the 3:40 AM check.
     Refreshes hourly; ask Claude to "update revenue" for an on-demand pull.
   </div>
 </div>
@@ -226,7 +226,7 @@ const CC30 = [
   ["2026-07-21",597.28],["2026-07-22",846.06],["2026-07-23",1176.27],["2026-07-24",427.89],
   ["2026-07-25",659.87],["2026-07-26",545.69],["2026-07-27",0.00]
 ];
-// Today-so-far breakdown — all values read this run (2:43 AM) from both systems
+// Today-so-far breakdown — all values read this run (3:40 AM) from both systems
 const TODAY = { d:"2026-07-27", wf:0, pd:0, wash:null, dry:null, vend:null, oth:0 };
 const fmt = v => "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 const fmt0 = v => "$" + Math.round(v).toLocaleString("en-US");
