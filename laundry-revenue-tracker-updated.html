@@ -1,0 +1,201 @@
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Laundry Revenue Tracker",
+  "schemaVersion": 1,
+  "description": "Global revenue tracker for Laundry on Keap — combines CleanCloud (wash &amp; fold/delivery) and LaundroPortal (self-service machine) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Revenue Tracker</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --s1: #2a78d6;  /* POS Wash & Fold (in-store) */
+    --s2: #eb6834;  /* POS Pickup & Delivery */
+    --s3: #1baf7a;  /* Washers */
+    --s4: #eda100;  /* Dryers */
+    --s5: #e87ba4;  /* Vending */
+    --s-other: #b5b3ab; /* uncategorized remainder */
+    --delta-good: #006300;
+    --delta-bad: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --s1: #3987e5;
+      --s2: #d95926;
+      --s3: #199e70;
+      --s4: #c98500;
+      --s5: #d55181;
+      --s-other: #6b6a64;
+      --delta-good: #0ca30c;
+      --delta-bad: #e66767;
+    }
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .viz-root { background: var(--page); color: var(--text-primary); min-height:100vh; padding:24px 16px 48px; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  header h1 { font-size: 22px; font-weight:650; letter-spacing:-0.01em; }
+  header .sub { color: var(--text-secondary); font-size:13px; margin-top:4px; }
+  .updated { color: var(--text-muted); font-size:12px; margin-top:2px; }
+
+  .hero { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:20px; }
+  .hero .label { font-size:13px; color: var(--text-secondary); }
+  .hero .value { font-size:52px; font-weight:600; line-height:1.1; margin-top:4px; }
+  .hero .delta { font-size:14px; margin-top:6px; font-weight:550; }
+  .delta.up { color: var(--delta-good); }
+  .delta.down { color: var(--delta-bad); }
+  .hero .note { font-size:12px; color: var(--text-muted); margin-top:8px; }
+  .warn { display:inline-block; font-size:12px; border:1px solid var(--delta-bad); color:var(--delta-bad); border-radius:8px; padding:3px 10px; margin-top:10px; }
+
+  .tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:12px; }
+  .tile { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
+  .tile .label { font-size:12.5px; color: var(--text-secondary); display:flex; align-items:center; gap:7px; }
+  .swatch { width:10px; height:10px; border-radius:3px; display:inline-block; flex:none; }
+  .tile .value { font-size:26px; font-weight:600; margin-top:6px; }
+  .tile .delta { font-size:12.5px; margin-top:4px; font-weight:550; }
+  .tile .basis { font-size:11.5px; color: var(--text-muted); margin-top:3px; }
+
+  .card { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:20px 24px; margin-top:12px; }
+  .card h2 { font-size:15px; font-weight:650; }
+  .card .sub { font-size:12.5px; color: var(--text-secondary); margin-top:2px; margin-bottom:12px; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--text-secondary); margin-bottom:10px; }
+  .legend span { display:flex; align-items:center; gap:6px; }
+  #chart, #chart30 { position:relative; }
+  #chart svg, #chart30 svg { display:block; width:100%; height:auto; }
+  .tooltip { position:absolute; pointer-events:none; background: var(--surface-1); border:1px solid var(--border); box-shadow:0 4px 14px rgba(0,0,0,0.14); border-radius:8px; padding:8px 10px; font-size:12px; display:none; z-index:5; white-space:nowrap; }
+  .tooltip .t-date { color: var(--text-secondary); margin-bottom:3px; }
+  .tooltip .t-row { display:flex; justify-content:space-between; gap:14px; }
+  .tooltip .t-row b { font-variant-numeric: tabular-nums; font-weight:600; }
+  .tooltip .t-key { display:inline-flex; align-items:center; gap:5px; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; color: var(--text-secondary); font-weight:550; padding:8px 10px; border-bottom:1px solid var(--baseline); }
+  th.num, td.num { text-align:right; font-variant-numeric: tabular-nums; }
+  td { padding:8px 10px; border-bottom:1px solid var(--grid); }
+  tr:last-child td { border-bottom:none; }
+  td.src { color: var(--text-secondary); }
+  td.src .swatch { margin-right:7px; vertical-align:-1px; }
+  .totalrow td { font-weight:650; border-top:1px solid var(--baseline); }
+  details summary { cursor:pointer; font-size:13px; color: var(--text-secondary); padding:4px 0; }
+  .foot { margin-top:16px; font-size:12px; color: var(--text-muted); line-height:1.6; }
+  .foot a { color: var(--s1); text-decoration:none; }
+  .pill { display:inline-block; font-size:11.5px; border:1px solid var(--border); border-radius:999px; padding:2px 9px; color:var(--text-secondary); margin-left:8px; vertical-align:middle; }
+</style>
+</head>
+<body class="viz-root">
+<div class="wrap">
+  <header>
+    <h1>Global Revenue Tracker</h1>
+    <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
+    <div class="updated">Last updated Tuesday, July 29, 2026 · 11:00 PM ET</div>
+  </header>
+
+  <section class="hero">
+    <div class="label">Today so far — Tuesday, Jul 29 · Combined (POS + Machines)</div>
+    <div class="value" id="todayValue">No data yet</div>
+    <div id="todayBar" style="margin-top:14px"></div>
+    <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
+    <div class="note" style="margin-top:10px">Payments posting throughout the day. No revenue recorded yet. <span class="warn">CleanCloud data unavailable this run</span></div>
+  </section>
+
+  <section class="hero" style="padding:16px 24px">
+    <div class="label">Yesterday (Mon, Jul 28) — full day</div>
+    <div class="value" style="font-size:34px">$653.62</div>
+    <div class="delta">⚠ POS data unavailable · Machine revenue only</div>
+    <div class="note">Machine cycle revenue $373.62 (Washers $263.50 + Dryers $92.12 + Vending $18.00). Card payments recorded: $280.00. See breakdown below.</div>
+  </section>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Washers — yesterday</div>
+      <div class="value">$263.50</div>
+      <div class="basis">188 full cycles</div>
+    </div>
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s4)"></span>Dryers — yesterday</div>
+      <div class="value">$92.12</div>
+      <div class="basis">298 top-off cycles</div>
+    </div>
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s5)"></span>Vending — yesterday</div>
+      <div class="value">$18.00</div>
+      <div class="basis">Laundry supplies</div>
+    </div>
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--text-muted)"></span>Data status</div>
+      <div class="value" style="color:var(--delta-bad)">⚠ Incomplete</div>
+      <div class="basis">Machines current · POS data unavailable</div>
+    </div>
+  </div>
+
+  <section class="card">
+    <h2>Machine revenue — yesterday (Mon, Jul 28)</h2>
+    <div class="sub">Self-service machine cycle revenue breakdown.</div>
+    <table>
+      <thead><tr><th>Machine Type</th><th class="num">Cycles</th><th class="num">Revenue</th></tr></thead>
+      <tbody>
+        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">188</td><td class="num">$263.50</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">298</td><td class="num">$92.12</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending Machines</td><td class="num">—</td><td class="num">$18.00</td></tr>
+        <tr class="totalrow"><td>Machine Total</td><td class="num">486</td><td class="num">$373.62</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Payment breakdown — yesterday (Mon, Jul 28)</h2>
+    <div class="sub">Card and payment method totals recorded in LaundroPortal.</div>
+    <table>
+      <thead><tr><th>Payment Type</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="src">Card Payments</td><td class="num">$280.00</td></tr>
+        <tr><td class="src">Portal Loads</td><td class="num">$150.00</td></tr>
+        <tr><td class="src">Cash (recorded)</td><td class="num">$0.00</td></tr>
+        <tr class="totalrow"><td>Total Payments</td><td class="num">$280.00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="foot">
+    <strong>Data status (this pull, Jul 29 11:00 PM ET):</strong> Machine revenue pulled fresh from LaundroPortal. Store POS data from CleanCloud unavailable — navigation issues with UI. Machine status: 2 problems reported.
+    Refreshes hourly; ask Claude to "update revenue" for an on-demand pull.
+  </div>
+</div>
+
+<script>
+const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
+const fmt0 = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + Math.round(v).toLocaleString("en-US");
+const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
+
+// Today breakdown
+(function(){
+  document.getElementById("todayValue").textContent = "No data yet";
+  document.getElementById("todayBar").innerHTML = `<div style="display:flex; height:22px; border-radius:6px; overflow:hidden; background:var(--grid);"></div>`;
+  document.getElementById("todayLegend").innerHTML = '<span style="color:var(--text-muted)">Awaiting first order of the day</span>';
+})();
+</script>
+</body>
+</html>
