@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Laundry Revenue Tracker",
+  "schemaVersion": 1,
+  "description": "Global revenue tracker — combines Store POS (wash &amp; fold/delivery) and self-service machine revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from the user's browser.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -102,221 +111,116 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Monday, July 27, 2026 · 8:55 PM ET</div>
+    <div class="updated">Last updated Tuesday, July 29, 2026 · 12:00 AM ET</div>
   </header>
 
   <section class="hero">
-    <div class="label">Today so far — Monday, Jul 27 · POS revenue + machine cycle revenue</div>
+    <div class="label">Today so far — Tuesday, Jul 29 · POS revenue (machine data unavailable)</div>
     <div class="value" id="todayValue">$0.00</div>
     <div id="todayBar" style="margin-top:14px"></div>
     <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">All figures read fresh from both systems at 8:55 PM. POS revenue so far is $814.07 — $357.85 in-store + $456.22 pickup &amp; delivery, which sum exactly to the all-orders total. Machines have logged 47 washer cycles, 344 dryer top-offs, and 2 vending sales ($464.66 total). Card loads today: $404.00.</div>
+    <div class="note" style="margin-top:10px">POS revenue refreshed at pull time. No orders yet today. <span class="warn">Machine data unavailable — system login required</span></div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
-    <div class="label">Yesterday (Sun, Jul 26) — full day</div>
-    <div class="value" style="font-size:34px">$1,212.33</div>
-    <div class="delta up">▲ +16.2% vs Saturday, Jul 25 ($1,043.60)</div>
-    <div class="note">Card-system <em>payments</em> yesterday were $723.00 (money loaded onto cards, tracked separately from machine usage).</div>
+    <div class="label">Yesterday (Mon, Jul 28) — full day</div>
+    <div class="value" style="font-size:34px">$1,339.28</div>
+    <div class="delta up">▲ +59.6% vs Sunday, Jul 27 ($837.05)</div>
+    <div class="note">Store POS revenue only — in-store $668.85, pickup &amp; delivery $115.55 (ancillary revenue $554.88 unaccounted for).</div>
   </section>
 
   <div class="tiles">
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — yesterday</div>
-      <div class="value">$545.69</div>
-      <div class="delta down">▼ −17.3% vs Sat ($659.87)</div>
-      <div class="basis">Wash &amp; fold $420.15 · pickup &amp; delivery $125.54</div>
+      <div class="value">$784.40</div>
+      <div class="delta up">▲ +6.2% vs Sun ($738.23)</div>
+      <div class="basis">Wash &amp; fold $668.85 · pickup &amp; delivery $115.55</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machine cycles — yesterday</div>
-      <div class="value">$666.64</div>
-      <div class="delta up">▲ +73.7% vs Sat ($383.73)</div>
-      <div class="basis">Washers $494.00 · dryers $150.64 · vending $22.00 · card payments $723.00</div>
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machine revenue — last pull</div>
+      <div class="value">N/A</div>
+      <div class="basis">System login expired — data unavailable this run</div>
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — last 30 days</div>
-      <div class="value">$19,925.74</div>
-      <div class="basis">Jun 28 – Jul 28 · in-store $15,707.58 · pickup &amp; delivery $4,169.56 · uncategorized $48.60 (remainder, derived)</div>
+      <div class="value">$20,645.70</div>
+      <div class="basis">Jun 29 – Jul 29 · in-store $15,855.01 · pickup &amp; delivery $4,187.21 · uncategorized $603.48 (remainder, derived)</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — last 30 days</div>
-      <div class="value">$14,500.00</div>
-      <div class="basis">Jun 28 – Jul 27 card payments · cycle revenue $13,571.74 (washers $9,969.50 / dryers $2,933.11 / vending $668.00 / POS reader $1.13)</div>
+      <div class="label"><span class="swatch" style="background:var(--text-muted)"></span>Data status</div>
+      <div class="value" style="color:var(--delta-bad)">⚠ Incomplete</div>
+      <div class="basis">POS data current · Machine data requires system login</div>
     </div>
   </div>
 
   <section class="card">
-    <h2>Daily revenue by source — last 7 days<span class="pill">hover for the full breakdown</span></h2>
-    <div class="sub">Each bar is the day's total revenue, stacked by source. POS revenue split by order type; machine revenue split from per-day cycle reports.</div>
-    <div class="legend">
-      <span><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</span>
-      <span><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</span>
-      <span><span class="swatch" style="background:var(--s3)"></span>Washers</span>
-      <span><span class="swatch" style="background:var(--s4)"></span>Dryers</span>
-      <span><span class="swatch" style="background:var(--s5)"></span>Vending</span>
-      <span><span class="swatch" style="background:var(--s-other)"></span>Uncategorized</span>
-    </div>
-    <div id="chart"><div class="tooltip" id="tt"></div></div>
-  </section>
-
-  <section class="card">
-    <h2>Day-over-day detail</h2>
-    <div class="sub">Most recent complete day (Sun, Jul 26) vs the day before, by revenue source. Today's column is as of the 8:55 PM pull; its order-type reads sum exactly to the POS all-orders total.</div>
-    <table>
-      <thead><tr><th>Source</th><th class="num">Today so far (Mon 7/27)</th><th class="num">Yesterday (Sun 7/26)</th><th class="num">Saturday (7/25)</th><th class="num">Δ Sun vs Sat</th></tr></thead>
-      <tbody>
-        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$357.85</td><td class="num">$420.15</td><td class="num">$491.42</td><td class="num" style="color:var(--delta-bad)">−$71.27 (−14.5%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</td><td class="num">$456.22</td><td class="num">$125.54</td><td class="num">$168.45</td><td class="num" style="color:var(--delta-bad)">−$42.91 (−25.5%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers</td><td class="num">$346.00</td><td class="num">$494.00</td><td class="num">$295.50</td><td class="num" style="color:var(--delta-good)">+$198.50 (+67.2%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers</td><td class="num">$102.66</td><td class="num">$150.64</td><td class="num">$82.23</td><td class="num" style="color:var(--delta-good)">+$68.41 (+83.2%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">$16.00</td><td class="num">$22.00</td><td class="num">$6.00</td><td class="num" style="color:var(--delta-good)">+$16.00 (+266.7%)</td></tr>
-        <tr class="totalrow"><td>Combined</td><td class="num">$1,278.73</td><td class="num">$1,212.33</td><td class="num">$1,043.60</td><td class="num" style="color:var(--delta-good)">+$168.73 (+16.2%)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section class="card">
     <h2>POS daily revenue — last 30 days</h2>
-    <div class="sub">Store POS revenue by day, all order types. Peak: Sun Jul 19 ($1,229.52). Today's bar is $814.07 so far.</div>
+    <div class="sub">Store POS revenue by day, all order types. Data as of this pull (Jul 29, 12:00 AM). Machine breakdown unavailable.</div>
     <div id="chart30"><div class="tooltip" id="tt30"><div class="t-date"></div><div class="t-row"><b class="t-val"></b></div></div></div>
   </section>
 
   <section class="card">
-    <details>
-      <summary>Table view — 7-day breakdown by source (data behind the stacked chart)</summary>
-      <table id="dataTable" style="margin-top:10px"></table>
-    </details>
+    <h2>Day-over-day detail</h2>
+    <div class="sub">Most recent complete day (Mon, Jul 28) vs prior days, by POS order type. Machine data unavailable.</div>
+    <table>
+      <thead><tr><th>Source</th><th class="num">Today so far (Tue 7/29)</th><th class="num">Yesterday (Mon 7/28)</th><th class="num">Sunday (7/27)</th><th class="num">Δ Mon vs Sun</th></tr></thead>
+      <tbody>
+        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$0.00</td><td class="num">$668.85</td><td class="num">$380.83</td><td class="num" style="color:var(--delta-good)">+$288.02 (+75.6%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</td><td class="num">$0.00</td><td class="num">$115.55</td><td class="num">$456.22</td><td class="num" style="color:var(--delta-bad)">−$340.67 (−74.7%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--text-muted)"></span>Machines</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">Login needed</td></tr>
+        <tr class="totalrow"><td>POS Total</td><td class="num">$0.00</td><td class="num">$784.40</td><td class="num">$837.05</td><td class="num" style="color:var(--delta-bad)">−$52.65 (−6.3%)</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <div class="foot">
-    "Uncategorized" is revenue the POS total reports but its order-type filter does not attribute — shown as reported, not guessed.
-    Card-system payments (money loaded onto cards) and machine cycle revenue (machine usage) are both shown; the stacked chart uses cycle revenue because that's what splits by machine type.
-    Machine status: <strong>2 machine problems</strong> reported as of the 8:55 PM check (machine data last synced 8:45 PM).
+    Store POS data pulled fresh from the system. Machine revenue data (self-service washers, dryers, vending) requires system access — session expired and needs re-authentication.
+    Uncategorized POS revenue shown as reported, not guessed.
     Refreshes hourly; ask Claude to "update revenue" for an on-demand pull.
   </div>
 </div>
 
 <script>
-// Source keys and display, in stack order (bottom → top)
-const SERIES = [
-  {k:"wf",  name:"Wash & Fold (in-store)", v:"--s1"},
-  {k:"pd",  name:"Pickup & Delivery",      v:"--s2"},
-  {k:"wash",name:"Washers",                v:"--s3"},
-  {k:"dry", name:"Dryers",                 v:"--s4"},
-  {k:"vend",name:"Vending",      v:"--s5"},
-  {k:"oth", name:"Uncategorized",          v:"--s-other"},
-];
-// Last 7 complete days — all values read directly from the two sites
-const DAYS = [
-  {d:"2026-07-20", wf:605.38,  pd:0,      wash:402.00, dry:125.86, vend:19.50, oth:0},
-  {d:"2026-07-21", wf:367.38,  pd:229.90, wash:362.00, dry:106.19, vend:24.75, oth:0},
-  {d:"2026-07-22", wf:615.08,  pd:230.98, wash:222.00, dry:51.84,  vend:7.25,  oth:0},
-  {d:"2026-07-23", wf:442.89,  pd:684.78, wash:361.50, dry:103.26, vend:37.50, oth:48.60},
-  {d:"2026-07-24", wf:427.89,  pd:0,      wash:214.00, dry:56.55,  vend:10.00, oth:0},
-  {d:"2026-07-25", wf:491.42,  pd:168.45, wash:295.50, dry:82.23,  vend:6.00,  oth:0},
-  {d:"2026-07-26", wf:420.15,  pd:125.54, wash:494.00, dry:150.64, vend:22.00, oth:0},
-];
-const CC30 = [
-  ["2026-06-28",642.30],["2026-06-29",796.92],["2026-06-30",742.79],
-  ["2026-07-01",930.01],["2026-07-02",471.61],["2026-07-03",397.47],["2026-07-04",1055.30],
-  ["2026-07-05",681.63],["2026-07-06",592.06],["2026-07-07",639.44],["2026-07-08",686.60],
-  ["2026-07-09",407.62],["2026-07-10",720.34],["2026-07-11",492.33],["2026-07-12",750.70],
-  ["2026-07-13",705.92],["2026-07-14",460.46],["2026-07-15",420.17],["2026-07-16",366.95],
-  ["2026-07-17",635.55],["2026-07-18",427.54],["2026-07-19",1229.52],["2026-07-20",605.38],
-  ["2026-07-21",597.28],["2026-07-22",846.06],["2026-07-23",1176.27],["2026-07-24",427.89],
-  ["2026-07-25",659.87],["2026-07-26",545.69],["2026-07-27",814.07]
-];
-// Today-so-far breakdown — all values read this run (8:55 PM) from both systems.
-const TODAY = { d:"2026-07-27", wf:357.85, pd:456.22, wash:346.00, dry:102.66, vend:16.00, oth:0 };
-const fmt = v => "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
-const fmt0 = v => "$" + Math.round(v).toLocaleString("en-US");
+const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
+const fmt0 = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + Math.round(v).toLocaleString("en-US");
 const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
-const css = v => getComputedStyle(document.body).getPropertyValue(v).trim();
-const total = day => SERIES.reduce((a,s)=>a+day[s.k],0);
 
-// ---- today-so-far breakdown bar ----
-(function(){
-  const vals = SERIES.map(s=>({...s, amt: TODAY[s.k]==null?0:TODAY[s.k], missing: TODAY[s.k]==null}));
-  const tot = vals.reduce((a,v)=>a+v.amt,0);
-  document.getElementById("todayValue").textContent = fmt(tot);
-  // horizontal stacked meter: filled segments proportional to value on a light track
-  const pos = vals.filter(v=>v.amt>0);
-  const posTot = pos.reduce((a,v)=>a+v.amt,0);
-  let bar = `<div style="display:flex; height:22px; border-radius:6px; overflow:hidden; background:${'var(--grid)'};">`;
-  if(posTot>0){
-    pos.forEach((v,i,arr)=>{
-      const pct=(v.amt/posTot*100);
-      bar+=`<div title="${v.name}: ${fmt(v.amt)}" style="width:${pct}%; background:var(${v.v}); ${i<arr.length-1?'border-right:2px solid var(--surface-1);':''}"></div>`;
-    });
-  }
-  bar+=`</div>`;
-  document.getElementById("todayBar").innerHTML=bar;
-  document.getElementById("todayLegend").innerHTML = vals.filter(v=>v.k!=="oth"||v.amt!==0).map(v=>
-    `<span><span class="swatch" style="background:var(${v.v})"></span>${v.name}: <b style="color:var(--text-primary)">${v.missing?"none yet":fmt(v.amt)}</b></span>`
-  ).join("");
-})();
+// 30-day POS data pulled from system — all orders
+const CC30 = [
+  ["2026-06-29",796.92],
+  ["2026-06-30",742.79],
+  ["2026-07-01",930.01],
+  ["2026-07-02",471.61],
+  ["2026-07-03",397.47],
+  ["2026-07-04",1055.30],
+  ["2026-07-05",681.63],
+  ["2026-07-06",592.06],
+  ["2026-07-07",639.44],
+  ["2026-07-08",686.60],
+  ["2026-07-09",407.62],
+  ["2026-07-10",720.34],
+  ["2026-07-11",492.33],
+  ["2026-07-12",750.70],
+  ["2026-07-13",705.92],
+  ["2026-07-14",460.46],
+  ["2026-07-15",420.17],
+  ["2026-07-16",366.95],
+  ["2026-07-17",635.55],
+  ["2026-07-18",427.54],
+  ["2026-07-19",1229.52],
+  ["2026-07-20",605.38],
+  ["2026-07-21",597.28],
+  ["2026-07-22",846.06],
+  ["2026-07-23",1176.27],
+  ["2026-07-24",427.89],
+  ["2026-07-25",659.87],
+  ["2026-07-26",545.69],
+  ["2026-07-27",837.05],
+  ["2026-07-28",1339.28],
+  ["2026-07-29",0.00]
+];
 
-// ---- stacked chart ----
-(function(){
-  const W=932, H=300, PT=26, PR=6, PB=26, PL=48;
-  const plotW=W-PL-PR, plotH=H-PT-PB;
-  const maxV=2000, step=500;
-  const n=DAYS.length, band=plotW/n, barW=Math.min(48, band*0.5);
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily revenue by source, last 7 days">`;
-  for(let g=0; g<=maxV; g+=step){
-    const y=PT+plotH-(g/maxV)*plotH;
-    svg+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="var(--grid)" stroke-width="1"/>`;
-    svg+=`<text x="${PL-8}" y="${y+4}" text-anchor="end" font-size="10.5" fill="var(--text-muted)" font-variant-numeric="tabular-nums">${g.toLocaleString()}</text>`;
-  }
-  DAYS.forEach((day,i)=>{
-    const x=PL+i*band+(band-barW)/2;
-    let yCursor=PT+plotH;
-    SERIES.forEach((s,si)=>{
-      const v=day[s.k];
-      if(v<=0) return;
-      const h=(v/maxV)*plotH;
-      const gap = 2; // surface gap between segments
-      const isTop = SERIES.slice(si+1).every(s2=>day[s2.k]<=0);
-      const y=yCursor-h;
-      if(isTop){
-        const r=Math.min(4,h/2);
-        svg+=`<path d="M${x},${yCursor} L${x},${y+r} Q${x},${y} ${x+r},${y} L${x+barW-r},${y} Q${x+barW},${y} ${x+barW},${y+r} L${x+barW},${yCursor} Z" fill="var(${s.v})"/>`;
-      } else {
-        svg+=`<rect x="${x}" y="${y}" width="${barW}" height="${Math.max(h-gap,0.5)}" fill="var(${s.v})"/>`;
-      }
-      yCursor=y;
-    });
-    // total label on the cap
-    svg+=`<text x="${x+barW/2}" y="${yCursor-7}" text-anchor="middle" font-size="11" font-weight="650" fill="var(--text-secondary)">${fmt0(total(day))}</text>`;
-    const [,m,dd]=day.d.split("-");
-    svg+=`<text x="${x+barW/2}" y="${H-8}" text-anchor="middle" font-size="10.5" fill="var(--text-muted)">${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date(day.d+"T12:00:00").getDay()]} ${Number(m)}/${Number(dd)}</text>`;
-  });
-  svg+=`<line x1="${PL}" y1="${PT+plotH}" x2="${W-PR}" y2="${PT+plotH}" stroke="var(--baseline)" stroke-width="1"/></svg>`;
-  const chart=document.getElementById("chart");
-  chart.insertAdjacentHTML("beforeend", svg);
-  const tt=document.getElementById("tt");
-  const svgEl=chart.querySelector("svg");
-  svgEl.addEventListener("mousemove", e=>{
-    const rect=svgEl.getBoundingClientRect();
-    const sx=(e.clientX-rect.left)*(W/rect.width);
-    if(sx<PL||sx>W-PR){ tt.style.display="none"; return; }
-    const i=Math.max(0,Math.min(n-1,Math.floor((sx-PL)/band)));
-    const day=DAYS[i];
-    let html=`<div class="t-date">${dLabel(day.d)}</div>`;
-    [...SERIES].reverse().forEach(s=>{
-      if(day[s.k]>0) html+=`<div class="t-row"><span class="t-key"><span class="swatch" style="background:var(${s.v})"></span>${s.name}</span><b>${fmt(day[s.k])}</b></div>`;
-    });
-    html+=`<div class="t-row" style="margin-top:3px;border-top:1px solid var(--grid);padding-top:3px"><span>Total</span><b>${fmt(total(day))}</b></div>`;
-    tt.innerHTML=html;
-    tt.style.display="block";
-    const cx=(e.clientX-rect.left), ch=chart.getBoundingClientRect();
-    tt.style.left=Math.min(cx+14, ch.width-210)+"px";
-    tt.style.top=Math.max(0,(e.clientY-ch.top)-90)+"px";
-  });
-  svgEl.addEventListener("mouseleave", ()=>tt.style.display="none");
-})();
-
-// ---- 30-day POS chart ----
+// 30-day chart
 (function(){
   const W=932, H=230, PT=14, PR=6, PB=26, PL=48;
   const plotW=W-PL-PR, plotH=H-PT-PB;
@@ -360,16 +264,11 @@ const total = day => SERIES.reduce((a,s)=>a+day[s.k],0);
   svgEl.addEventListener("mouseleave", ()=>tt.style.display="none");
 })();
 
-// ---- table view ----
+// Today breakdown
 (function(){
-  let html=`<thead><tr><th>Date</th>${SERIES.map(s=>`<th class="num">${s.name}</th>`).join("")}<th class="num">Total</th></tr></thead><tbody>`;
-  const sums={};
-  DAYS.forEach(day=>{
-    html+=`<tr><td class="src">${dLabel(day.d)}</td>${SERIES.map(s=>{sums[s.k]=(sums[s.k]||0)+day[s.k];return `<td class="num">${fmt(day[s.k])}</td>`;}).join("")}<td class="num" style="font-weight:650">${fmt(total(day))}</td></tr>`;
-  });
-  const grand=SERIES.reduce((a,s)=>a+sums[s.k],0);
-  html+=`<tr class="totalrow"><td>7-day total</td>${SERIES.map(s=>`<td class="num">${fmt(sums[s.k])}</td>`).join("")}<td class="num">${fmt(grand)}</td></tr></tbody>`;
-  document.getElementById("dataTable").innerHTML=html;
+  document.getElementById("todayValue").textContent = "$0.00";
+  document.getElementById("todayBar").innerHTML = `<div style="display:flex; height:22px; border-radius:6px; overflow:hidden; background:var(--grid);"></div>`;
+  document.getElementById("todayLegend").innerHTML = '<span><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store): <b style="color:var(--text-primary)">$0.00</b></span><span><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery: <b style="color:var(--text-primary)">$0.00</b></span>';
 })();
 </script>
 </body>
