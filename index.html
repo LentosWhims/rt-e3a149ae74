@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Global revenue tracker — combines Store POS (wash &amp; fold/delivery) and self-service machine revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from connected systems via the user's browser.",
+  "description": "Global revenue tracker for Laundry on Keap — combines CleanCloud (wash &amp; fold/delivery) and LaundroPortal (self-service machine) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -110,40 +110,40 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Tuesday, July 29, 2026 · 08:15 PM ET</div>
+    <div class="updated">Last updated Tuesday, July 29, 2026 · 21:20 PM ET</div>
   </header>
 
   <section class="hero">
     <div class="label">Today (Tue, Jul 29) — Store + Machines</div>
-    <div class="value" id="todayValue">$818.96</div>
+    <div class="value" id="todayValue">$844.22</div>
     <div id="todayBar" style="margin-top:14px"></div>
     <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">Store POS (In-Store $522.87 + Pickup/Delivery $161.27) + Machine cycles $134.96 (Washers $101.50 + Dryers $21.45 + Vending $12.00).</div>
+    <div class="note" style="margin-top:10px">Store POS $684.14 + Machine cycles $160.08 (Washers $118.50 + Dryers $29.58 + Vending $12.00).</div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
     <div class="label">Yesterday (Mon, Jul 28) — Store + Machines</div>
-    <div class="value" style="font-size:34px">$1,713.10</div>
-    <div class="delta">Store POS: $1,339.28 (In-Store $668.85 + Pickup/Delivery $115.55 + Other $554.88) + Machines: $373.82</div>
+    <div class="value" style="font-size:34px">$1,712.90</div>
+    <div class="delta">Store POS: $1,339.28 + Machines: $373.62</div>
     <div class="note">Machine revenue: Washers $263.50 + Dryers $92.12 + Vending $18.00. Card payments at portal: $280.00. Machines: Washers 37 full + Dryers 298 top-off + Vending 3 units.</div>
   </section>
 
   <div class="tiles">
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>In-Store — today</div>
-      <div class="value">$522.87</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — today</div>
+      <div class="value">$684.14</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s2)"></span>Pickup/Delivery — today</div>
-      <div class="value">$161.27</div>
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — today</div>
+      <div class="value">$160.08</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>In-Store — yesterday</div>
-      <div class="value">$668.85</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — yesterday</div>
+      <div class="value">$1,339.28</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s2)"></span>Pickup/Delivery — yesterday</div>
-      <div class="value">$115.55</div>
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — yesterday</div>
+      <div class="value">$373.62</div>
     </div>
   </div>
 
@@ -153,10 +153,10 @@
     <table>
       <thead><tr><th>Machine Type</th><th class="num">Cycles</th><th class="num">Revenue</th></tr></thead>
       <tbody>
-        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">16</td><td class="num">$101.50</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">74</td><td class="num">$21.45</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">19</td><td class="num">$118.50</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">102</td><td class="num">$29.58</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending Machines</td><td class="num">2</td><td class="num">$12.00</td></tr>
-        <tr class="totalrow"><td>Machine Total</td><td class="num">92</td><td class="num">$134.96</td></tr>
+        <tr class="totalrow"><td>Machine Total</td><td class="num">123</td><td class="num">$160.08</td></tr>
       </tbody>
     </table>
   </section>
@@ -170,7 +170,7 @@
         <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">37</td><td class="num">$263.50</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">298</td><td class="num">$92.12</td></tr>
         <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending Machines</td><td class="num">3</td><td class="num">$18.00</td></tr>
-        <tr class="totalrow"><td>Machine Total</td><td class="num">338</td><td class="num">$373.82</td></tr>
+        <tr class="totalrow"><td>Machine Total</td><td class="num">338</td><td class="num">$373.62</td></tr>
       </tbody>
     </table>
   </section>
@@ -182,8 +182,6 @@
       <thead><tr><th>Payment Type</th><th class="num">Amount</th></tr></thead>
       <tbody>
         <tr><td class="src">Card Payments (Credit/Debit)</td><td class="num">$280.00</td></tr>
-        <tr><td class="src">Portal Loads</td><td class="num">$150.00</td></tr>
-        <tr><td class="src">Cash (recorded)</td><td class="num">$0.00</td></tr>
         <tr class="totalrow"><td>Total Payments</td><td class="num">$280.00</td></tr>
       </tbody>
     </table>
@@ -200,7 +198,7 @@
   </section>
 
   <div class="foot">
-    <strong>Data status (pull Jul 29, 20:15 ET):</strong> Store POS &amp; machine revenue current. Store POS: all 30 days complete. Machines: today &amp; yesterday Summary Reports run. 2 problems reported. Revenue comparison: today $818.96 vs yesterday $1,713.10 (-52% swing). Refreshes hourly.
+    <strong>Data status (pull Jul 29, 21:20 ET):</strong> Store POS &amp; machine revenue current. CleanCloud: all 30 days complete. LaundroPortal: today &amp; yesterday Summary Reports run. Refreshes hourly.
   </div>
 </div>
 
@@ -273,9 +271,9 @@ const CC30 = [
 
 // Today breakdown
 (function(){
-  document.getElementById("todayValue").textContent = "$818.96";
+  document.getElementById("todayValue").textContent = "$844.22";
   const storePos = 684.14;
-  const machines = 134.96;
+  const machines = 160.08;
   const total = storePos + machines;
   const storeW = (storePos / total) * 100;
   const machW = (machines / total) * 100;
@@ -284,8 +282,8 @@ const CC30 = [
     <div style="flex:${machW}; background:var(--s3);"></div>
   </div>`;
   document.getElementById("todayLegend").innerHTML = `
-    <span><span class="swatch" style="background:var(--s1)"></span>Store POS $684.14 (84%)</span>
-    <span><span class="swatch" style="background:var(--s3)"></span>Machines $134.96 (16%)</span>
+    <span><span class="swatch" style="background:var(--s1)"></span>Store POS $684.14 (81%)</span>
+    <span><span class="swatch" style="background:var(--s3)"></span>Machines $160.08 (19%)</span>
   `;
 })();
 </script>
