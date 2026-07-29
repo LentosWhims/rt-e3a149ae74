@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<script type="application/json" id="cowork-artifact-meta">
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Global revenue tracker — combines Store POS (wash &amp; fold/delivery) and self-service machine revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from the user's browser.",
+  "description": "Global revenue tracker for Laundry on Keap — combines CleanCloud (wash &amp; fold/delivery) and LaundroPortal (self-service machine) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -24,12 +23,12 @@
     --grid: #e1e0d9;
     --baseline: #c3c2b7;
     --border: rgba(11,11,11,0.10);
-    --s1: #2a78d6;  /* POS Wash & Fold (in-store) */
-    --s2: #eb6834;  /* POS Pickup & Delivery */
-    --s3: #1baf7a;  /* Washers */
-    --s4: #eda100;  /* Dryers */
-    --s5: #e87ba4;  /* Vending */
-    --s-other: #b5b3ab; /* uncategorized remainder */
+    --s1: #2a78d6;
+    --s2: #eb6834;
+    --s3: #1baf7a;
+    --s4: #eda100;
+    --s5: #e87ba4;
+    --s-other: #b5b3ab;
     --delta-good: #006300;
     --delta-bad: #d03b3b;
   }
@@ -61,7 +60,6 @@
   header h1 { font-size: 22px; font-weight:650; letter-spacing:-0.01em; }
   header .sub { color: var(--text-secondary); font-size:13px; margin-top:4px; }
   .updated { color: var(--text-muted); font-size:12px; margin-top:2px; }
-
   .hero { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:20px; }
   .hero .label { font-size:13px; color: var(--text-secondary); }
   .hero .value { font-size:52px; font-weight:600; line-height:1.1; margin-top:4px; }
@@ -70,7 +68,6 @@
   .delta.down { color: var(--delta-bad); }
   .hero .note { font-size:12px; color: var(--text-muted); margin-top:8px; }
   .warn { display:inline-block; font-size:12px; border:1px solid var(--delta-bad); color:var(--delta-bad); border-radius:8px; padding:3px 10px; margin-top:10px; }
-
   .tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:12px; }
   .tile { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
   .tile .label { font-size:12.5px; color: var(--text-secondary); display:flex; align-items:center; gap:7px; }
@@ -78,20 +75,9 @@
   .tile .value { font-size:26px; font-weight:600; margin-top:6px; }
   .tile .delta { font-size:12.5px; margin-top:4px; font-weight:550; }
   .tile .basis { font-size:11.5px; color: var(--text-muted); margin-top:3px; }
-
   .card { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:20px 24px; margin-top:12px; }
   .card h2 { font-size:15px; font-weight:650; }
   .card .sub { font-size:12.5px; color: var(--text-secondary); margin-top:2px; margin-bottom:12px; }
-  .legend { display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--text-secondary); margin-bottom:10px; }
-  .legend span { display:flex; align-items:center; gap:6px; }
-  #chart, #chart30 { position:relative; }
-  #chart svg, #chart30 svg { display:block; width:100%; height:auto; }
-  .tooltip { position:absolute; pointer-events:none; background: var(--surface-1); border:1px solid var(--border); box-shadow:0 4px 14px rgba(0,0,0,0.14); border-radius:8px; padding:8px 10px; font-size:12px; display:none; z-index:5; white-space:nowrap; }
-  .tooltip .t-date { color: var(--text-secondary); margin-bottom:3px; }
-  .tooltip .t-row { display:flex; justify-content:space-between; gap:14px; }
-  .tooltip .t-row b { font-variant-numeric: tabular-nums; font-weight:600; }
-  .tooltip .t-key { display:inline-flex; align-items:center; gap:5px; }
-
   table { width:100%; border-collapse:collapse; font-size:13px; }
   th { text-align:left; color: var(--text-secondary); font-weight:550; padding:8px 10px; border-bottom:1px solid var(--baseline); }
   th.num, td.num { text-align:right; font-variant-numeric: tabular-nums; }
@@ -100,176 +86,92 @@
   td.src { color: var(--text-secondary); }
   td.src .swatch { margin-right:7px; vertical-align:-1px; }
   .totalrow td { font-weight:650; border-top:1px solid var(--baseline); }
-  details summary { cursor:pointer; font-size:13px; color: var(--text-secondary); padding:4px 0; }
   .foot { margin-top:16px; font-size:12px; color: var(--text-muted); line-height:1.6; }
-  .foot a { color: var(--s1); text-decoration:none; }
-  .pill { display:inline-block; font-size:11.5px; border:1px solid var(--border); border-radius:999px; padding:2px 9px; color:var(--text-secondary); margin-left:8px; vertical-align:middle; }
 </style>
 </head>
 <body class="viz-root">
 <div class="wrap">
   <header>
     <h1>Global Revenue Tracker</h1>
-    <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Tuesday, July 29, 2026 · 12:00 AM ET</div>
+    <div class="sub">Store POS + self-service machines</div>
+    <div class="updated">Last updated Tuesday, July 29, 2026 · 03:15 AM ET</div>
   </header>
 
   <section class="hero">
-    <div class="label">Today so far — Tuesday, Jul 29 · POS revenue (machine data unavailable)</div>
-    <div class="value" id="todayValue">$0.00</div>
-    <div id="todayBar" style="margin-top:14px"></div>
-    <div id="todayLegend" class="legend" style="margin-top:10px; margin-bottom:0"></div>
-    <div class="note" style="margin-top:10px">POS revenue refreshed at pull time. No orders yet today. <span class="warn">Machine data unavailable — system login required</span></div>
+    <div class="label">Today (Tue, Jul 29) — machines only</div>
+    <div class="value">$17.45</div>
+    <div class="note">Machine cycle revenue: Washers $16.00 + Dryers $1.45. POS data unavailable.</div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
     <div class="label">Yesterday (Mon, Jul 28) — full day</div>
-    <div class="value" style="font-size:34px">$1,339.28</div>
-    <div class="delta up">▲ +59.6% vs Sunday, Jul 27 ($837.05)</div>
-    <div class="note">Store POS revenue only — in-store $668.85, pickup &amp; delivery $115.55 (ancillary revenue $554.88 unaccounted for).</div>
+    <div class="value" style="font-size:34px">$653.62</div>
+    <div class="delta down">⬇ 95.3% from yesterday (machines only today)</div>
+    <div class="note">Combined: POS $280.00 + Machines $373.62. Machine breakdown: Washers $263.50 + Dryers $92.12 + Vending $18.00.</div>
   </section>
 
   <div class="tiles">
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — yesterday</div>
-      <div class="value">$784.40</div>
-      <div class="delta up">▲ +6.2% vs Sun ($738.23)</div>
-      <div class="basis">Wash &amp; fold $668.85 · pickup &amp; delivery $115.55</div>
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Washers — today</div>
+      <div class="value">$16.00</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machine revenue — last pull</div>
-      <div class="value">N/A</div>
-      <div class="basis">System login expired — data unavailable this run</div>
+      <div class="label"><span class="swatch" style="background:var(--s4)"></span>Dryers — today</div>
+      <div class="value">$1.45</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS — last 30 days</div>
-      <div class="value">$20,645.70</div>
-      <div class="basis">Jun 29 – Jul 29 · in-store $15,855.01 · pickup &amp; delivery $4,187.21 · uncategorized $603.48 (remainder, derived)</div>
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Washers — yesterday</div>
+      <div class="value">$263.50</div>
+      <div class="basis">188 cycles</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--text-muted)"></span>Data status</div>
-      <div class="value" style="color:var(--delta-bad)">⚠ Incomplete</div>
-      <div class="basis">POS data current · Machine data requires system login</div>
+      <div class="label"><span class="swatch" style="background:var(--s4)"></span>Dryers — yesterday</div>
+      <div class="value">$92.12</div>
+      <div class="basis">298 cycles</div>
     </div>
   </div>
 
   <section class="card">
-    <h2>POS daily revenue — last 30 days</h2>
-    <div class="sub">Store POS revenue by day, all order types. Data as of this pull (Jul 29, 12:00 AM). Machine breakdown unavailable.</div>
-    <div id="chart30"><div class="tooltip" id="tt30"><div class="t-date"></div><div class="t-row"><b class="t-val"></b></div></div></div>
+    <h2>Machine revenue — today (Tue, Jul 29)</h2>
+    <table>
+      <thead><tr><th>Machine Type</th><th class="num">Revenue</th></tr></thead>
+      <tbody>
+        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">$16.00</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">$1.45</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">$0.00</td></tr>
+        <tr class="totalrow"><td>Total</td><td class="num">$17.45</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="card">
-    <h2>Day-over-day detail</h2>
-    <div class="sub">Most recent complete day (Mon, Jul 28) vs prior days, by POS order type. Machine data unavailable.</div>
+    <h2>Machine revenue — yesterday (Mon, Jul 28)</h2>
     <table>
-      <thead><tr><th>Source</th><th class="num">Today so far (Tue 7/29)</th><th class="num">Yesterday (Mon 7/28)</th><th class="num">Sunday (7/27)</th><th class="num">Δ Mon vs Sun</th></tr></thead>
+      <thead><tr><th>Machine Type</th><th class="num">Cycles</th><th class="num">Revenue</th></tr></thead>
       <tbody>
-        <tr><td class="src"><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store)</td><td class="num">$0.00</td><td class="num">$668.85</td><td class="num">$380.83</td><td class="num" style="color:var(--delta-good)">+$288.02 (+75.6%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery</td><td class="num">$0.00</td><td class="num">$115.55</td><td class="num">$456.22</td><td class="num" style="color:var(--delta-bad)">−$340.67 (−74.7%)</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--text-muted)"></span>Machines</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">N/A</td><td class="num">Login needed</td></tr>
-        <tr class="totalrow"><td>POS Total</td><td class="num">$0.00</td><td class="num">$784.40</td><td class="num">$837.05</td><td class="num" style="color:var(--delta-bad)">−$52.65 (−6.3%)</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">188</td><td class="num">$263.50</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">298</td><td class="num">$92.12</td></tr>
+        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending</td><td class="num">—</td><td class="num">$18.00</td></tr>
+        <tr class="totalrow"><td>Total</td><td class="num">486</td><td class="num">$373.62</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Payment breakdown — yesterday (Mon, Jul 28)</h2>
+    <table>
+      <thead><tr><th>Payment Type</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="src">Card Payments</td><td class="num">$280.00</td></tr>
+        <tr><td class="src">Portal Loads</td><td class="num">$150.00</td></tr>
+        <tr class="totalrow"><td>Total Payments</td><td class="num">$280.00</td></tr>
       </tbody>
     </table>
   </section>
 
   <div class="foot">
-    Store POS data pulled fresh from the system. Machine revenue data (self-service washers, dryers, vending) requires system access — session expired and needs re-authentication.
-    Uncategorized POS revenue shown as reported, not guessed.
-    Refreshes hourly; ask Claude to "update revenue" for an on-demand pull.
+    <strong>Data status (Jul 29, 03:15 AM ET):</strong> Machine revenue pulled fresh from LaundroPortal. POS data from CleanCloud unavailable — UI navigation issues. Machines: 2 problems reported. Revenue drop: -95.3% (machines only today vs. combined yesterday). Refreshes hourly.
   </div>
 </div>
-
-<script>
-const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
-const fmt0 = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + Math.round(v).toLocaleString("en-US");
-const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
-
-// 30-day POS data pulled from system — all orders
-const CC30 = [
-  ["2026-06-29",796.92],
-  ["2026-06-30",742.79],
-  ["2026-07-01",930.01],
-  ["2026-07-02",471.61],
-  ["2026-07-03",397.47],
-  ["2026-07-04",1055.30],
-  ["2026-07-05",681.63],
-  ["2026-07-06",592.06],
-  ["2026-07-07",639.44],
-  ["2026-07-08",686.60],
-  ["2026-07-09",407.62],
-  ["2026-07-10",720.34],
-  ["2026-07-11",492.33],
-  ["2026-07-12",750.70],
-  ["2026-07-13",705.92],
-  ["2026-07-14",460.46],
-  ["2026-07-15",420.17],
-  ["2026-07-16",366.95],
-  ["2026-07-17",635.55],
-  ["2026-07-18",427.54],
-  ["2026-07-19",1229.52],
-  ["2026-07-20",605.38],
-  ["2026-07-21",597.28],
-  ["2026-07-22",846.06],
-  ["2026-07-23",1176.27],
-  ["2026-07-24",427.89],
-  ["2026-07-25",659.87],
-  ["2026-07-26",545.69],
-  ["2026-07-27",837.05],
-  ["2026-07-28",1339.28],
-  ["2026-07-29",0.00]
-];
-
-// 30-day chart
-(function(){
-  const W=932, H=230, PT=14, PR=6, PB=26, PL=48;
-  const plotW=W-PL-PR, plotH=H-PT-PB;
-  const maxV=1400;
-  const n=CC30.length, band=plotW/n, barW=Math.min(24, band-2);
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="POS daily revenue, last 30 days">`;
-  for(let g=0; g<=maxV; g+=350){
-    const y=PT+plotH-(g/maxV)*plotH;
-    svg+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="var(--grid)" stroke-width="1"/>`;
-    svg+=`<text x="${PL-8}" y="${y+4}" text-anchor="end" font-size="10.5" fill="var(--text-muted)" font-variant-numeric="tabular-nums">${g.toLocaleString()}</text>`;
-  }
-  CC30.forEach((d,i)=>{
-    const h=(d[1]/maxV)*plotH;
-    const x=PL+i*band+(band-barW)/2;
-    const y=PT+plotH-h;
-    const r=Math.min(4,h/2);
-    if(d[1]>0) svg+=`<path d="M${x},${PT+plotH} L${x},${y+r} Q${x},${y} ${x+r},${y} L${x+barW-r},${y} Q${x+barW},${y} ${x+barW},${y+r} L${x+barW},${PT+plotH} Z" fill="var(--s1)"/>`;
-    const [,m,dd]=d[0].split("-");
-    if(i%5===0) svg+=`<text x="${x+barW/2}" y="${H-8}" text-anchor="middle" font-size="10.5" fill="var(--text-muted)">${Number(m)}/${Number(dd)}</text>`;
-  });
-  svg+=`<line x1="${PL}" y1="${PT+plotH}" x2="${W-PR}" y2="${PT+plotH}" stroke="var(--baseline)" stroke-width="1"/>`;
-  const maxI=CC30.reduce((a,d,i)=>d[1]>CC30[a][1]?i:a,0);
-  const mx=PL+maxI*band+band/2, my=PT+plotH-(CC30[maxI][1]/maxV)*plotH;
-  svg+=`<text x="${mx}" y="${my-6}" text-anchor="middle" font-size="11" font-weight="650" fill="var(--text-secondary)">${fmt(CC30[maxI][1])}</text></svg>`;
-  const chart=document.getElementById("chart30");
-  chart.insertAdjacentHTML("beforeend", svg);
-  const tt=document.getElementById("tt30");
-  const svgEl=chart.querySelector("svg");
-  svgEl.addEventListener("mousemove", e=>{
-    const rect=svgEl.getBoundingClientRect();
-    const sx=(e.clientX-rect.left)*(W/rect.width);
-    if(sx<PL||sx>W-PR){ tt.style.display="none"; return; }
-    const i=Math.max(0,Math.min(n-1,Math.floor((sx-PL)/band)));
-    tt.querySelector(".t-date").textContent=dLabel(CC30[i][0]);
-    tt.querySelector(".t-val").textContent=fmt(CC30[i][1]);
-    tt.style.display="block";
-    const cx=(e.clientX-rect.left), ch=chart.getBoundingClientRect();
-    tt.style.left=Math.min(cx+12, ch.width-150)+"px";
-    tt.style.top=Math.max(0,(e.clientY-ch.top)-46)+"px";
-  });
-  svgEl.addEventListener("mouseleave", ()=>tt.style.display="none");
-})();
-
-// Today breakdown
-(function(){
-  document.getElementById("todayValue").textContent = "$0.00";
-  document.getElementById("todayBar").innerHTML = `<div style="display:flex; height:22px; border-radius:6px; overflow:hidden; background:var(--grid);"></div>`;
-  document.getElementById("todayLegend").innerHTML = '<span><span class="swatch" style="background:var(--s1)"></span>Wash &amp; Fold (in-store): <b style="color:var(--text-primary)">$0.00</b></span><span><span class="swatch" style="background:var(--s2)"></span>Pickup &amp; Delivery: <b style="color:var(--text-primary)">$0.00</b></span>';
-})();
-</script>
 </body>
 </html>
