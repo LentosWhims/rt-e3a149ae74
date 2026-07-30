@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="user-login" content="LentosWhims">
 <title>Global Revenue Tracker</title>
 <style>
   .viz-root {
@@ -111,7 +110,7 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Wednesday, July 30, 2026 · 00:52 AM ET</div>
+    <div class="updated">Last updated Wednesday, July 30, 2026 · 20:45 PM ET</div>
   </header>
 
   <section class="hero">
@@ -121,10 +120,10 @@
   </section>
 
   <section class="hero" style="padding:16px 24px">
-    <div class="label">Yesterday (Tue, Jul 29) — Store + Machines</div>
-    <div class="value" style="font-size:34px">$1,138.86</div>
-    <div class="delta">Store POS: $860.30 + Machines: $278.56</div>
-    <div class="note">Machine revenue: Washers $202.50 + Dryers $62.06 + Vending $14.00. Machines: Washers 31 full + Dryers 214 top-off + Vending 3 units.</div>
+    <div class="label">Yesterday (Tue, Jul 29) — Store POS</div>
+    <div class="value" style="font-size:34px">$860.30</div>
+    <div class="delta">In-Store: $699.03 + Pickup/Delivery: $161.27</div>
+    <div class="note">Machines: data unavailable (login required)</div>
   </section>
 
   <div class="tiles">
@@ -144,23 +143,10 @@
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines — yesterday</div>
-      <div class="value">$278.56</div>
+      <div class="value">—</div>
+      <div class="basis">Data unavailable</div>
     </div>
   </div>
-
-  <section class="card">
-    <h2>Machine revenue — yesterday (Tue, Jul 29)</h2>
-    <div class="sub">Self-service machine cycle revenue breakdown.</div>
-    <table>
-      <thead><tr><th>Machine Type</th><th class="num">Cycles</th><th class="num">Revenue</th></tr></thead>
-      <tbody>
-        <tr><td class="src"><span class="swatch" style="background:var(--s3)"></span>Washers (full)</td><td class="num">31</td><td class="num">$202.50</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s4)"></span>Dryers (top-off)</td><td class="num">214</td><td class="num">$62.06</td></tr>
-        <tr><td class="src"><span class="swatch" style="background:var(--s5)"></span>Vending Machines</td><td class="num">3</td><td class="num">$14.00</td></tr>
-        <tr class="totalrow"><td>Machine Total</td><td class="num">248</td><td class="num">$278.56</td></tr>
-      </tbody>
-    </table>
-  </section>
 
   <section class="card">
     <h2>Store POS 30-day daily revenue</h2>
@@ -173,7 +159,7 @@
   </section>
 
   <div class="foot">
-    <strong>Data status (pull Jul 30, 00:52 ET):</strong> Store POS current through Jul 30 (today no data yet). CleanCloud: 30 days complete. LaundroPortal: session requires login in Chrome. Refreshes hourly.
+    <strong>Data status (pull Jul 30, 20:45 ET):</strong> Store POS current through Jul 30 (today no data yet). CleanCloud: 30 days complete. LaundroPortal: session requires login in Chrome. Refreshes hourly.
   </div>
 </div>
 
@@ -182,7 +168,7 @@ const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toL
 const fmt0 = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + Math.round(v).toLocaleString("en-US");
 const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
 
-// CleanCloud 30-day data (All Orders)
+// CleanCloud 30-day data (All Orders) — FRESH DATA
 const CC30 = [
   {date: "2026-07-30", revenue: 0.00},
   {date: "2026-07-29", revenue: 860.30},
