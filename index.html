@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="user-login" content="LentosWhims">
 <title>Global Revenue Tracker</title>
 <style>
   .viz-root {
@@ -98,32 +97,32 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Wednesday, July 30, 2026 · 12:30 PM ET</div>
+    <div class="updated">Last updated Wednesday, July 30, 2026 · 13:15 PM ET</div>
   </header>
 
   <section class="hero">
     <div class="label">Combined 30-Day Total (Jul 1-30)</div>
-    <div class="value" id="heroValue">$34,276.69</div>
-    <div class="delta">Store POS: $21,569.38 + Machines: $12,707.31</div>
+    <div class="value" id="heroValue">$34,285.50</div>
+    <div class="delta">Store POS: $21,578.19 + Machines: $12,707.31</div>
   </section>
 
   <section class="hero" style="padding:16px 24px">
     <div class="label">Yesterday (Tue, Jul 29) — Store POS</div>
     <div class="value" style="font-size:34px">$860.30</div>
     <div class="delta">In-Store: $699.03 + Pickup/Delivery: $161.27</div>
-    <div class="note">Machines: detailed daily data unavailable (requires portal access)</div>
+    <div class="note">Machines: detailed daily data unavailable (portal unreachable)</div>
   </section>
 
   <div class="tiles">
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (30d)</div>
-      <div class="value">$21,569.38</div>
+      <div class="value">$21,578.19</div>
       <div class="basis">CleanCloud All Orders</div>
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines (30d)</div>
       <div class="value">$12,707.31</div>
-      <div class="basis">LaundroPortal cycles</div>
+      <div class="basis">LaundroPortal cycles (cached)</div>
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>In-Store (yesterday)</div>
@@ -149,7 +148,7 @@
 
   <section class="card">
     <h2>Machine revenue breakdown (30 days)</h2>
-    <div class="sub">Self-service cycles (Jul 1 - Jul 30).</div>
+    <div class="sub">LaundroPortal self-service cycles (Jul 1 - Jul 30).</div>
     <table>
       <thead><tr><th>Machine Type</th><th class="num">Cycles</th><th class="num">Revenue</th></tr></thead>
       <tbody>
@@ -162,7 +161,7 @@
   </section>
 
   <div class="foot">
-    <strong>Data status (pull Jul 30, 12:30 ET):</strong> Store POS current through Jul 30 (today: $0 until payments post). CleanCloud: 30 days complete. Machines: 30 days complete. Machine issues: 2 reported. Refreshes hourly.
+    <strong>Data status (pull Jul 30, 13:15 ET):</strong> Store POS current through Jul 30 (today: $0 until payments post, normal). CleanCloud: 30 days complete. LaundroPortal: <span style="color:var(--delta-bad)">unreachable — using cached data</span>. Refreshes hourly.
   </div>
 </div>
 
@@ -171,7 +170,7 @@ const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toL
 const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
 
 const CC30 = [
-  {date: "2026-07-30", revenue: 0.00},
+  {date: "2026-07-30", revenue: 369.57},
   {date: "2026-07-29", revenue: 860.30},
   {date: "2026-07-28", revenue: 1339.28},
   {date: "2026-07-27", revenue: 837.05},
