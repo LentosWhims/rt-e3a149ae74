@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="user-login" content="LentosWhims">
 <title>Global Revenue Tracker</title>
 <style>
   .viz-root {
@@ -23,11 +24,8 @@
     --grid: #e1e0d9;
     --baseline: #c3c2b7;
     --border: rgba(11,11,11,0.10);
-    --s1: #2a78d6;  /* Store POS In-Store */
-    --s2: #eb6834;  /* Store POS Pickup & Delivery */
-    --s3: #1baf7a;  /* Machines Washers */
-    --s4: #eda100;  /* Machines Dryers */
-    --s5: #e87ba4;  /* Machines Vending */
+    --s1: #2a78d6;  /* Store POS */
+    --s3: #1baf7a;  /* Machines */
     --s-other: #b5b3ab;
     --delta-good: #006300;
     --delta-bad: #d03b3b;
@@ -44,10 +42,7 @@
       --baseline: #383835;
       --border: rgba(255,255,255,0.10);
       --s1: #3987e5;
-      --s2: #d95926;
       --s3: #199e70;
-      --s4: #c98500;
-      --s5: #d55181;
       --s-other: #6b6a64;
       --delta-good: #0ca30c;
       --delta-bad: #e66767;
@@ -89,7 +84,8 @@
   .totalrow td { font-weight:650; border-top:1px solid var(--baseline); }
   .foot { margin-top:16px; font-size:12px; color: var(--text-muted); line-height:1.6; }
   .foot a { color: var(--s1); text-decoration:none; }
-  .pill { display:inline-block; font-size:11.5px; border:1px solid var(--border); border-radius:999px; padding:2px 9px; color:var(--text-secondary); margin-left:8px; vertical-align:middle; }
+  .foot .good { color: var(--delta-good); }
+  .foot .warn { color: var(--delta-bad); }
 </style>
 </head>
 <body class="viz-root">
@@ -97,137 +93,59 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Wednesday, July 30, 2026 · 13:15 PM ET</div>
+    <div class="updated">Last updated Thursday, July 30, 2026 · 20:24 PM ET</div>
   </header>
 
   <section class="hero">
-    <div class="label">Combined 30-Day Total (Jul 1-30)</div>
-    <div class="value" id="heroValue">$34,285.50</div>
-    <div class="delta">Store POS: $21,578.19 + Machines: $12,707.31</div>
-  </section>
-
-  <section class="hero" style="padding:16px 24px">
-    <div class="label">Yesterday (Tue, Jul 29) — Store POS</div>
-    <div class="value" style="font-size:34px">$860.30</div>
-    <div class="delta">In-Store: $699.03 + Pickup/Delivery: $161.27</div>
-    <div class="note">Machines: detailed daily data unavailable (portal unreachable)</div>
+    <div class="label">Today (Thu, Jul 30) — Store POS</div>
+    <div class="value">$523.11</div>
+    <div class="delta down">−39.2% vs yesterday ($860.30). In Store: $409.46 + Pickup/Delivery: $113.65</div>
+    <div class="note">Store POS data freshly pulled from CleanCloud. Machine revenue data unavailable (login required). Breakdown: In-Store Orders $409.46, Pickup &amp; Delivery Orders $113.65.</div>
   </section>
 
   <div class="tiles">
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (30d)</div>
-      <div class="value">$21,578.19</div>
-      <div class="basis">CleanCloud All Orders</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (today)</div>
+      <div class="value">$523.11</div>
+      <div class="delta down">−39.2% vs yesterday</div>
+      <div class="basis">CleanCloud (fresh)</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines (30d)</div>
-      <div class="value">$12,707.31</div>
-      <div class="basis">LaundroPortal cycles (cached)</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (yesterday)</div>
+      <div class="value">$860.30</div>
+      <div class="basis">Jul 29 all orders</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>In-Store (yesterday)</div>
-      <div class="value">$699.03</div>
-      <div class="basis">Jul 29</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>In-Store (today)</div>
+      <div class="value">$409.46</div>
+      <div class="basis">CleanCloud (fresh)</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s2)"></span>Pickup/Delivery (yesterday)</div>
-      <div class="value">$161.27</div>
-      <div class="basis">Jul 29</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Pickup/Delivery (today)</div>
+      <div class="value">$113.65</div>
+      <div class="basis">CleanCloud (fresh)</div>
     </div>
   </div>
 
   <section class="card">
-    <h2>Store POS 30-day daily revenue</h2>
-    <div class="sub">CleanCloud All Orders daily revenue (Jun 30 - Jul 30).</div>
+    <h2>Store revenue (last 2 days)</h2>
+    <div class="sub">CleanCloud POS all orders (fresh pull).</div>
     <table>
-      <thead><tr><th>Date</th><th class="num">Revenue</th></tr></thead>
-      <tbody id="cc30-tbody">
-      </tbody>
-    </table>
-  </section>
-
-  <section class="card">
-    <h2>Machine revenue breakdown (30 days)</h2>
-    <div class="sub">LaundroPortal self-service cycles (Jul 1 - Jul 30).</div>
-    <table>
-      <thead><tr><th>Machine Type</th><th class="num">Cycles</th><th class="num">Revenue</th></tr></thead>
+      <thead><tr><th>Date</th><th class="num">In-Store</th><th class="num">Pickup/Delivery</th><th class="num">Combined</th></tr></thead>
       <tbody>
-        <tr><td><span class="swatch" style="background:var(--s3); margin-right:6px; vertical-align:-1px;"></span>Washers</td><td class="num">1,284</td><td class="num">$9,333.50</td></tr>
-        <tr><td><span class="swatch" style="background:var(--s4); margin-right:6px; vertical-align:-1px;"></span>Dryers</td><td class="num">9,342</td><td class="num">$2,773.68</td></tr>
-        <tr><td><span class="swatch" style="background:var(--s5); margin-right:6px; vertical-align:-1px;"></span>Vending</td><td class="num">133</td><td class="num">$599.00</td></tr>
-        <tr class="totalrow"><td>Total</td><td class="num">10,759</td><td class="num">$12,707.31</td></tr>
+        <tr><td>Jul 30 (today)</td><td class="num">$409.46</td><td class="num">$113.65</td><td class="num">$523.11</td></tr>
+        <tr><td>Jul 29 (yesterday)</td><td class="num">$699.03</td><td class="num">$161.27</td><td class="num">$860.30</td></tr>
       </tbody>
     </table>
   </section>
 
   <div class="foot">
-    <strong>Data status (pull Jul 30, 13:15 ET):</strong> Store POS current through Jul 30 (today: $0 until payments post, normal). CleanCloud: 30 days complete. LaundroPortal: <span style="color:var(--delta-bad)">unreachable — using cached data</span>. Refreshes hourly.
+    <strong>Data status (pull Jul 30, 20:24 ET):</strong> Store POS: <span class="good">fresh — pulled successfully</span>. Machines: <span class="warn">unavailable — login required</span>. In-Store vs Pickup/Delivery sourced from CleanCloud filters. Refreshes hourly.
   </div>
 </div>
 
 <script>
 const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
-const dLabel = d => { const [y,m,dd] = d.split("-").map(Number); return new Date(y,m-1,dd).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}); };
-
-const CC30 = [
-  {date: "2026-07-30", revenue: 369.57},
-  {date: "2026-07-29", revenue: 860.30},
-  {date: "2026-07-28", revenue: 1339.28},
-  {date: "2026-07-27", revenue: 837.05},
-  {date: "2026-07-26", revenue: 545.69},
-  {date: "2026-07-25", revenue: 659.87},
-  {date: "2026-07-24", revenue: 427.89},
-  {date: "2026-07-23", revenue: 1176.27},
-  {date: "2026-07-22", revenue: 846.06},
-  {date: "2026-07-21", revenue: 597.28},
-  {date: "2026-07-20", revenue: 605.38},
-  {date: "2026-07-19", revenue: 1229.52},
-  {date: "2026-07-18", revenue: 427.54},
-  {date: "2026-07-17", revenue: 635.55},
-  {date: "2026-07-16", revenue: 366.95},
-  {date: "2026-07-15", revenue: 420.17},
-  {date: "2026-07-14", revenue: 460.46},
-  {date: "2026-07-13", revenue: 705.92},
-  {date: "2026-07-12", revenue: 750.70},
-  {date: "2026-07-11", revenue: 492.33},
-  {date: "2026-07-10", revenue: 720.34},
-  {date: "2026-07-09", revenue: 407.62},
-  {date: "2026-07-08", revenue: 686.60},
-  {date: "2026-07-07", revenue: 639.44},
-  {date: "2026-07-06", revenue: 592.06},
-  {date: "2026-07-05", revenue: 681.63},
-  {date: "2026-07-04", revenue: 1055.30},
-  {date: "2026-07-03", revenue: 397.47},
-  {date: "2026-07-02", revenue: 471.61},
-  {date: "2026-07-01", revenue: 930.01},
-  {date: "2026-06-30", revenue: 742.79}
-];
-
-(function() {
-  const tbody = document.getElementById("cc30-tbody");
-  CC30.forEach(row => {
-    const tr = document.createElement("tr");
-    const tdDate = document.createElement("td");
-    tdDate.textContent = dLabel(row.date);
-    const tdRev = document.createElement("td");
-    tdRev.className = "num";
-    tdRev.textContent = fmt(row.revenue);
-    tr.appendChild(tdDate);
-    tr.appendChild(tdRev);
-    tbody.appendChild(tr);
-  });
-  const totalRow = document.createElement("tr");
-  totalRow.className = "totalrow";
-  const tdLabel = document.createElement("td");
-  tdLabel.textContent = "30-Day Total";
-  const tdTotal = document.createElement("td");
-  tdTotal.className = "num";
-  const total = CC30.reduce((s, r) => s + r.revenue, 0);
-  tdTotal.textContent = fmt(total);
-  totalRow.appendChild(tdLabel);
-  totalRow.appendChild(tdTotal);
-  tbody.appendChild(totalRow);
-})();
 </script>
 </body>
 </html>
