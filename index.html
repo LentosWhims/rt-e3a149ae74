@@ -93,82 +93,70 @@
   <header>
     <h1>Global Revenue Tracker</h1>
     <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Thursday, July 31, 2026 · 01:42 AM ET</div>
+    <div class="updated">Last updated Thursday, July 31, 2026 · 08:00 AM ET</div>
   </header>
 
   <section class="hero">
-    <div class="label">Today (Thu, Jul 30) — Combined Revenue</div>
-    <div class="value">$875.75</div>
-    <div class="delta down">−25.0% vs yesterday ($1,166.87). Store POS: $523.11 + Machines: $352.64</div>
-    <div class="note">Combined revenue from Store POS (CleanCloud all orders) and Machine Cycle Revenue (LaundroPortal). Breakdown: Store POS $523.11 (In-Store $409.46 + Pickup/Delivery $113.65), Machines $352.64 (Washers $259.00 + Dryers $77.14 + Vending $16.50).</div>
-    <div class="warn">⚠ Machine status: 2 machines reporting problems</div>
+    <div class="label">Today (Thu, Jul 31) — Store POS Only</div>
+    <div class="value">$358.30</div>
+    <div class="delta">Store POS: $358.30 (In-Store: $358.30 + P&D: $0.00)</div>
+    <div class="note">Store POS revenue from CleanCloud all orders. Machine cycle revenue unavailable — LaundroPortal login required.</div>
+    <div class="warn">⚠ LaundroPortal data unavailable (login required in Chrome browser)</div>
   </section>
 
   <div class="tiles">
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (today)</div>
-      <div class="value">$523.11</div>
-      <div class="delta down">−39.2% vs yesterday</div>
-      <div class="basis">CleanCloud (fresh)</div>
+      <div class="value">$358.30</div>
+      <div class="delta down">−31.6% vs yesterday</div>
+      <div class="basis">CleanCloud all orders</div>
     </div>
     <div class="tile">
       <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines (today)</div>
-      <div class="value">$352.64</div>
-      <div class="delta up">+15.0% vs yesterday</div>
-      <div class="basis">LaundroPortal (fresh)</div>
+      <div class="value">—</div>
+      <div class="delta">Unavailable</div>
+      <div class="basis">LaundroPortal (login required)</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>In-Store (today)</div>
-      <div class="value">$409.46</div>
-      <div class="delta down">−41.5% vs yesterday</div>
-      <div class="basis">CleanCloud (fresh)</div>
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Yesterday (Jul 30)</div>
+      <div class="value">$523.11</div>
+      <div class="delta">Store POS only</div>
+      <div class="basis">Combined with machines (if data available)</div>
     </div>
     <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Pickup/Delivery (today)</div>
-      <div class="value">$113.65</div>
-      <div class="delta down">−29.5% vs yesterday</div>
-      <div class="basis">CleanCloud (fresh)</div>
+      <div class="label"><span class="swatch" style="background:var(--text-muted)"></span>7-day Average</div>
+      <div class="value">$923.42</div>
+      <div class="delta">From prior data</div>
+      <div class="basis">Last 7 complete days</div>
     </div>
   </div>
 
   <section class="card">
-    <h2>Combined revenue (last 2 days)</h2>
-    <div class="sub">Store POS (CleanCloud all orders) + Machine Cycle Revenue (LaundroPortal).</div>
-    <table>
-      <thead><tr><th>Date</th><th class="num">Store POS</th><th class="num">Machines</th><th class="num">Combined</th></tr></thead>
-      <tbody>
-        <tr><td>Jul 30 (today)</td><td class="num">$523.11</td><td class="num">$352.64</td><td class="num">$875.75</td></tr>
-        <tr><td>Jul 29 (yesterday)</td><td class="num">$860.30</td><td class="num">$306.57</td><td class="num">$1,166.87</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section class="card">
-    <h2>Store revenue breakdown (last 2 days)</h2>
+    <h2>Store revenue (last 2 days)</h2>
     <div class="sub">CleanCloud POS channels (fresh pull).</div>
     <table>
       <thead><tr><th>Date</th><th class="num">In-Store</th><th class="num">Pickup/Delivery</th><th class="num">Total</th></tr></thead>
       <tbody>
-        <tr><td>Jul 30 (today)</td><td class="num">$409.46</td><td class="num">$113.65</td><td class="num">$523.11</td></tr>
-        <tr><td>Jul 29 (yesterday)</td><td class="num">$699.03</td><td class="num">$161.27</td><td class="num">$860.30</td></tr>
+        <tr><td>Jul 31 (today)</td><td class="num">$358.30</td><td class="num">$0.00</td><td class="num">$358.30</td></tr>
+        <tr><td>Jul 30 (yesterday)</td><td class="num">$409.46</td><td class="num">$113.65</td><td class="num">$523.11</td></tr>
       </tbody>
     </table>
   </section>
 
   <section class="card">
     <h2>Machine revenue breakdown (last 2 days)</h2>
-    <div class="sub">LaundroPortal cycle revenue by equipment type (fresh pull).</div>
+    <div class="sub">LaundroPortal cycle revenue by equipment type (fresh pull). ⚠ Login required to access.</div>
     <table>
       <thead><tr><th>Date</th><th class="num">Washers</th><th class="num">Dryers</th><th class="num">Vending</th><th class="num">Total</th></tr></thead>
       <tbody>
-        <tr><td>Jul 30 (today)</td><td class="num">$259.00</td><td class="num">$77.14</td><td class="num">$16.50</td><td class="num">$352.64</td></tr>
-        <tr><td>Jul 29 (yesterday)</td><td class="num">$225.00</td><td class="num">$67.57</td><td class="num">$14.00</td><td class="num">$306.57</td></tr>
+        <tr><td>Jul 31 (today)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">Unavailable</td></tr>
+        <tr><td>Jul 30 (yesterday)</td><td class="num">$259.00</td><td class="num">$77.14</td><td class="num">$16.50</td><td class="num">$352.64</td></tr>
       </tbody>
     </table>
   </section>
 
   <div class="foot">
-    <strong>Data status (pull Jul 31, 01:42 ET):</strong> Store POS: <span class="good">fresh — pulled successfully</span>. Machines: <span class="good">fresh — pulled successfully</span>. In-Store vs Pickup/Delivery sourced from CleanCloud filters. Machine cycles sourced from LaundroPortal Summary Report by type. <span class="warn">⚠ Alert: 2 machines reporting problems at Keap Street location</span>. Refreshes hourly.
+    <strong>Data status (pull Jul 31, 08:00 ET):</strong> Store POS: <span class="good">fresh data</span> (In-Store $358.30 + P&D $0.00 = Total $358.30). Machines: <span class="warn">unavailable — LaundroPortal login required</span>. Yesterday (Jul 30) refreshed. Refreshes hourly.
   </div>
 </div>
 
