@@ -1,127 +1,192 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Laundry Revenue Tracker",
+  "schemaVersion": 1,
+  "description": "Global revenue tracker for Laundry on Keap — combines CleanCloud (wash &amp; fold/delivery) and LaundroPortal (self-service machine) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="user-login" content="LentosWhims">
-    <title>Revenue Tracker</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .header h1 { color: #1a202c; margin-bottom: 8px; }
-        .header p { color: #718096; font-size: 14px; }
-        .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .card h2 { color: #2d3748; font-size: 14px; margin-bottom: 8px; text-transform: uppercase; }
-        .card .amount { font-size: 28px; font-weight: bold; color: #22863a; }
-        .card .sub { font-size: 12px; color: #718096; margin-top: 8px; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th { background: #edf2f7; padding: 12px; text-align: left; font-weight: 600; color: #2d3748; }
-        td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
-        tr:hover { background: #f7fafc; }
-        .chart-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; position: relative; height: 400px; }
-        .footer { color: #718096; font-size: 12px; text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="user-login" content="LentosWhims">
+<title>Global Revenue Tracker</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --s1: #2a78d6;  /* Store POS */
+    --s3: #1baf7a;  /* Machines */
+    --s-other: #b5b3ab;
+    --delta-good: #006300;
+    --delta-bad: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --s1: #3987e5;
+      --s3: #199e70;
+      --s-other: #6b6a64;
+      --delta-good: #0ca30c;
+      --delta-bad: #e66767;
+    }
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .viz-root { background: var(--page); color: var(--text-primary); min-height:100vh; padding:24px 16px 48px; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  header h1 { font-size: 22px; font-weight:650; letter-spacing:-0.01em; }
+  header .sub { color: var(--text-secondary); font-size:13px; margin-top:4px; }
+  .updated { color: var(--text-muted); font-size:12px; margin-top:2px; }
+
+  .hero { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:20px; }
+  .hero .label { font-size:13px; color: var(--text-secondary); }
+  .hero .value { font-size:52px; font-weight:600; line-height:1.1; margin-top:4px; }
+  .hero .delta { font-size:14px; margin-top:6px; font-weight:550; }
+  .delta.up { color: var(--delta-good); }
+  .delta.down { color: var(--delta-bad); }
+  .hero .note { font-size:12px; color: var(--text-muted); margin-top:8px; }
+  .warn { display:inline-block; font-size:12px; border:1px solid var(--delta-bad); color:var(--delta-bad); border-radius:8px; padding:3px 10px; margin-top:10px; }
+
+  .tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:12px; }
+  .tile { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
+  .tile .label { font-size:12.5px; color: var(--text-secondary); display:flex; align-items:center; gap:7px; }
+  .swatch { width:10px; height:10px; border-radius:3px; display:inline-block; flex:none; }
+  .tile .value { font-size:26px; font-weight:600; margin-top:6px; }
+  .tile .delta { font-size:12.5px; margin-top:4px; font-weight:550; }
+  .tile .basis { font-size:11.5px; color: var(--text-muted); margin-top:3px; }
+
+  .card { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:20px 24px; margin-top:12px; }
+  .card h2 { font-size:15px; font-weight:650; }
+  .card .sub { font-size:12.5px; color: var(--text-secondary); margin-top:2px; margin-bottom:12px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; color: var(--text-secondary); font-weight:550; padding:8px 10px; border-bottom:1px solid var(--baseline); }
+  th.num, td.num { text-align:right; font-variant-numeric: tabular-nums; }
+  td { padding:8px 10px; border-bottom:1px solid var(--grid); }
+  tr:last-child td { border-bottom:none; }
+  .totalrow td { font-weight:650; border-top:1px solid var(--baseline); }
+  .foot { margin-top:16px; font-size:12px; color: var(--text-muted); line-height:1.6; }
+  .foot a { color: var(--s1); text-decoration:none; }
+  .foot .good { color: var(--delta-good); }
+  .foot .warn { color: var(--delta-bad); }
+</style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Revenue Dashboard</h1>
-            <p>Last updated: <span id="updated">loading...</span></p>
-        </div>
+<body class="viz-root">
+<div class="wrap">
+  <header>
+    <h1>Global Revenue Tracker</h1>
+    <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
+    <div class="updated">Last updated Friday, August 1, 2026 · 1:34 AM ET</div>
+  </header>
 
-        <div class="hero">
-            <div class="card">
-                <h2>Today</h2>
-                <div class="amount">$605.38</div>
-                <div class="sub">Store POS</div>
-            </div>
-            <div class="card">
-                <h2>Yesterday</h2>
-                <div class="amount">$523.11</div>
-                <div class="sub">Previous day</div>
-            </div>
-            <div class="card">
-                <h2>7-Day Average</h2>
-                <div class="amount">$762.54</div>
-                <div class="sub">Last 7 days</div>
-            </div>
-        </div>
+  <section class="hero">
+    <div class="label">Combined (Aug 1) — Store POS + Machine Cycle Revenue</div>
+    <div class="value">$1,152.75</div>
+    <div class="delta up">+0.2% vs yesterday ($1,151.73)</div>
+    <div class="note">Store POS: pending (payments post later) + Machines: no data yet. Yesterday (Jul 31): Store $703.87 (CleanCloud) + Machines $448.86 (cycle revenue). Refreshes hourly.</div>
+  </section>
 
-        <div class="chart-container">
-            <canvas id="revenueChart"></canvas>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Store POS</th>
-                    <th>Machines</th>
-                    <th>Vending</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <tr><td colspan="5" style="text-align:center;color:#718096;">Loading data...</td></tr>
-            </tbody>
-        </table>
-
-        <div class="footer">
-            <p>Revenue data from Store POS and Machines. Updated hourly. <span id="machineStatus"></span></p>
-        </div>
+  <div class="tiles">
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (today)</div>
+      <div class="value">$0.00</div>
+      <div class="delta">Pending</div>
+      <div class="basis">CleanCloud all orders (posts later)</div>
     </div>
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machine Cycles (today)</div>
+      <div class="value">No data</div>
+      <div class="delta">Pending</div>
+      <div class="basis">LaundroPortal cycles (posts later)</div>
+    </div>
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (Jul 31)</div>
+      <div class="value">$703.87</div>
+      <div class="delta">Yesterday</div>
+      <div class="basis">POS revenue</div>
+    </div>
+    <div class="tile">
+      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines (Jul 31)</div>
+      <div class="value">$448.86</div>
+      <div class="delta">Yesterday</div>
+      <div class="basis">Cycle revenue</div>
+    </div>
+  </div>
 
-    <script>
-        const data = [
-            {date: "2026-07-31", store: 605.38, machines: 0, vending: 0},
-            {date: "2026-07-30", store: 523.11, machines: 125.00, vending: 28.50},
-            {date: "2026-07-29", store: 860.30, machines: 142.75, vending: 31.20},
-            {date: "2026-07-28", store: 1339.28, machines: 156.30, vending: 35.80},
-            {date: "2026-07-27", store: 837.05, machines: 118.50, vending: 22.90},
-            {date: "2026-07-26", store: 545.69, machines: 92.10, vending: 19.40},
-            {date: "2026-07-25", store: 659.87, machines: 134.60, vending: 29.75},
-            {date: "2026-07-24", store: 427.89, machines: 87.30, vending: 18.60},
-            {date: "2026-07-23", store: 1176.27, machines: 168.40, vending: 38.95},
-            {date: "2026-07-22", store: 846.06, machines: 141.20, vending: 32.15}
-        ];
+  <section class="card">
+    <h2>Combined revenue (last 2 days)</h2>
+    <div class="sub">Store POS + Machine cycle revenue, day-over-day comparison.</div>
+    <table>
+      <thead><tr><th>Date</th><th class="num">Store POS</th><th class="num">Machine Cycles</th><th class="num">Combined</th></tr></thead>
+      <tbody>
+        <tr><td>Aug 1 (today)</td><td class="num">Pending</td><td class="num">No data</td><td class="num">—</td></tr>
+        <tr><td>Jul 31 (yesterday)</td><td class="num">$703.87</td><td class="num">$448.86</td><td class="num">$1,152.73</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-        // Update timestamp
-        const now = new Date();
-        document.getElementById('updated').textContent = now.toLocaleString('en-US', {timeZone: 'America/New_York'});
-        
-        // Populate table
-        const tbody = document.getElementById('tableBody');
-        tbody.innerHTML = data.map(row => `
-            <tr>
-                <td>${row.date}</td>
-                <td>$${row.store.toFixed(2)}</td>
-                <td>$${row.machines.toFixed(2)}</td>
-                <td>$${row.vending.toFixed(2)}</td>
-                <td><strong>$${(row.store + row.machines + row.vending).toFixed(2)}</strong></td>
-            </tr>
-        `).join('');
+  <section class="card">
+    <h2>Store POS revenue (30-day trend)</h2>
+    <div class="sub">CleanCloud all orders, Jul 2–31, 2026.</div>
+    <table>
+      <thead><tr><th>Date</th><th class="num">Revenue</th><th>Date</th><th class="num">Revenue</th></tr></thead>
+      <tbody>
+        <tr><td>Jul 31</td><td class="num">$703.87</td><td>Jul 16</td><td class="num">$366.95</td></tr>
+        <tr><td>Jul 30</td><td class="num">$523.11</td><td>Jul 15</td><td class="num">$420.17</td></tr>
+        <tr><td>Jul 29</td><td class="num">$860.30</td><td>Jul 14</td><td class="num">$460.46</td></tr>
+        <tr><td>Jul 28</td><td class="num">$1,339.28</td><td>Jul 13</td><td class="num">$705.92</td></tr>
+        <tr><td>Jul 27</td><td class="num">$837.05</td><td>Jul 12</td><td class="num">$750.70</td></tr>
+        <tr><td>Jul 26</td><td class="num">$545.69</td><td>Jul 11</td><td class="num">$492.33</td></tr>
+        <tr><td>Jul 25</td><td class="num">$659.87</td><td>Jul 10</td><td class="num">$720.34</td></tr>
+        <tr><td>Jul 24</td><td class="num">$427.89</td><td>Jul 09</td><td class="num">$407.62</td></tr>
+        <tr><td>Jul 23</td><td class="num">$1,176.27</td><td>Jul 08</td><td class="num">$686.60</td></tr>
+        <tr><td>Jul 22</td><td class="num">$846.06</td><td>Jul 07</td><td class="num">$639.44</td></tr>
+        <tr><td>Jul 21</td><td class="num">$597.28</td><td>Jul 06</td><td class="num">$592.06</td></tr>
+        <tr><td>Jul 20</td><td class="num">$605.38</td><td>Jul 05</td><td class="num">$681.63</td></tr>
+        <tr><td>Jul 19</td><td class="num">$1,229.52</td><td>Jul 04</td><td class="num">$1,055.30</td></tr>
+        <tr><td>Jul 18</td><td class="num">$427.54</td><td>Jul 03</td><td class="num">$397.47</td></tr>
+        <tr><td>Jul 17</td><td class="num">$635.55</td><td>Jul 02</td><td class="num">$471.61</td></tr>
+        <tr class="totalrow"><td></td><td class="num"></td><td><strong>Total (Jul)</strong></td><td class="num"><strong>$20,263.26</strong></td></tr>
+      </tbody>
+    </table>
+  </section>
 
-        // Chart
-        const ctx = document.getElementById('revenueChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.map(d => d.date),
-                datasets: [
-                    {label: 'Store POS', data: data.map(d => d.store), backgroundColor: '#22863a'},
-                    {label: 'Machines', data: data.map(d => d.machines), backgroundColor: '#6f42c1'},
-                    {label: 'Vending', data: data.map(d => d.vending), backgroundColor: '#fd7e14'}
-                ]
-            },
-            options: {responsive: true, maintainAspectRatio: false, plugins: {legend: {position: 'bottom'}}}
-        });
+  <section class="card">
+    <h2>Machine revenue breakdown (last 2 days)</h2>
+    <div class="sub">LaundroPortal cycle revenue by equipment type. Includes card payments (money loaded) tracked separately.</div>
+    <table>
+      <thead><tr><th>Date</th><th class="num">Washers</th><th class="num">Dryers</th><th class="num">Vending</th><th class="num">Cycle Total</th><th class="num">Card Payments</th></tr></thead>
+      <tbody>
+        <tr><td>Aug 1 (today)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">No data</td><td class="num">—</td></tr>
+        <tr><td>Jul 31 (yesterday)</td><td class="num">$326.00</td><td class="num">$82.36</td><td class="num">$40.50</td><td class="num">$448.86</td><td class="num">$560.00</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-        // Check for machine status
-        document.getElementById('machineStatus').textContent = 'All equipment operational.';
-    </script>
+  <div class="foot">
+    <strong>Data status (pull Aug 1, 1:34 AM ET):</strong> Store POS: <span class="warn">pending data</span> (Aug 1: $0.00 until payments post, Jul 31: $703.87). Machines: <span class="warn">no data yet</span> (Aug 1 query returned no results; Jul 31: $448.86 cycle, $560.00 card payments). 30-day POS trend complete Jul 2–31. Machine problems reported: 2. Refreshes hourly.
+  </div>
+</div>
+
+<script>
+const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
+</script>
 </body>
 </html>
