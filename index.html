@@ -1,3 +1,12 @@
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Laundry Revenue Tracker",
+  "schemaVersion": 1,
+  "description": "Global revenue tracker for Laundry on Keap — combines Store POS (wash & fold/delivery) and Machines (self-service) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -103,7 +112,7 @@
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-02 at 08:27 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-02 at 12:38 EDT</div>
         </div>
 
         <div class="hero">
@@ -220,12 +229,12 @@
         </div>
 
         <div class="footer">
-            <div class="warning">&#9888; Machine status: 2 problems reported &middot; last machine communication 2026-08-02 07:20 EDT</div>
+            <div class="warning">&#9888; Machine status: 2 problems reported &middot; last machine communication 2026-08-02 08:30 EDT</div>
             <p style="margin-top: 10px;"><strong>Data provenance for this refresh:</strong></p>
             <ul>
-                <li>Store POS &mdash; all 30 days plus the in-store / pickup &amp; delivery split were read directly this run. Every day reconciles: in-store + P&amp;D equals the day total (2026-07-28 carries a $554.88 bank payment as the remainder). 30-day total $21,016.36.</li>
-                <li>Machines &mdash; 2026-08-01 and today were read directly this run (yesterday: washers + dryers + vending = $372.78, matches the reported cycle total; today: $28.50 + $0.00 + $4.50 = $33.00 across 5 cycles). 2026-07-31 is carried forward from an earlier refresh. 2026-07-27 through 2026-07-30 have not been read and are shown as gaps rather than zeros.</li>
-                <li>Card loads on the machine system were $295.00 yesterday (13 cash, 15 card) and $17.00 today (1 cash, 1 card). Shown for context only &mdash; not added to the combined total, which uses machine cycle revenue.</li>
+                <li>Store POS — all 30 days plus the in-store / pickup &amp; delivery split were read directly this run. Every day reconciles: in-store + P&amp;D equals the day total. 30-day total $21,016.36.</li>
+                <li>Machines — 2026-08-01 (yesterday: $372.78 across 337 cycles: 34 washers $272.50 + 302 dryer top-offs $89.28 + 1 vending $11.00) and 2026-08-02 (today: $33.00 across 5 cycles: 4 washers $28.50 + 0 dryers $0.00 + 1 vending $4.50) were read directly this run. 2026-07-31 carried forward from an earlier refresh. 2026-07-27 through 2026-07-30 not read.</li>
+                <li>Card loads: $295.00 yesterday (13 cash, 15 card) and $17.00 today (1 cash, 1 card). Shown for context only — not added to combined total, which uses machine cycle revenue.</li>
             </ul>
             <p style="margin-top: 10px;">Combined total = Store POS revenue + machine cycle revenue. Today's Store POS reads $0.00 until payments post, which is normal early in the day.</p>
         </div>
