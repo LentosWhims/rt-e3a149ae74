@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Global revenue tracker for Laundry on Keap — combines Store POS (wash &amp; fold/delivery) and Machines (self-service) revenue with day-over-day comparison and a 30-day daily trend.",
+  "description": "Hourly-updated revenue tracker — combines Store POS and Machines live. Today's running total refreshes each hour as transactions post.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -118,33 +118,33 @@
         </div>
 
         <div class="hero">
-            <div class="hero-label">Combined Revenue &mdash; Yesterday (Fri 2026-08-01, complete)</div>
-            <div class="hero-value">$1,125.88</div>
+            <div class="hero-label">TODAY'S RUNNING TOTAL — Fri 2026-08-02 (in progress)</div>
+            <div class="hero-value">$302.22</div>
             <div class="hero-split">
-                <div><strong>Store POS:</strong> $753.10 (In-Store $594.60 + P&amp;D $158.50)</div>
-                <div><strong>Machines:</strong> $372.78</div>
-                <div><strong>vs prior day:</strong> +22.8%</div>
+                <div><strong>Store POS:</strong> $96.91</div>
+                <div><strong>Machines:</strong> $205.31</div>
+                <div><strong>vs yesterday same time:</strong> TBD</div>
             </div>
         </div>
 
         <div class="tiles">
             <div class="tile">
-                <div class="tile-label">Store POS &mdash; Yesterday</div>
-                <div class="tile-value">$753.10</div>
-                <div class="tile-change up">&uarr; +7.0% vs 2026-07-31</div>
-                <div class="tile-change">In-Store $594.60 &middot; P&amp;D $158.50</div>
+                <div class="tile-label">Store POS — Today</div>
+                <div class="tile-value">$96.91</div>
+                <div class="tile-change">In-Store $96.91 · P&amp;D $0.00</div>
+                <div class="tile-change">Updates as orders complete</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Machines &mdash; Yesterday</div>
-                <div class="tile-value">$372.78</div>
-                <div class="tile-change">337 cycles &middot; Washers $272.50 &middot; Dryers $89.28 &middot; Vending $11.00</div>
-                <div class="tile-change"></div>
+                <div class="tile-label">Machines — Today</div>
+                <div class="tile-value">$205.31</div>
+                <div class="tile-change">Payments $179 · Cycles 170</div>
+                <div class="tile-change">Washers $141.50 · Dryers $42.56 · Vending $21.25</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Today So Far</div>
-                <div class="tile-value">$302.22</div>
-                <div class="tile-change">Store POS $96.91 &middot; Machines $205.31</div>
-                <div class="tile-change">Data refreshing as transactions post</div>
+                <div class="tile-label">Yesterday (Complete)</div>
+                <div class="tile-value">$1,125.88</div>
+                <div class="tile-change up">&uarr; +22.8% from 2 days ago</div>
+                <div class="tile-change">Store $753.10 · Machines $372.78</div>
             </div>
             <div class="tile">
                 <div class="tile-label">30-Day Total (Store POS)</div>
@@ -156,11 +156,11 @@
 
         <div class="charts">
             <div class="chart-container">
-                <div class="chart-title">Daily Revenue &mdash; Last 30 Days (Store POS)</div>
+                <div class="chart-title">Daily Revenue — Last 30 Days (Store POS)</div>
                 <canvas id="cc30Chart"></canvas>
             </div>
             <div class="chart-container">
-                <div class="chart-title">Revenue Breakdown &mdash; Last 7 Days</div>
+                <div class="chart-title">Revenue Breakdown — Last 7 Days</div>
                 <canvas id="daysChart"></canvas>
             </div>
         </div>
@@ -179,7 +179,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>2026-08-02 <span class="muted">(today, partial)</span></td>
+                        <td>2026-08-02 <span class="muted">(today, updating)</span></td>
                         <td>$96.91</td>
                         <td>$0.00</td>
                         <td><strong>$96.91</strong></td>
@@ -232,14 +232,13 @@
         </div>
 
         <div class="footer">
-            <p><strong>Data complete this run &mdash; both systems logged in.</strong></p>
-            <p style="margin-top: 10px;"><strong>Data provenance for this refresh:</strong></p>
+            <p><strong>Hourly refresh — Today's total updates as transactions post.</strong></p>
+            <p style="margin-top: 10px;"><strong>Current pull timestamp:</strong> 2026-08-02 14:45 EDT</p>
             <ul>
-                <li>Store POS — 32 days (2026-07-02 through 2026-08-02) read this run. In-Store/P&amp;D verified. 32-day total $21,113.27.</li>
-                <li>Machines — Yesterday and today read this run from Summary Report. Yesterday: Payments $295.00, Cycle $372.78 (Washers $272.50, Dryers $89.28, Vending $11.00). Today: Payments $179.00, Cycle $205.31 (partial).</li>
-                <li>Both sites visited for keep-alive; sessions active.</li>
+                <li>Store POS (CleanCloud): $96.91 today, $21,113.27 30-day total</li>
+                <li>Machines (LaundroPortal): $205.31 today (170 cycles), $372.78 yesterday</li>
+                <li>Yesterday final: $1,125.88 combined</li>
             </ul>
-            <p style="margin-top: 10px;"><strong>Yesterday combined:</strong> $1,125.88 (Store $753.10 + Machines $372.78)</p>
         </div>
     </div>
 
