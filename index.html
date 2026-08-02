@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Global revenue tracker for Laundry on Keap — combines Store POS (wash & fold/delivery) and Machines (self-service) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
+  "description": "Global revenue tracker for Laundry on Keap — combines Store POS (wash &amp; fold/delivery) and Machines (self-service) revenue with day-over-day comparison and a 30-day daily trend.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -11,6 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="user-login" content="LentosWhims">
     <title>Revenue Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
@@ -106,22 +107,23 @@
         .footer ul { margin: 10px 0 0 20px; }
         .footer li { margin-bottom: 4px; }
         .warning { color: #ef4444; font-weight: 600; }
+        .alert { color: #f59e0b; font-weight: 600; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-02 at 12:38 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-02 at 14:45 EDT</div>
         </div>
 
         <div class="hero">
-            <div class="hero-label">Combined Revenue &mdash; Yesterday (Sat 2026-08-01, complete)</div>
+            <div class="hero-label">Combined Revenue &mdash; Yesterday (Fri 2026-08-01, complete)</div>
             <div class="hero-value">$1,125.88</div>
             <div class="hero-split">
-                <div><strong>Store POS:</strong> $753.10</div>
+                <div><strong>Store POS:</strong> $753.10 (In-Store $594.60 + P&amp;D $158.50)</div>
                 <div><strong>Machines:</strong> $372.78</div>
-                <div><strong>vs prior day:</strong> &minus;2.3%</div>
+                <div><strong>vs prior day:</strong> +22.8%</div>
             </div>
         </div>
 
@@ -129,25 +131,26 @@
             <div class="tile">
                 <div class="tile-label">Store POS &mdash; Yesterday</div>
                 <div class="tile-value">$753.10</div>
-                <div class="tile-change up">&uarr; +7.0% vs prior day</div>
+                <div class="tile-change up">&uarr; +7.0% vs 2026-07-31</div>
                 <div class="tile-change">In-Store $594.60 &middot; P&amp;D $158.50</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Machines &mdash; Yesterday</div>
                 <div class="tile-value">$372.78</div>
-                <div class="tile-change down">&darr; &minus;17.0% vs prior day</div>
-                <div class="tile-change">Washers $272.50 &middot; Dryers $89.28 &middot; Vending $11.00</div>
-            </div>
-            <div class="tile">
-                <div class="tile-label">Machine Cycles &mdash; Yesterday</div>
-                <div class="tile-value">337</div>
-                <div class="tile-change">34 washers &middot; 302 dryer top-offs &middot; 1 vending</div>
+                <div class="tile-change">337 cycles &middot; Washers $272.50 &middot; Dryers $89.28 &middot; Vending $11.00</div>
+                <div class="tile-change"></div>
             </div>
             <div class="tile">
                 <div class="tile-label">Today So Far</div>
-                <div class="tile-value">$33.00</div>
-                <div class="tile-change">Machines $33.00 &middot; 5 cycles</div>
-                <div class="tile-change">Store POS $0.00 &mdash; payments not yet posted</div>
+                <div class="tile-value">$302.22</div>
+                <div class="tile-change">Store POS $96.91 &middot; Machines $205.31</div>
+                <div class="tile-change">Data refreshing as transactions post</div>
+            </div>
+            <div class="tile">
+                <div class="tile-label">30-Day Total (Store POS)</div>
+                <div class="tile-value">$21,113.27</div>
+                <div class="tile-change">2026-07-02 through 2026-08-02</div>
+                <div class="tile-change"></div>
             </div>
         </div>
 
@@ -157,93 +160,92 @@
                 <canvas id="cc30Chart"></canvas>
             </div>
             <div class="chart-container">
-                <div class="chart-title">Revenue by Source &mdash; Last 7 Days</div>
+                <div class="chart-title">Revenue Breakdown &mdash; Last 7 Days</div>
                 <canvas id="daysChart"></canvas>
             </div>
         </div>
 
         <div class="chart-container">
-            <div class="chart-title">Day-over-Day Comparison</div>
+            <div class="chart-title">Day-over-Day Comparison (Store POS)</div>
             <table>
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Store POS</th>
-                        <th>Machines</th>
-                        <th>Combined</th>
-                        <th>Change</th>
+                        <th>In-Store</th>
+                        <th>P&amp;D</th>
+                        <th>Total</th>
+                        <th>vs Prior Day</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>2026-08-02 <span class="muted">(today, partial)</span></td>
+                        <td>$96.91</td>
                         <td>$0.00</td>
-                        <td>$33.00</td>
-                        <td><strong>$33.00</strong></td>
+                        <td><strong>$96.91</strong></td>
                         <td class="muted">&mdash;</td>
                     </tr>
                     <tr>
                         <td>2026-08-01</td>
-                        <td>$753.10</td>
-                        <td>$372.78</td>
-                        <td><strong>$1,125.88</strong></td>
-                        <td><span class="down">&minus;2.3%</span></td>
+                        <td>$594.60</td>
+                        <td>$158.50</td>
+                        <td><strong>$753.10</strong></td>
+                        <td><span class="up">+7.0%</span></td>
                     </tr>
                     <tr>
                         <td>2026-07-31</td>
-                        <td>$703.87</td>
-                        <td>$448.86</td>
-                        <td><strong>$1,152.73</strong></td>
-                        <td>&mdash;</td>
+                        <td>$491.94</td>
+                        <td>$211.93</td>
+                        <td><strong>$703.87</strong></td>
+                        <td><span class="up">+34.6%</span></td>
                     </tr>
                     <tr>
                         <td>2026-07-30</td>
-                        <td>$523.11</td>
-                        <td class="muted">not read</td>
-                        <td class="muted">&mdash;</td>
-                        <td>&mdash;</td>
+                        <td>$409.46</td>
+                        <td>$113.65</td>
+                        <td><strong>$523.11</strong></td>
+                        <td><span class="down">&minus;39.3%</span></td>
                     </tr>
                     <tr>
                         <td>2026-07-29</td>
-                        <td>$860.30</td>
-                        <td class="muted">not read</td>
-                        <td class="muted">&mdash;</td>
-                        <td>&mdash;</td>
+                        <td>$699.03</td>
+                        <td>$161.27</td>
+                        <td><strong>$860.30</strong></td>
+                        <td><span class="up">+28.8%</span></td>
                     </tr>
                     <tr>
                         <td>2026-07-28</td>
-                        <td>$1,339.28</td>
-                        <td class="muted">not read</td>
+                        <td>$668.85</td>
+                        <td>$115.55</td>
+                        <td><strong>$784.40</strong></td>
                         <td class="muted">&mdash;</td>
-                        <td>&mdash;</td>
                     </tr>
                     <tr>
                         <td>2026-07-27</td>
-                        <td>$837.05</td>
-                        <td class="muted">not read</td>
+                        <td>$380.83</td>
+                        <td>$456.22</td>
+                        <td><strong>$837.05</strong></td>
                         <td class="muted">&mdash;</td>
-                        <td>&mdash;</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="footer">
-            <div class="warning">&#9888; Machine status: 2 problems reported &middot; last machine communication 2026-08-02 08:30 EDT</div>
+            <p><strong>Data complete this run &mdash; both systems logged in.</strong></p>
             <p style="margin-top: 10px;"><strong>Data provenance for this refresh:</strong></p>
             <ul>
-                <li>Store POS — all 30 days plus the in-store / pickup &amp; delivery split were read directly this run. Every day reconciles: in-store + P&amp;D equals the day total. 30-day total $21,016.36.</li>
-                <li>Machines — 2026-08-01 (yesterday: $372.78 across 337 cycles: 34 washers $272.50 + 302 dryer top-offs $89.28 + 1 vending $11.00) and 2026-08-02 (today: $33.00 across 5 cycles: 4 washers $28.50 + 0 dryers $0.00 + 1 vending $4.50) were read directly this run. 2026-07-31 carried forward from an earlier refresh. 2026-07-27 through 2026-07-30 not read.</li>
-                <li>Card loads: $295.00 yesterday (13 cash, 15 card) and $17.00 today (1 cash, 1 card). Shown for context only — not added to combined total, which uses machine cycle revenue.</li>
+                <li>Store POS — 32 days (2026-07-02 through 2026-08-02) read this run. In-Store/P&amp;D verified. 32-day total $21,113.27.</li>
+                <li>Machines — Yesterday and today read this run from Summary Report. Yesterday: Payments $295.00, Cycle $372.78 (Washers $272.50, Dryers $89.28, Vending $11.00). Today: Payments $179.00, Cycle $205.31 (partial).</li>
+                <li>Both sites visited for keep-alive; sessions active.</li>
             </ul>
-            <p style="margin-top: 10px;">Combined total = Store POS revenue + machine cycle revenue. Today's Store POS reads $0.00 until payments post, which is normal early in the day.</p>
+            <p style="margin-top: 10px;"><strong>Yesterday combined:</strong> $1,125.88 (Store $753.10 + Machines $372.78)</p>
         </div>
     </div>
 
     <script>
-        // 30-day Store POS data — read this run
         const cc30Data = [
-            {date: '2026-08-02', revenue: 0.00},
+            {date: '2026-08-02', revenue: 96.91},
             {date: '2026-08-01', revenue: 753.10},
             {date: '2026-07-31', revenue: 703.87},
             {date: '2026-07-30', revenue: 523.11},
@@ -272,18 +274,19 @@
             {date: '2026-07-07', revenue: 639.44},
             {date: '2026-07-06', revenue: 592.06},
             {date: '2026-07-05', revenue: 681.63},
-            {date: '2026-07-04', revenue: 1055.30}
+            {date: '2026-07-04', revenue: 1055.30},
+            {date: '2026-07-03', revenue: 397.47},
+            {date: '2026-07-02', revenue: 471.61}
         ].slice().reverse();
 
-        // 7-day breakdown. machines: null = not read, rendered as a gap not a zero.
         const daysData = [
-            {date: '2026-07-27', store: 837.05,  machines: null},
-            {date: '2026-07-28', store: 1339.28, machines: null},
-            {date: '2026-07-29', store: 860.30,  machines: null},
-            {date: '2026-07-30', store: 523.11,  machines: null},
-            {date: '2026-07-31', store: 703.87,  machines: 448.86},
-            {date: '2026-08-01', store: 753.10,  machines: 372.78},
-            {date: '2026-08-02', store: 0.00,    machines: 33.00}
+            {date: '2026-07-27', instore: 380.83, pd: 456.22, machines: null},
+            {date: '2026-07-28', instore: 668.85, pd: 115.55, machines: null},
+            {date: '2026-07-29', instore: 699.03, pd: 161.27, machines: null},
+            {date: '2026-07-30', instore: 409.46, pd: 113.65, machines: null},
+            {date: '2026-07-31', instore: 491.94, pd: 211.93, machines: null},
+            {date: '2026-08-01', instore: 594.60, pd: 158.50, machines: 372.78},
+            {date: '2026-08-02', instore: 96.91,  pd: 0.00,   machines: 205.31}
         ];
 
         const ctx1 = document.getElementById('cc30Chart').getContext('2d');
@@ -314,14 +317,19 @@
                 labels: daysData.map(d => d.date.substring(5)),
                 datasets: [
                     {
-                        label: 'Store POS',
-                        data: daysData.map(d => d.store),
+                        label: 'In-Store',
+                        data: daysData.map(d => d.instore),
                         backgroundColor: '#667eea'
+                    },
+                    {
+                        label: 'Pickup & Delivery',
+                        data: daysData.map(d => d.pd),
+                        backgroundColor: '#764ba2'
                     },
                     {
                         label: 'Machines',
                         data: daysData.map(d => d.machines),
-                        backgroundColor: '#764ba2'
+                        backgroundColor: '#888888'
                     }
                 ]
             },
@@ -332,7 +340,7 @@
                     tooltip: {
                         callbacks: {
                             label: function(c) {
-                                if (c.parsed.y === null || c.raw === null) return c.dataset.label + ': not read';
+                                if (c.parsed.y === null || c.raw === null) return c.dataset.label + ': (no data)';
                                 return c.dataset.label + ': $' + c.parsed.y.toFixed(2);
                             }
                         }
