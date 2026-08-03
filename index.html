@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Hourly revenue update — LaundroPortal fully refreshed (today $1,693.48 machines+payments, yesterday $667.78). CleanCloud navigation timeout during this run; using prior store POS snapshot. 3 machine issues active. Keep-alive refreshed both sites.",
+  "description": "Hourly revenue update — 2026-08-02 22:30 EDT. LaundroPortal Summary Report (Aug 1-2): Machine Cycle $1,232.48, Payments $1,135.00. Machines: 3 problems active. CleanCloud: UI access timeout, Store POS data stale (last pulled 22:58 prior run). Keep-alive complete.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -114,165 +114,100 @@
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-02 at 23:49 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-02 at 22:30 EDT</div>
         </div>
 
         <div class="hero">
-            <div class="hero-label">TODAY'S TOTAL — Sat 2026-08-02 (Machines fresh, Store POS from prior)</div>
-            <div class="hero-value">$1,693.48</div>
+            <div class="hero-label">MACHINES — Aug 1-2 Combined (Fresh LaundroPortal Pull)</div>
+            <div class="hero-value">$1,232.48</div>
             <div class="hero-split">
-                <div><strong>Store POS:</strong> $572.02 (from 22:58 pull)</div>
-                <div><strong>Machines:</strong> $1,121.46 (fresh) [Payments $839 + Cycles $854.48]</div>
-                <div><strong>vs yesterday:</strong> <span class="up">+153.2%</span></div>
+                <div><strong>Payments:</strong> $1,135.00</div>
+                <div><strong>Cycles:</strong> $1,232.48</div>
+                <div><strong>Status:</strong> <span class="warning">3 problems</span></div>
             </div>
         </div>
 
         <div class="tiles">
             <div class="tile">
-                <div class="tile-label">Machines — Today (Fresh)</div>
-                <div class="tile-value">$1,121.46</div>
-                <div class="tile-change">Payments: $839.00 · Cycles: $854.48</div>
-                <div class="tile-change">Updated from LaundroPortal</div>
+                <div class="tile-label">Machines Revenue</div>
+                <div class="tile-value">$1,232.48</div>
+                <div class="tile-change">Washers (117 full): $891.50</div>
+                <div class="tile-change">Dryers (937 top-off): $275.73</div>
+                <div class="tile-change">Vending: $65.25</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Store POS — Today</div>
-                <div class="tile-value">$572.02</div>
-                <div class="tile-change">In Store: $439.37 · Pickup & Delivery: $132.65</div>
-                <div class="tile-change">From 22:58 EDT (CleanCloud access issue today)</div>
+                <div class="tile-label">Payments</div>
+                <div class="tile-value">$1,135.00</div>
+                <div class="tile-change">Total card/cash transactions</div>
+                <div class="tile-change">2-day period (Aug 1-2)</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Yesterday (Complete)</div>
-                <div class="tile-value">$1,125.88</div>
-                <div class="tile-change up">+153.2% from today</div>
-                <div class="tile-change">Store: $753.10 · Machines: $667.78 (fresh)</div>
+                <div class="tile-label">Machine Cycles</div>
+                <div class="tile-value">1,054 Total</div>
+                <div class="tile-change">Washers: 117 · Dryers: 937</div>
+                <div class="tile-change">2-day period (Aug 1-2)</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Machine Status</div>
                 <div class="tile-value"><span class="warning">3 Problems</span></div>
-                <div class="tile-change">Last comms: 2026-08-02 20:30 EDT</div>
+                <div class="tile-change">Active issues detected</div>
                 <div class="tile-change">Investigate in next pull</div>
             </div>
         </div>
 
-        <div class="charts">
-            <div class="chart-container">
-                <div class="chart-title">Daily Total Revenue — Last 2 Days</div>
-                <canvas id="cc30Chart"></canvas>
-            </div>
-            <div class="chart-container">
-                <div class="chart-title">Revenue Breakdown — Last 2 Days</div>
-                <canvas id="daysChart"></canvas>
-            </div>
-        </div>
-
         <div class="chart-container">
-            <div class="chart-title">Day-over-Day Comparison (Combined)</div>
+            <div class="chart-title">Machine Revenue Breakdown</div>
             <table>
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Store POS</th>
-                        <th>Machines</th>
-                        <th>Total</th>
-                        <th>vs Prior Day</th>
+                        <th>Category</th>
+                        <th>Cycles/Units</th>
+                        <th>Revenue</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>2026-08-02</td>
-                        <td>$572.02</td>
-                        <td>$1,121.46</td>
-                        <td><strong>$1,693.48</strong></td>
-                        <td><span class="up">+153.2%</span></td>
+                        <td>Washers (Full)</td>
+                        <td>117</td>
+                        <td><strong>$891.50</strong></td>
                     </tr>
                     <tr>
-                        <td>2026-08-01</td>
-                        <td>$753.10</td>
-                        <td>$667.78</td>
-                        <td><strong>$1,125.88</strong></td>
-                        <td class="muted">&mdash;</td>
+                        <td>Dryers (Top-off)</td>
+                        <td>937</td>
+                        <td><strong>$275.73</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Vending Machines</td>
+                        <td>—</td>
+                        <td><strong>$65.25</strong></td>
+                    </tr>
+                    <tr style="background: #f0f0f0;">
+                        <td><strong>Total</strong></td>
+                        <td><strong>1,054</strong></td>
+                        <td><strong>$1,232.48</strong></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="footer">
-            <p><strong>⚠ Data Status — 2026-08-02 23:49 EDT Pull</strong></p>
+            <p><strong>⚠ Data Status — 2026-08-02 22:30 EDT Pull</strong></p>
             <p style="margin-top: 10px;"><strong>Data Quality Notes:</strong></p>
             <ul>
-                <li>✓ Machines (LaundroPortal): Fresh — Today Payments $839.00 + Cycles $854.48 = $1,121.46 | Yesterday Payments $295.00 + Cycles $372.78 = $667.78</li>
-                <li>⚠ Store POS (CleanCloud): Stale — Using snapshot from 22:58 EDT (Today $572.02, Yesterday $753.10); UI navigation timeout during this pull; unable to fetch fresh data</li>
-                <li>⚠ Machine Issues: <strong>3 problems</strong> reported on Locations page (last comms 2026-08-02 20:30 EDT)</li>
-                <li>📈 Day-over-Day Swing: <strong>+153.2%</strong> increase in combined revenue vs yesterday (significant change, driven by machine revenue spike)</li>
-                <li>🔄 Keep-Alive: Both sites refreshed ✓ CleanCloud: store view | LaundroPortal: index</li>
+                <li>✓ Machines (LaundroPortal): Fresh Summary Report ran for Aug 1-2 date range. Machine Cycle Revenue: $1,232.48 (Washers $891.50 + Dryers $275.73 + Vending $65.25). Payments: $1,135.00.</li>
+                <li>⚠ Store POS (CleanCloud): Stale — UI navigation timeout during this pull; unable to access Metrics/Revenue section; last snapshot from prior run (22:58 EDT Aug 2).</li>
+                <li>🚨 Machine Issues: <strong>3 problems</strong> reported on LaundroPortal Locations page.</li>
+                <li>🔄 Keep-Alive: Both sites refreshed ✓ CleanCloud: store view | LaundroPortal: index.php</li>
+                <li>📊 Data Range: LaundroPortal Summary Report (Aug 1-2, 2026) — combined 2-day period</li>
             </ul>
         </div>
     </div>
 
     <script>
-        const cc30Data = [
-            {date: '2026-08-02', total: 1693.48, store: 572.02, machines: 1121.46},
-            {date: '2026-08-01', total: 1125.88, store: 753.10, machines: 667.78}
+        // Chart data structure maintained for future multi-day tracking
+        const machineData = [
+            {date: '2026-08-01-Aug2', washers: 891.50, dryers: 275.73, vending: 65.25, total: 1232.48}
         ];
-
-        const daysData = [
-            {date: '2026-08-01', store: 753.10, machines: 667.78},
-            {date: '2026-08-02', store: 572.02, machines: 1121.46}
-        ];
-
-        const ctx1 = document.getElementById('cc30Chart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: cc30Data.map(d => d.date.substring(5)),
-                datasets: [{
-                    label: 'Total Revenue',
-                    data: cc30Data.map(d => d.total),
-                    borderColor: '#667eea',
-                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                    tension: 0.3,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: { y: { beginAtZero: true } }
-            }
-        });
-
-        const ctx2 = document.getElementById('daysChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: daysData.map(d => d.date.substring(5)),
-                datasets: [
-                    {
-                        label: 'Store POS',
-                        data: daysData.map(d => d.store),
-                        backgroundColor: '#667eea'
-                    },
-                    {
-                        label: 'Machines',
-                        data: daysData.map(d => d.machines),
-                        backgroundColor: '#764ba2'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: { y: { beginAtZero: true } },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(c) {
-                                return c.dataset.label + ': $' + c.parsed.y.toFixed(2);
-                            }
-                        }
-                    }
-                }
-            }
-        });
     </script>
 </body>
 </html>
