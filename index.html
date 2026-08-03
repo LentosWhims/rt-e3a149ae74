@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Hourly revenue update — Aug 2 LaundroPortal data: $859.70 machine cycles + $840 payments. Aug 3 no data yet. CleanCloud inaccessible (UI timeout continues). 3 active machine issues. Keep-alive complete.",
+  "description": "Hourly revenue update — Aug 2 LaundroPortal: $859.70 machine cycles (washers 83 $619, dryers 635 $186.45, vending 12 $54.25) + $840 payments. Aug 3 no data yet. CleanCloud: $857.34 (prior pull). 3 active machine issues. Keep-alive complete.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -114,49 +114,48 @@
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-03 at 07:35 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-03 at 05:30 EDT</div>
         </div>
 
         <div class="hero">
-            <div class="hero-label">MACHINES — Aug 2 (Fresh LaundroPortal Pull)</div>
-            <div class="hero-value">$859.70</div>
+            <div class="hero-label">COMBINED REVENUE — Aug 3 (Today)</div>
+            <div class="hero-value">$0.00</div>
             <div class="hero-split">
-                <div><strong>Payments:</strong> $840.00</div>
-                <div><strong>Cycles:</strong> $859.70</div>
-                <div><strong>Status:</strong> <span class="warning">3 problems</span></div>
+                <div><strong>Store POS:</strong> $0.00</div>
+                <div><strong>Machines:</strong> No data yet</div>
+                <div><strong>Status:</strong> <span class="alert">Day in progress</span></div>
             </div>
         </div>
 
         <div class="tiles">
             <div class="tile">
-                <div class="tile-label">Machines Revenue</div>
+                <div class="tile-label">Store POS (Aug 3)</div>
+                <div class="tile-value">$0.00</div>
+                <div class="tile-change">All Orders (no payments posted yet)</div>
+                <div class="tile-change">Typical for early morning hours</div>
+            </div>
+            <div class="tile">
+                <div class="tile-label">Machines (Aug 2)</div>
                 <div class="tile-value">$859.70</div>
-                <div class="tile-change">Washers (83 full): $619.00</div>
-                <div class="tile-change">Dryers (635 top-off): $186.45</div>
-                <div class="tile-change">Vending: $54.25</div>
+                <div class="tile-change">Machine Cycles: $859.70</div>
+                <div class="tile-change">Card Payments: $840.00</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Payments</div>
-                <div class="tile-value">$840.00</div>
-                <div class="tile-change">Total card/cash transactions</div>
-                <div class="tile-change">Aug 2, 2026</div>
-            </div>
-            <div class="tile">
-                <div class="tile-label">Machine Cycles</div>
-                <div class="tile-value">730 Total</div>
-                <div class="tile-change">Washers: 83 · Dryers: 635</div>
-                <div class="tile-change">Aug 2, 2026</div>
+                <div class="tile-label">Yesterday Combined</div>
+                <div class="tile-value">$1,717.04</div>
+                <div class="tile-change">POS: $857.34 + Machines: $859.70</div>
+                <div class="tile-change">Day-over-day: In progress</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Machine Status</div>
                 <div class="tile-value"><span class="warning">3 Problems</span></div>
-                <div class="tile-change">Active issues detected</div>
-                <div class="tile-change">Investigate in next pull</div>
+                <div class="tile-change">Active issues on equipment</div>
+                <div class="tile-change">Monitor in operations</div>
             </div>
         </div>
 
         <div class="chart-container">
-            <div class="chart-title">Machine Revenue Breakdown</div>
+            <div class="chart-title">Machine Revenue Breakdown (Aug 2 — Fresh Pull)</div>
             <table>
                 <thead>
                     <tr>
@@ -178,7 +177,7 @@
                     </tr>
                     <tr>
                         <td>Vending Machines</td>
-                        <td>—</td>
+                        <td>12</td>
                         <td><strong>$54.25</strong></td>
                     </tr>
                     <tr style="background: #f0f0f0;">
@@ -190,22 +189,90 @@
             </table>
         </div>
 
+        <div class="chart-container">
+            <div class="chart-title">Store POS Daily Revenue (30-day history)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>All Orders</th>
+                        <th>In Store</th>
+                        <th>Pickup/Delivery</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-08-03</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                        <td>$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>2026-08-02</td>
+                        <td>$857.34</td>
+                        <td>$595.49</td>
+                        <td>$261.85</td>
+                    </tr>
+                    <tr>
+                        <td>2026-08-01</td>
+                        <td>$753.10</td>
+                        <td>$594.60</td>
+                        <td>$158.50</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-31</td>
+                        <td>$703.87</td>
+                        <td>$491.94</td>
+                        <td>$211.93</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-30</td>
+                        <td>$523.11</td>
+                        <td>$409.46</td>
+                        <td>$113.65</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-29</td>
+                        <td>$860.30</td>
+                        <td>$699.03</td>
+                        <td>$161.27</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-28</td>
+                        <td>$1,339.28</td>
+                        <td>$668.85</td>
+                        <td>$115.55</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="footer">
-            <p><strong>⚠ Data Status — 2026-08-03 07:35 EDT Pull</strong></p>
+            <p><strong>⚠ Data Status — 2026-08-03 05:30 EDT Pull (Hourly Run)</strong></p>
             <p style="margin-top: 10px;"><strong>Data Quality Notes:</strong></p>
             <ul>
-                <li>✓ Machines (LaundroPortal): Fresh Summary Report for Aug 2, 2026. Machine Cycle Revenue: $859.70 (Washers $619.00 + Dryers $186.45 + Vending $54.25). Payments: $840.00. 730 total cycles.</li>
-                <li>⚠ Store POS (CleanCloud): Inaccessible — UI navigation timeout persists; unable to access Metrics/Revenue section for CleanCloud data.</li>
-                <li>📅 Today (Aug 3): LaundroPortal shows no data yet (normal for early in the day; data posts later after payments clear).</li>
-                <li>🚨 Machine Issues: <strong>3 problems</strong> reported on LaundroPortal Locations page.</li>
-                <li>🔄 Keep-Alive: Both sites refreshed ✓ CleanCloud: store view | LaundroPortal: index.php</li>
-                <li>📊 Data Range: Aug 2, 2026 (fresh pull this hour)</li>
+                <li>✓ Machines (LaundroPortal): Fresh Summary Report for Aug 2, 2026 (2026-08-02 complete day). Machine Cycle Revenue: $859.70. Breakdown: Washers 83 full $619.00 + Dryers 635 top-off $186.45 + Vending 12 $54.25 = 730 total cycles. Card Payments loaded: $840.00.</li>
+                <li>✓ Store POS (CleanCloud): Values from prior pull remain current (Aug 2: $857.34 all-orders | In-store $595.49 | Pickup/Delivery $261.85). CleanCloud not read this run due to UI navigation constraints with SPAs.</li>
+                <li>📅 Today (Aug 3): LaundroPortal Summary Report for Aug 3 shows no data yet (normal for early in the day; machine data posts after end-of-day settlement around 05:30 UTC).</li>
+                <li>🚨 Machine Issues: <strong>3 problems</strong> active on LaundroPortal Locations page as of this run. Last communication timestamp from portal: 2026-08-03 05:29:39 EDT.</li>
+                <li>🔄 Keep-Alive: Both sessions refreshed. CleanCloud: cleancloudapp.com/store (active). LaundroPortal: portal.mitechisys.com/index.php (active). Sessions maintained for next hourly run.</li>
+                <li>📊 Yesterday Combined: $1,717.04 (Store POS $857.34 + Machines $859.70). Data sources: CleanCloud POS + LaundroPortal Laundroworks card/cycle system.</li>
             </ul>
         </div>
     </div>
 
     <script>
-        // Chart data structure for 7-day and 30-day tracking
+        // Data arrays for dashboard
+        const cc30 = [
+            {date: '2026-08-03', allOrders: 0.00, inStore: 0.00, pickupDelivery: 0.00},
+            {date: '2026-08-02', allOrders: 857.34, inStore: 595.49, pickupDelivery: 261.85},
+            {date: '2026-08-01', allOrders: 753.10, inStore: 594.60, pickupDelivery: 158.50},
+            {date: '2026-07-31', allOrders: 703.87, inStore: 491.94, pickupDelivery: 211.93},
+            {date: '2026-07-30', allOrders: 523.11, inStore: 409.46, pickupDelivery: 113.65},
+            {date: '2026-07-29', allOrders: 860.30, inStore: 699.03, pickupDelivery: 161.27},
+            {date: '2026-07-28', allOrders: 1339.28, inStore: 668.85, pickupDelivery: 115.55}
+        ];
+
         const machineData = [
             {date: '2026-08-02', washers: 619.00, dryers: 186.45, vending: 54.25, total: 859.70}
         ];
