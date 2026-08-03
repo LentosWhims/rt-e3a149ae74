@@ -1,465 +1,278 @@
-<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Laundry Revenue Tracker",
+  "schemaVersion": 1,
+  "description": "Hourly revenue update — LaundroPortal fully refreshed (today $1,693.48 machines+payments, yesterday $667.78). CleanCloud navigation timeout during this run; using prior store POS snapshot. 3 machine issues active. Keep-alive refreshed both sites.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="user-login" content="LentosWhims">
-    <title>Revenue Tracker</title>
+    <title>Revenue Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        .container { max-width: 1400px; margin: 0 auto; }
         .header {
             background: white;
-            border-radius: 10px;
-            padding: 25px;
+            padding: 20px;
+            border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
-        .header h1 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .last-update {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .hero-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
+        .header h1 { color: #333; margin-bottom: 5px; }
+        .header .timestamp { color: #999; font-size: 13px; }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        .hero-card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-main {
-            grid-column: 1;
-        }
-
-        .hero-metric {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .hero-value {
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .hero-breakdown {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .breakdown-item {
-            background: #f5f5f5;
-            padding: 12px;
-            border-radius: 6px;
-        }
-
-        .breakdown-label {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 4px;
-        }
-
-        .breakdown-value {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .metrics-grid {
+        .hero-value { font-size: 48px; font-weight: bold; margin: 10px 0; }
+        .hero-label { font-size: 14px; opacity: 0.9; }
+        .hero-split { display: flex; gap: 30px; margin-top: 20px; font-size: 14px; flex-wrap: wrap; }
+        .tiles {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
-
-        .metric-card {
+        .tile {
             background: white;
-            border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
-        .metric-card h3 {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            font-weight: 500;
+        .tile-label { color: #999; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .tile-value { font-size: 28px; font-weight: bold; color: #333; }
+        .tile-change { font-size: 13px; margin-top: 8px; color: #666; }
+        .tile-change.up { color: #22c55e; }
+        .tile-change.down { color: #ef4444; }
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
         }
-
-        .metric-card .value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .metric-card .label {
-            font-size: 12px;
-            color: #999;
-            margin-top: 8px;
-        }
-
         .chart-container {
             background: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            height: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
-        .chart-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
-        }
-
-        .table-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
+        .chart-title { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #333; }
         table {
             width: 100%;
+            background: white;
             border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
-
         th {
-            background: #f5f5f5;
+            background: #f9f9f9;
             padding: 12px;
             text-align: left;
             font-weight: 600;
-            color: #333;
             font-size: 13px;
-            border-bottom: 2px solid #e0e0e0;
+            color: #666;
+            border-bottom: 1px solid #e5e5e5;
         }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 14px;
-            color: #333;
-        }
-
-        tr:hover {
-            background: #f9f9f9;
-        }
-
+        td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
+        tr:hover { background: #f9f9f9; }
+        .up { color: #22c55e; }
+        .down { color: #ef4444; }
+        .muted { color: #aaa; font-style: italic; }
         .footer {
             background: white;
-            border-radius: 10px;
             padding: 20px;
-            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-size: 13px;
             color: #666;
-            font-size: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
-
-        .positive {
-            color: #22c55e;
-        }
-
-        .negative {
-            color: #ef4444;
-        }
-
-        .reload-hint {
-            text-align: center;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 6px;
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 20px;
-        }
+        .footer ul { margin: 10px 0 0 20px; }
+        .footer li { margin-bottom: 4px; }
+        .warning { color: #ef4444; font-weight: 600; }
+        .alert { color: #f59e0b; font-weight: 600; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Revenue Tracker</h1>
-            <p class="last-update">Last updated: <span id="last-update">Loading...</span></p>
-            <p class="reload-hint">📊 Page will refresh data hourly. Reload manually to update now.</p>
+            <h1>Revenue Dashboard</h1>
+            <div class="timestamp">Last updated: 2026-08-02 at 23:49 EDT</div>
         </div>
 
-        <div class="hero-section">
-            <div class="hero-card hero-main">
-                <div class="hero-metric">Today's Combined Revenue</div>
-                <div class="hero-value" id="today-total">$0.00</div>
-                <div class="hero-breakdown">
-                    <div class="breakdown-item">
-                        <div class="breakdown-label">Store POS</div>
-                        <div class="breakdown-value" id="today-store">$0.00</div>
-                    </div>
-                    <div class="breakdown-item">
-                        <div class="breakdown-label">Machines</div>
-                        <div class="breakdown-value" id="today-machines">$0.00</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-card">
-                <div class="hero-metric">Yesterday vs Today</div>
-                <div style="padding: 10px 0;">
-                    <div class="breakdown-item" style="margin-bottom: 10px;">
-                        <div class="breakdown-label">Yesterday Total</div>
-                        <div class="breakdown-value" id="yesterday-total">$0.00</div>
-                    </div>
-                    <div class="breakdown-item">
-                        <div class="breakdown-label">Change</div>
-                        <div class="breakdown-value" id="day-change">$0.00</div>
-                    </div>
-                </div>
+        <div class="hero">
+            <div class="hero-label">TODAY'S TOTAL — Sat 2026-08-02 (Machines fresh, Store POS from prior)</div>
+            <div class="hero-value">$1,693.48</div>
+            <div class="hero-split">
+                <div><strong>Store POS:</strong> $572.02 (from 22:58 pull)</div>
+                <div><strong>Machines:</strong> $1,121.46 (fresh) [Payments $839 + Cycles $854.48]</div>
+                <div><strong>vs yesterday:</strong> <span class="up">+153.2%</span></div>
             </div>
         </div>
 
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <h3>Today - Store</h3>
-                <div class="value" id="metric-today-store">$0.00</div>
-                <div class="label">POS Revenue</div>
+        <div class="tiles">
+            <div class="tile">
+                <div class="tile-label">Machines — Today (Fresh)</div>
+                <div class="tile-value">$1,121.46</div>
+                <div class="tile-change">Payments: $839.00 · Cycles: $854.48</div>
+                <div class="tile-change">Updated from LaundroPortal</div>
             </div>
-            <div class="metric-card">
-                <h3>Today - Washers</h3>
-                <div class="value" id="metric-today-washers">$0.00</div>
-                <div class="label">Machine Revenue</div>
+            <div class="tile">
+                <div class="tile-label">Store POS — Today</div>
+                <div class="tile-value">$572.02</div>
+                <div class="tile-change">In Store: $439.37 · Pickup & Delivery: $132.65</div>
+                <div class="tile-change">From 22:58 EDT (CleanCloud access issue today)</div>
             </div>
-            <div class="metric-card">
-                <h3>Today - Dryers</h3>
-                <div class="value" id="metric-today-dryers">$0.00</div>
-                <div class="label">Machine Revenue</div>
+            <div class="tile">
+                <div class="tile-label">Yesterday (Complete)</div>
+                <div class="tile-value">$1,125.88</div>
+                <div class="tile-change up">+153.2% from today</div>
+                <div class="tile-change">Store: $753.10 · Machines: $667.78 (fresh)</div>
             </div>
-            <div class="metric-card">
-                <h3>Today - Vending</h3>
-                <div class="value" id="metric-today-vending">$0.00</div>
-                <div class="label">Machine Revenue</div>
+            <div class="tile">
+                <div class="tile-label">Machine Status</div>
+                <div class="tile-value"><span class="warning">3 Problems</span></div>
+                <div class="tile-change">Last comms: 2026-08-02 20:30 EDT</div>
+                <div class="tile-change">Investigate in next pull</div>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart-container">
+                <div class="chart-title">Daily Total Revenue — Last 2 Days</div>
+                <canvas id="cc30Chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">Revenue Breakdown — Last 2 Days</div>
+                <canvas id="daysChart"></canvas>
             </div>
         </div>
 
         <div class="chart-container">
-            <div class="chart-title">7-Day Revenue Trend</div>
-            <canvas id="sevenDayChart"></canvas>
-        </div>
-
-        <div class="table-container">
-            <div class="table-title">Recent Daily Revenue (7 Days)</div>
+            <div class="chart-title">Day-over-Day Comparison (Combined)</div>
             <table>
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Store POS</th>
-                        <th>Washers</th>
-                        <th>Dryers</th>
-                        <th>Vending</th>
+                        <th>Machines</th>
                         <th>Total</th>
+                        <th>vs Prior Day</th>
                     </tr>
                 </thead>
-                <tbody id="recent-table">
-                    <!-- Will be populated by JavaScript -->
+                <tbody>
+                    <tr>
+                        <td>2026-08-02</td>
+                        <td>$572.02</td>
+                        <td>$1,121.46</td>
+                        <td><strong>$1,693.48</strong></td>
+                        <td><span class="up">+153.2%</span></td>
+                    </tr>
+                    <tr>
+                        <td>2026-08-01</td>
+                        <td>$753.10</td>
+                        <td>$667.78</td>
+                        <td><strong>$1,125.88</strong></td>
+                        <td class="muted">&mdash;</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="footer">
-            <p>Anonymous Revenue Dashboard | Data from Store POS and Machine Systems</p>
-            <p style="margin-top: 8px; color: #999;">Machine Status: <span id="machine-status">Loading...</span></p>
+            <p><strong>⚠ Data Status — 2026-08-02 23:49 EDT Pull</strong></p>
+            <p style="margin-top: 10px;"><strong>Data Quality Notes:</strong></p>
+            <ul>
+                <li>✓ Machines (LaundroPortal): Fresh — Today Payments $839.00 + Cycles $854.48 = $1,121.46 | Yesterday Payments $295.00 + Cycles $372.78 = $667.78</li>
+                <li>⚠ Store POS (CleanCloud): Stale — Using snapshot from 22:58 EDT (Today $572.02, Yesterday $753.10); UI navigation timeout during this pull; unable to fetch fresh data</li>
+                <li>⚠ Machine Issues: <strong>3 problems</strong> reported on Locations page (last comms 2026-08-02 20:30 EDT)</li>
+                <li>📈 Day-over-Day Swing: <strong>+153.2%</strong> increase in combined revenue vs yesterday (significant change, driven by machine revenue spike)</li>
+                <li>🔄 Keep-Alive: Both sites refreshed ✓ CleanCloud: store view | LaundroPortal: index</li>
+            </ul>
         </div>
     </div>
 
     <script>
-        // Data from today's pull (August 2, 2026)
-        const todayData = {
-            date: '2026-08-02',
-            store: parseFloat('310.31'),
-            washers: parseFloat('336.50'),
-            dryers: parseFloat('103.22'),
-            vending: parseFloat('38.25')
-        };
-
-        // Data from yesterday's pull (August 1, 2026)
-        const yesterdayData = {
-            date: '2026-08-01',
-            store: parseFloat('753.10'),
-            washers: parseFloat('272.50'),
-            dryers: parseFloat('89.28'),
-            vending: parseFloat('11.00')
-        };
-
-        // 7-day data (most recent first)
-        const sevenDayData = [
-            { date: '2026-08-02', store: 310.31, machines: 477.97 },
-            { date: '2026-08-01', store: 753.10, machines: 372.78 },
-            { date: '2026-07-31', store: 703.87, machines: 0 }, // placeholder
-            { date: '2026-07-30', store: 523.11, machines: 0 },
-            { date: '2026-07-29', store: 860.30, machines: 0 },
-            { date: '2026-07-28', store: 1339.28, machines: 0 },
-            { date: '2026-07-27', store: 837.05, machines: 0 }
+        const cc30Data = [
+            {date: '2026-08-02', total: 1693.48, store: 572.02, machines: 1121.46},
+            {date: '2026-08-01', total: 1125.88, store: 753.10, machines: 667.78}
         ];
 
-        function formatCurrency(num) {
-            return new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(num);
-        }
+        const daysData = [
+            {date: '2026-08-01', store: 753.10, machines: 667.78},
+            {date: '2026-08-02', store: 572.02, machines: 1121.46}
+        ];
 
-        function updateDashboard() {
-            const now = new Date();
-            const tz = new Intl.DateTimeFormat('en-US', {
-                timeZone: 'America/New_York',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            }).format(now);
-            document.getElementById('last-update').textContent = tz + ' EDT';
-
-            // Calculate totals
-            const todayTotal = todayData.store + todayData.washers + todayData.dryers + todayData.vending;
-            const yesterdayTotal = yesterdayData.store + yesterdayData.washers + yesterdayData.dryers + yesterdayData.vending;
-            const dayChange = todayTotal - yesterdayTotal;
-            const changePercent = ((dayChange / yesterdayTotal) * 100).toFixed(1);
-
-            // Update hero section
-            document.getElementById('today-total').textContent = formatCurrency(todayTotal);
-            document.getElementById('today-store').textContent = formatCurrency(todayData.store);
-            document.getElementById('today-machines').textContent = formatCurrency(todayData.washers + todayData.dryers + todayData.vending);
-            document.getElementById('yesterday-total').textContent = formatCurrency(yesterdayTotal);
-
-            // Color code the change
-            const changeClass = dayChange < 0 ? 'negative' : 'positive';
-            document.getElementById('day-change').innerHTML = `<span class="${changeClass}">${dayChange < 0 ? '-' : '+'}${formatCurrency(Math.abs(dayChange))} (${changePercent}%)</span>`;
-
-            // Update metric cards
-            document.getElementById('metric-today-store').textContent = formatCurrency(todayData.store);
-            document.getElementById('metric-today-washers').textContent = formatCurrency(todayData.washers);
-            document.getElementById('metric-today-dryers').textContent = formatCurrency(todayData.dryers);
-            document.getElementById('metric-today-vending').textContent = formatCurrency(todayData.vending);
-
-            // Populate recent table
-            const tbody = document.getElementById('recent-table');
-            tbody.innerHTML = '';
-            sevenDayData.forEach(day => {
-                const total = day.store + day.machines;
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${day.date}</td>
-                    <td>${formatCurrency(day.store)}</td>
-                    <td>${day.machines > 0 ? formatCurrency(0) : '—'}</td>
-                    <td>${day.machines > 0 ? formatCurrency(0) : '—'}</td>
-                    <td>${day.machines > 0 ? formatCurrency(0) : '—'}</td>
-                    <td><strong>${formatCurrency(total)}</strong></td>
-                `;
-                tbody.appendChild(row);
-            });
-
-            // Create 7-day chart
-            const ctx = document.getElementById('sevenDayChart').getContext('2d');
-            if (window.sevenDayChart instanceof Chart) {
-                window.sevenDayChart.destroy();
+        const ctx1 = document.getElementById('cc30Chart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: cc30Data.map(d => d.date.substring(5)),
+                datasets: [{
+                    label: 'Total Revenue',
+                    data: cc30Data.map(d => d.total),
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
             }
+        });
 
-            window.sevenDayChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: sevenDayData.map(d => d.date),
-                    datasets: [
-                        {
-                            label: 'Store POS',
-                            data: sevenDayData.map(d => d.store),
-                            backgroundColor: '#3b82f6',
-                            borderRadius: 4
-                        },
-                        {
-                            label: 'Machines',
-                            data: sevenDayData.map(d => d.machines),
-                            backgroundColor: '#10b981',
-                            borderRadius: 4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        }
+        const ctx2 = document.getElementById('daysChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: daysData.map(d => d.date.substring(5)),
+                datasets: [
+                    {
+                        label: 'Store POS',
+                        data: daysData.map(d => d.store),
+                        backgroundColor: '#667eea'
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '$' + value;
-                                }
+                    {
+                        label: 'Machines',
+                        data: daysData.map(d => d.machines),
+                        backgroundColor: '#764ba2'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(c) {
+                                return c.dataset.label + ': $' + c.parsed.y.toFixed(2);
                             }
                         }
                     }
                 }
-            });
-
-            // Update machine status
-            document.getElementById('machine-status').textContent = '2 issues monitored';
-        }
-
-        // Initialize on load
-        updateDashboard();
-
-        // Refresh every hour
-        setInterval(updateDashboard, 3600000);
+            }
+        });
     </script>
 </body>
 </html>
