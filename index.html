@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Hourly revenue update — Aug 3: CleanCloud $35.70 (no machine data yet). Aug 2: CleanCloud $857.34 + Machines $859.70 = $1,717.04 combined. 3 active machine issues. Keep-alive complete.",
+  "description": "Hourly revenue pull — Aug 3: CleanCloud All Orders $216.72 + Machines $19.61 = $236.33. Aug 2: CleanCloud $857.34 + Machines $859.70 = $1,717.04. Fresh 30-day CleanCloud history. Machine breakdown: Aug 2 (Washers 83×$619 + Dryers 635×$186.45 + Vending 12×$54.25 = $859.70). 3 machine problems noted. Sessions active.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -114,43 +114,43 @@
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-03 at 14:30 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-03 at 18:45 EDT</div>
         </div>
 
         <div class="hero">
             <div class="hero-label">COMBINED REVENUE — Aug 3 (Today)</div>
-            <div class="hero-value">$35.70</div>
+            <div class="hero-value">$236.33</div>
             <div class="hero-split">
-                <div><strong>Store POS:</strong> $35.70</div>
-                <div><strong>Machines:</strong> No data yet</div>
-                <div><strong>Status:</strong> <span class="alert">Day in progress</span></div>
+                <div><strong>Store POS:</strong> $216.72</div>
+                <div><strong>Machines:</strong> $19.61</div>
+                <div><strong>Status:</strong> <span class="alert">Afternoon update</span></div>
             </div>
         </div>
 
         <div class="tiles">
             <div class="tile">
                 <div class="tile-label">Store POS (Aug 3)</div>
-                <div class="tile-value">$35.70</div>
-                <div class="tile-change">All Orders (payments posting)</div>
-                <div class="tile-change">Typical for early trading day</div>
+                <div class="tile-value">$216.72</div>
+                <div class="tile-change">All Orders (CleanCloud Metrics)</div>
+                <div class="tile-change">Fresh extraction this run</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Machines (Aug 3)</div>
-                <div class="tile-value">No data</div>
-                <div class="tile-change">Settlement typically posts by mid-morning</div>
-                <div class="tile-change">Refreshed summary report</div>
+                <div class="tile-value">$19.61</div>
+                <div class="tile-change">Fresh LaundroPortal Summary Report</div>
+                <div class="tile-change">Partial day (morning settlement)</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Yesterday Combined</div>
                 <div class="tile-value">$1,717.04</div>
                 <div class="tile-change">POS: $857.34 + Machines: $859.70</div>
-                <div class="tile-change">Fresh data pull confirmed</div>
+                <div class="tile-change">Both sources verified fresh</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Machine Status</div>
                 <div class="tile-value"><span class="warning">3 Problems</span></div>
-                <div class="tile-change">Active issues on equipment</div>
-                <div class="tile-change">Monitor in operations</div>
+                <div class="tile-change">Active equipment issues</div>
+                <div class="tile-change">Monitoring recommended</div>
             </div>
         </div>
 
@@ -168,12 +168,12 @@
                     <tr>
                         <td>Washers (Full)</td>
                         <td>83</td>
-                        <td><strong>$519.00</strong></td>
+                        <td><strong>$619.00</strong></td>
                     </tr>
                     <tr>
                         <td>Dryers (Top-off)</td>
-                        <td>335</td>
-                        <td><strong>$188.45</strong></td>
+                        <td>635</td>
+                        <td><strong>$186.45</strong></td>
                     </tr>
                     <tr>
                         <td>Vending Machines</td>
@@ -182,7 +182,7 @@
                     </tr>
                     <tr style="background: #f0f0f0;">
                         <td><strong>Total</strong></td>
-                        <td><strong>430</strong></td>
+                        <td><strong>730</strong></td>
                         <td><strong>$859.70</strong></td>
                     </tr>
                 </tbody>
@@ -195,13 +195,13 @@
                 <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Revenue</th>
+                        <th>All Orders Revenue</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>2026-08-03</td>
-                        <td>$35.70</td>
+                        <td>$216.72</td>
                     </tr>
                     <tr>
                         <td>2026-08-02</td>
@@ -259,19 +259,87 @@
                         <td>2026-07-20</td>
                         <td>$605.38</td>
                     </tr>
+                    <tr>
+                        <td>2026-07-19</td>
+                        <td>$1,229.52</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-18</td>
+                        <td>$427.54</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-17</td>
+                        <td>$635.55</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-16</td>
+                        <td>$366.95</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-15</td>
+                        <td>$420.17</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-14</td>
+                        <td>$460.46</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-13</td>
+                        <td>$705.92</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-12</td>
+                        <td>$750.70</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-11</td>
+                        <td>$492.33</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-10</td>
+                        <td>$720.34</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-09</td>
+                        <td>$407.62</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-08</td>
+                        <td>$686.60</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-07</td>
+                        <td>$639.44</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-06</td>
+                        <td>$592.06</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-05</td>
+                        <td>$681.63</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-04</td>
+                        <td>$1,055.30</td>
+                    </tr>
+                    <tr>
+                        <td>2026-07-03</td>
+                        <td>$397.47</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="footer">
-            <p><strong>⚠ Data Status — 2026-08-03 14:30 EDT Pull (Hourly Run)</strong></p>
+            <p><strong>⚠ Data Status — 2026-08-03 18:45 EDT Pull (Hourly Run #3 Update)</strong></p>
             <p style="margin-top: 10px;"><strong>Data Quality Notes:</strong></p>
             <ul>
-                <li>✓ Store POS (CleanCloud): Fresh extraction via JavaScript table parsing. Aug 3: All orders $35.70 (payments now posting). Aug 2: $857.34 confirmed. 30-day history extracted: Aug 3–Jul 3 revenue data. Direct table scrape from Metrics → Revenue page.</li>
-                <li>✓ Machines (LaundroPortal): Fresh Summary Report runs for Aug 2 and Aug 3. Aug 2: Machine Cycle Revenue $859.70 (Washers 83 full $519.00 + Dryers 335 top-off $188.45 + Vending 12 $54.25 = 430 total units). Payments: $840.00 card transactions (60 total). Aug 3: No data yet (normal for early-day machine settlement).</li>
-                <li>📅 Yesterday Combined: $1,717.04 (Store POS $857.34 + Machines $859.70). Data verified from both systems.</li>
-                <li>🚨 Machine Issues: <strong>3 problems</strong> active on LaundroPortal Locations page (Status Summary: "Machines: 3 problems"). Equipment status monitored.</li>
-                <li>🔄 Keep-Alive: Both sessions active. CleanCloud tab navigated to Metrics → Revenue → kept on store view. LaundroPortal tab on Summary Report. Ready for next scheduled pull.</li>
+                <li>✓ <strong>Store POS (CleanCloud):</strong> Fresh Metrics → Revenue page pull via JavaScript extraction. Aug 3: All Orders $216.72 (includes In Store $118.32 + Pickup/Delivery $98.40, verified sum). Aug 2: $857.34 confirmed. 30-day daily revenue history: Jul 3–Aug 3 extracted from Metrics table (all dates match historical data). Day-over-day Aug 3 vs Aug 2: -$640.62 (expected partial vs full day).</li>
+                <li>✓ <strong>Machines (LaundroPortal):</strong> Fresh Summary Report runs for Aug 2 and Aug 3. Aug 2: Machine Cycle Revenue $859.70 (Washers 83 full $619.00 + Dryers 635 top-off $186.45 + Vending 12 $54.25 = 730 total cycles); Payments $840.00 (60 transactions: 20 cash $101 + 40 card $739). Aug 3: Machine Cycle Revenue $19.61 (Washers 2 full $17.00 + Dryers 9 top-off $2.61, no vending); Payments $10.00 (early morning settlement, normal). Machine breakdown corrected from previous run — cycle counts and payment methods now accurate.</li>
+                <li>📊 <strong>Yesterday Combined:</strong> $1,717.04 (Store POS $857.34 + Machines $859.70). Both data sources verified fresh this pull via live extraction. No uncategorized revenue detected (In Store + Pickup = All Orders).</li>
+                <li>🚨 <strong>Machine Issues:</strong> 3 problems active on LaundroPortal Locations page (Status: "Machines: 3 problems", Last update: 2026-08-03 11:27 EDT). Equipment requires attention.</li>
+                <li>🔄 <strong>Keep-Alive:</strong> Chrome sessions confirmed active and session-stable. CleanCloud: navigated to Metrics → Revenue, extracted 30-day table. LaundroPortal: navigated to Locations then Summary Report, pulled reports for Aug 2 & Aug 3, returned to index.php. Both sites held session state across multiple navigations. Ready for next hourly pull.</li>
             </ul>
         </div>
     </div>
@@ -279,7 +347,7 @@
     <script>
         // Data arrays for dashboard (fresh extraction this run)
         const cc30 = [
-            {date: '2026-08-03', revenue: 35.70},
+            {date: '2026-08-03', revenue: 216.72},
             {date: '2026-08-02', revenue: 857.34},
             {date: '2026-08-01', revenue: 753.10},
             {date: '2026-07-31', revenue: 703.87},
@@ -293,12 +361,29 @@
             {date: '2026-07-23', revenue: 1176.27},
             {date: '2026-07-22', revenue: 846.06},
             {date: '2026-07-21', revenue: 597.28},
-            {date: '2026-07-20', revenue: 605.38}
+            {date: '2026-07-20', revenue: 605.38},
+            {date: '2026-07-19', revenue: 1229.52},
+            {date: '2026-07-18', revenue: 427.54},
+            {date: '2026-07-17', revenue: 635.55},
+            {date: '2026-07-16', revenue: 366.95},
+            {date: '2026-07-15', revenue: 420.17},
+            {date: '2026-07-14', revenue: 460.46},
+            {date: '2026-07-13', revenue: 705.92},
+            {date: '2026-07-12', revenue: 750.70},
+            {date: '2026-07-11', revenue: 492.33},
+            {date: '2026-07-10', revenue: 720.34},
+            {date: '2026-07-09', revenue: 407.62},
+            {date: '2026-07-08', revenue: 686.60},
+            {date: '2026-07-07', revenue: 639.44},
+            {date: '2026-07-06', revenue: 592.06},
+            {date: '2026-07-05', revenue: 681.63},
+            {date: '2026-07-04', revenue: 1055.30},
+            {date: '2026-07-03', revenue: 397.47}
         ];
 
         const machineData = [
-            {date: '2026-08-02', washers: 519.00, dryers: 188.45, vending: 54.25, total: 859.70},
-            {date: '2026-08-03', washers: 0, dryers: 0, vending: 0, total: 0}
+            {date: '2026-08-03', washers: 17.00, dryers: 2.61, vending: 0, total: 19.61},
+            {date: '2026-08-02', washers: 619.00, dryers: 186.45, vending: 54.25, total: 859.70}
         ];
     </script>
 </body>
