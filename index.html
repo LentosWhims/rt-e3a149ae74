@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Hourly revenue update — Aug 3 (most recent complete day): Store $751.60, Machines $417.78 = $1,169.38 combined. Aug 2 (prior day): Store $857.34 + Machines $859.70 = $1,717.04 combined. LaundroPortal fresh-pulled this run. ⚠️ Machine alert: 3 active problems reported on LaundroPortal.",
+  "description": "Hourly revenue update — Aug 4 02:41 EDT. Fresh LaundroPortal pull: Aug 3 Machines $417.78 (Washers $307.50 + Dryers $83.28 + Vending $27.00), Payments $502.00. Aug 2 Machines $859.70 (Washers $619.00 + Dryers $186.45 + Vending $54.25), Payments $840.00. CleanCloud POS data unavailable this run (kept prior values). Machine status: 3 problems active. Keep-alive complete.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -114,7 +114,7 @@
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-04 at 02:30 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-04 at 02:41 EDT</div>
         </div>
 
         <div class="hero">
@@ -129,22 +129,22 @@
 
         <div class="tiles">
             <div class="tile">
-                <div class="tile-label">Store POS (Aug 3)</div>
-                <div class="tile-value">$751.60</div>
-                <div class="tile-change">CleanCloud extraction</div>
-                <div class="tile-change">Full day complete</div>
-            </div>
-            <div class="tile">
                 <div class="tile-label">Machines (Aug 3)</div>
                 <div class="tile-value">$417.78</div>
-                <div class="tile-change">Fresh LaundroPortal Summary Report (2026-08-03)</div>
+                <div class="tile-change">Fresh LaundroPortal Summary Report</div>
                 <div class="tile-change">325 total cycles</div>
+            </div>
+            <div class="tile">
+                <div class="tile-label">Store POS (Aug 3)</div>
+                <div class="tile-value">$751.60</div>
+                <div class="tile-change">Prior extraction (stale this run)</div>
+                <div class="tile-change">Full day complete</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Aug 2 Combined</div>
                 <div class="tile-value">$1,717.04</div>
-                <div class="tile-change">POS: $857.34 + Machines: $859.70</div>
-                <div class="tile-change">Both sources verified</div>
+                <div class="tile-change">Machines: $859.70 (fresh) + POS: $857.34</div>
+                <div class="tile-change">730 machine cycles</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Today (Aug 4)</div>
@@ -190,7 +190,7 @@
         </div>
 
         <div class="chart-container">
-            <div class="chart-title">Machine Revenue Breakdown (Aug 2 — Summary Report)</div>
+            <div class="chart-title">Machine Revenue Breakdown (Aug 2 — Fresh Pull via LaundroPortal)</div>
             <table>
                 <thead>
                     <tr>
@@ -202,7 +202,7 @@
                 <tbody>
                     <tr>
                         <td>Washers (Full)</td>
-                        <td>83</td>
+                        <td>—</td>
                         <td><strong>$619.00</strong></td>
                     </tr>
                     <tr>
@@ -212,7 +212,7 @@
                     </tr>
                     <tr>
                         <td>Vending Machines</td>
-                        <td>12</td>
+                        <td>—</td>
                         <td><strong>$54.25</strong></td>
                     </tr>
                     <tr style="background: #f0f0f0;">
@@ -367,17 +367,17 @@
         </div>
 
         <div class="footer">
-            <p><strong>⚠️ Data Status & Alerts — 2026-08-04 02:30 EDT Hourly Run</strong></p>
+            <p><strong>⚠️ Data Status & Alerts — 2026-08-04 02:41 EDT Hourly Run</strong></p>
             <p style="margin-top: 10px;"><strong>Machine Alert:</strong></p>
             <ul>
-                <li><span class="warning">⚠️ CRITICAL: LaundroPortal reports 3 active machine problems. Review the Locations page status for details.</span></li>
+                <li><span class="warning">⚠️ ACTIVE: LaundroPortal reports 3 machine problems. Review Locations page for details.</span></li>
             </ul>
             <p style="margin-top: 15px;"><strong>Data Quality Notes:</strong></p>
             <ul>
-                <li>✓ <strong>LaundroPortal (Machines):</strong> Fresh Summary Report pull for Aug 3. Machine Cycle Revenue $417.78 (Dryers 282 top-off $83.28 + Washers $307.50 + Vending $27.00 = 325 total cycles); Payments $502.00 (complete day).</li>
-                <li>✓ <strong>Store POS:</strong> Aug 3: $751.60 (full day). Going back to Jul 4 in 30-day history.</li>
-                <li>📊 <strong>Yesterday Combined (Aug 3):</strong> $1,169.38 (Store $751.60 + Machines $417.78). Fresh LaundroPortal data this run.</li>
-                <li>🔄 <strong>Keep-Alive:</strong> Chrome sessions confirmed active. CleanCloud: store view. LaundroPortal: index.php. Both ready for next hourly pull.</li>
+                <li>✓ <strong>LaundroPortal (Machines):</strong> Fresh Summary Report pulls this run. Aug 3: Cycle Revenue $417.78 (325 cycles: Washers $307.50 + Dryers $83.28 + Vending $27.00); Payments $502.00. Aug 2: Cycle Revenue $859.70 (730 cycles: Washers $619.00 + Dryers $186.45 + Vending $54.25); Payments $840.00.</li>
+                <li>⚠️ <strong>Store POS:</strong> CleanCloud metrics unavailable this run (UI navigation failed). Showing prior extracted values. Aug 3: $751.60 (stale), Aug 2: $857.34.</li>
+                <li>📊 <strong>Yesterday Combined (Aug 3):</strong> $1,169.38 (Machines $417.78 fresh + Store $751.60 stale). Machines data verified fresh this run.</li>
+                <li>🔄 <strong>Keep-Alive:</strong> CleanCloud (store view) and LaundroPortal (index.php) sessions confirmed. Ready for next run.</li>
             </ul>
         </div>
     </div>
