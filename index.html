@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Hourly revenue update — Aug 4 (today): Store $0.00, data pending. Aug 3: Store $751.60 + Machines $417.78 = $1,169.38 combined. Aug 2: Store $857.34 + Machines $859.70 = $1,717.04 combined. CleanCloud & LaundroPortal fresh-pulled this run. Keep-alive complete. No machine issues active.",
+  "description": "Hourly revenue update — Aug 3 (most recent complete day): Store $751.60, Machines $417.78 = $1,169.38 combined. Aug 2 (prior day): Store $857.34 + Machines $859.70 = $1,717.04 combined. LaundroPortal fresh-pulled this run. ⚠️ Machine alert: 3 active problems reported on LaundroPortal.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -114,7 +114,7 @@
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-04 at 00:30 EDT</div>
+            <div class="timestamp">Last updated: 2026-08-04 at 02:30 EDT</div>
         </div>
 
         <div class="hero">
@@ -123,7 +123,7 @@
             <div class="hero-split">
                 <div><strong>Store POS:</strong> $751.60</div>
                 <div><strong>Machines:</strong> $417.78</div>
-                <div><strong>Status:</strong> <span class="alert">Fresh data this run</span></div>
+                <div><strong>Status:</strong> <span class="alert">Fresh machine data this run</span></div>
             </div>
         </div>
 
@@ -131,13 +131,13 @@
             <div class="tile">
                 <div class="tile-label">Store POS (Aug 3)</div>
                 <div class="tile-value">$751.60</div>
-                <div class="tile-change">Fresh CleanCloud extraction</div>
+                <div class="tile-change">CleanCloud extraction</div>
                 <div class="tile-change">Full day complete</div>
             </div>
             <div class="tile">
                 <div class="tile-label">Machines (Aug 3)</div>
                 <div class="tile-value">$417.78</div>
-                <div class="tile-change">Fresh LaundroPortal Summary Report</div>
+                <div class="tile-change">Fresh LaundroPortal Summary Report (2026-08-03)</div>
                 <div class="tile-change">325 total cycles</div>
             </div>
             <div class="tile">
@@ -190,7 +190,7 @@
         </div>
 
         <div class="chart-container">
-            <div class="chart-title">Machine Revenue Breakdown (Aug 2 — Fresh Pull via LaundroPortal)</div>
+            <div class="chart-title">Machine Revenue Breakdown (Aug 2 — Summary Report)</div>
             <table>
                 <thead>
                     <tr>
@@ -225,7 +225,7 @@
         </div>
 
         <div class="chart-container">
-            <div class="chart-title">Store POS Daily Revenue (30-day history — Fresh CleanCloud Extract)</div>
+            <div class="chart-title">Store POS Daily Revenue (30-day history)</div>
             <table>
                 <thead>
                     <tr>
@@ -367,20 +367,23 @@
         </div>
 
         <div class="footer">
-            <p><strong>⚠ Data Status — 2026-08-04 00:30 EDT Hourly Run</strong></p>
-            <p style="margin-top: 10px;"><strong>Data Quality Notes:</strong></p>
+            <p><strong>⚠️ Data Status & Alerts — 2026-08-04 02:30 EDT Hourly Run</strong></p>
+            <p style="margin-top: 10px;"><strong>Machine Alert:</strong></p>
             <ul>
-                <li>✓ <strong>CleanCloud (Store POS):</strong> Fresh 30-day extraction. Aug 4 (today): $0.00 — no orders posted yet (normal). Aug 3: $751.60 (full day). Going back to Jul 4.</li>
-                <li>✓ <strong>LaundroPortal (Machines):</strong> Fresh Summary Report pulls for Aug 2 and Aug 3. Aug 3: Machine Cycle Revenue $417.78 (Dryers 282 top-off $83.28 + Washers $307.50 + Vending $27.00 = 325 total cycles); Payments $502.00 (complete day). Aug 2: Machine Cycle Revenue $859.70 (Washers 83 full $619.00 + Dryers 635 top-off $186.45 + Vending 12 $54.25 = 730 total cycles); Payments $840.00 (complete day).</li>
-                <li>📊 <strong>Yesterday Combined (Aug 3):</strong> $1,169.38 (Store $751.60 + Machines $417.78). Both sources fresh this run.</li>
-                <li>✅ <strong>Machine Status:</strong> No active issues reported. All equipment operational.</li>
+                <li><span class="warning">⚠️ CRITICAL: LaundroPortal reports 3 active machine problems. Review the Locations page status for details.</span></li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Data Quality Notes:</strong></p>
+            <ul>
+                <li>✓ <strong>LaundroPortal (Machines):</strong> Fresh Summary Report pull for Aug 3. Machine Cycle Revenue $417.78 (Dryers 282 top-off $83.28 + Washers $307.50 + Vending $27.00 = 325 total cycles); Payments $502.00 (complete day).</li>
+                <li>✓ <strong>Store POS:</strong> Aug 3: $751.60 (full day). Going back to Jul 4 in 30-day history.</li>
+                <li>📊 <strong>Yesterday Combined (Aug 3):</strong> $1,169.38 (Store $751.60 + Machines $417.78). Fresh LaundroPortal data this run.</li>
                 <li>🔄 <strong>Keep-Alive:</strong> Chrome sessions confirmed active. CleanCloud: store view. LaundroPortal: index.php. Both ready for next hourly pull.</li>
             </ul>
         </div>
     </div>
 
     <script>
-        // Data arrays for dashboard (fresh extraction this run)
+        // Data arrays for dashboard (fresh machine data this run)
         const cc30 = [
             {date: '2026-08-04', revenue: 0.00},
             {date: '2026-08-03', revenue: 751.60},
