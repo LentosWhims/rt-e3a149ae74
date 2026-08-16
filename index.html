@@ -1,8 +1,8 @@
-<script type="application/json" id="cowork-artifact-meta">
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Aug 8 16:45 EDT: Hourly revenue pull complete. Today: Store POS $76.62 + Machines $99.51 = $176.13. Yesterday: $1,132.69 (Store $649.13 + Machines $483.56). Machine status: 3 problems reported.",
+  "description": "Aug 16 11:33 AM automated hourly pull: LaundroPortal session active. ⚠ Machine status: 3 problems detected. Fresh data: Aug 15 $504.64 machines verified (Washers $374 + Dryers $101.14 + Vending $29.50). Aug 16 $168.27 machines so far (Washers $123.50 + Dryers $32.77 + Vending $12.00). CleanCloud POS unavailable this run.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -59,83 +59,225 @@
         .tile-change { font-size: 13px; margin-top: 8px; color: #666; }
         .tile-change.up { color: #22c55e; }
         .tile-change.down { color: #ef4444; }
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .chart-title { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #333; }
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        th {
+            background: #f9f9f9;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
+        tr:hover { background: #f9f9f9; }
+        .up { color: #22c55e; }
+        .down { color: #ef4444; }
+        .muted { color: #aaa; font-style: italic; }
+        .warning { color: #ef4444; font-weight: 600; }
+        .alert { color: #f59e0b; font-weight: 600; }
         .footer {
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            font-size: 13px;
-            color: #666;
             margin-top: 20px;
         }
-        .footer ul { margin: 10px 0 0 20px; }
-        .footer li { margin-bottom: 4px; }
-        .alert-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            color: #856404;
-        }
+        .footer p { margin: 10px 0; font-size: 13px; line-height: 1.6; }
+        .footer ul { margin: 15px 0 0 20px; }
+        .footer li { margin: 8px 0; }
+        .alert-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
+        .alert-box strong { color: #d97706; }
+        .alert-box.critical { background: #fee2e2; border-left-color: #ef4444; }
+        .alert-box.critical strong { color: #991b1b; }
+        .alert-box.success { background: #dcfce7; border-left-color: #22c55e; }
+        .alert-box.success strong { color: #15803d; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Revenue Dashboard</h1>
-            <div class="timestamp">Last updated: 2026-08-08 16:45 EDT (hourly pull complete)</div>
-        </div>
-
-        <div class="alert-box">
-            <strong>✓ Data Pull Complete:</strong> CleanCloud and LaundroPortal data successfully retrieved. Today's metrics: Store POS $76.62 + Machines $99.51 = $176.13 combined.
+            <div class="timestamp" id="lastUpdated">Last updated: <span id="timestamp">—</span></div>
         </div>
 
         <div class="hero">
-            <div class="hero-label">COMBINED REVENUE — Aug 8 (Today)</div>
-            <div class="hero-value">$176.13</div>
+            <div class="hero-label">Machines Revenue Yesterday (Aug 15)</div>
+            <div class="hero-value">$504.64</div>
             <div class="hero-split">
-                <div><strong>Store POS:</strong> $76.62</div>
-                <div><strong>Machines:</strong> $99.51</div>
-                <div><strong>vs Aug 7:</strong> -84.5%</div>
+                <div>
+                    <div class="hero-label">Washers</div>
+                    <div class="hero-value" style="font-size: 32px;">$374.00</div>
+                </div>
+                <div>
+                    <div class="hero-label">Dryers</div>
+                    <div class="hero-value" style="font-size: 32px;">$101.14</div>
+                </div>
+                <div>
+                    <div class="hero-label">Vending</div>
+                    <div class="hero-value" style="font-size: 32px;">$29.50</div>
+                </div>
             </div>
         </div>
 
         <div class="tiles">
             <div class="tile">
-                <div class="tile-label">Today (Aug 8) Machines</div>
-                <div class="tile-value">$99.51</div>
-                <div class="tile-change down">-79.4% vs Aug 7 ($483.56)</div>
-                <div class="tile-change muted">Washers $79.50 + Dryers $20.01 + Vending $0.00</div>
+                <div class="tile-label">Aug 15 Yesterday (Final)</div>
+                <div class="tile-value">$504.64</div>
+                <div class="tile-change up">Machines: Washers $374 + Dryers $101.14 + Vending $29.50</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Today (Aug 8) POS</div>
-                <div class="tile-value">$76.62</div>
-                <div class="tile-change down">-88.2% vs Aug 7 ($649.13)</div>
-                <div class="tile-change muted">In-Store: $76.62 | Pickup/Delivery: $0.00</div>
+                <div class="tile-label">Aug 16 Today In-Progress</div>
+                <div class="tile-value">$168.27</div>
+                <div class="tile-change up">Machines: Washers $123.50 + Dryers $32.77 + Vending $12.00</div>
             </div>
             <div class="tile">
-                <div class="tile-label">Combined Aug 8</div>
-                <div class="tile-value">$176.13</div>
-                <div class="tile-change down">-84.5% vs Aug 7 ($1,132.69)</div>
-                <div class="tile-change muted">Early in day; typical low morning/afternoon activity</div>
+                <div class="tile-label">Day-over-Day Change (Machines)</div>
+                <div class="tile-value" style="color: #ef4444;">-66.6%</div>
+                <div class="tile-change down">Aug 16 is still in-progress, machines continue operating</div>
+            </div>
+            <div class="tile">
+                <div class="tile-label">Machine Status</div>
+                <div class="tile-value" style="color: #ef4444;">⚠ 3 Issues</div>
+                <div class="tile-change warning">Problems detected at Laundry on Keap</div>
             </div>
         </div>
 
+        <div class="charts">
+            <div class="chart-container">
+                <div class="chart-title">Yesterday Revenue Breakdown (Aug 15)</div>
+                <canvas id="revenueChart" height="300"></canvas>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">Recent Daily Machine Revenue</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Washers</th>
+                        <th>Dryers</th>
+                        <th>Vending</th>
+                        <th>Total Machines</th>
+                    </tr>
+                </thead>
+                <tbody id="revenueTable">
+                </tbody>
+            </table>
+        </div>
+
         <div class="footer">
-            <p><strong>✓ Hourly Revenue Pull Complete (16:45 EDT)</strong></p>
+            <div class="alert-box">
+                <strong>⏱ Hourly Refresh (11:33 EDT)</strong> — LaundroPortal session active. CleanCloud POS data unavailable this run (UI navigation).
+            </div>
+            <p><strong>Data Status &amp; Session Health</strong></p>
+            <ul>
+                <li class="down">✗ <strong>Store POS (CleanCloud):</strong> Unavailable this run. Navigation to Metrics/Revenue section unsuccessful. Will retry next run.</li>
+                <li class="up">✓ <strong>Machines (LaundroPortal):</strong> Fresh data confirmed. Aug 15: $504.64 verified (Washers $374, Dryers $101.14, Vending $29.50). Aug 16: $168.27 (Washers $123.50, Dryers $32.77, Vending $12.00).</li>
+                <li class="up">✓ <strong>Keep-Alive Active:</strong> LaundroPortal session verified active at Locations page. Machines status monitored.</li>
+                <li class="warning">⚠ <strong>Machine Status:</strong> 3 problems detected at Laundry on Keap location. Monitor for service needs.</li>
+                <li class="muted">⊙ <strong>Aug 16 Today:</strong> In-progress. Machine revenue $168.27 so far. POS data pending CleanCloud access.</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Summary:</strong> Aug 15 machines final: $504.64 ✓. Aug 16 machines in-progress: $168.27. CleanCloud POS unavailable (will retry). Machine issues: 3 detected.</p>
         </div>
     </div>
 
     <script>
-        const cc30 = [
-            {date: '2026-08-08', revenue: 76.62},
-            {date: '2026-08-07', revenue: 649.13}
+        // Machine revenue data (fresh from LaundroPortal)
+        const revenueData = [
+            {date: '2026-08-16', washers: 123.50, dryers: 32.77, vending: 12.00},
+            {date: '2026-08-15', washers: 374.00, dryers: 101.14, vending: 29.50}
         ];
-        const machineData = [
-            {date: '2026-08-08', washers: 79.50, dryers: 20.01, vending: 0.00, total: 99.51},
-            {date: '2026-08-07', washers: 365.50, dryers: 105.56, vending: 12.50, total: 483.56}
-        ];
+
+        // Update timestamp
+        const now = new Date().toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZone: 'America/New_York'
+        });
+        document.getElementById('timestamp').textContent = now;
+
+        // Populate revenue table
+        const revenueTable = document.getElementById('revenueTable');
+        revenueData.forEach((day) => {
+            const machineTotal = day.washers + day.dryers + day.vending;
+            const row = document.createElement('tr');
+            const totalText = `<strong style="color: #764ba2; font-size: 16px;">$${machineTotal.toFixed(2)}</strong>`;
+            row.innerHTML = `
+                <td>${day.date}</td>
+                <td><strong>$${day.washers.toFixed(2)}</strong></td>
+                <td><strong>$${day.dryers.toFixed(2)}</strong></td>
+                <td><strong>$${day.vending.toFixed(2)}</strong></td>
+                <td>${totalText}</td>
+            `;
+            revenueTable.appendChild(row);
+        });
+
+        // Revenue comparison chart
+        const chartCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(chartCtx, {
+            type: 'bar',
+            data: {
+                labels: revenueData.map(d => d.date),
+                datasets: [
+                    {
+                        label: 'Washers',
+                        data: revenueData.map(d => d.washers),
+                        backgroundColor: '#764ba2',
+                        borderColor: '#764ba2',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Dryers',
+                        data: revenueData.map(d => d.dryers),
+                        backgroundColor: '#a78bfa',
+                        borderColor: '#a78bfa',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Vending',
+                        data: revenueData.map(d => d.vending),
+                        backgroundColor: '#e9d5ff',
+                        borderColor: '#e9d5ff',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { stacked: true },
+                    y: { beginAtZero: true, stacked: true }
+                }
+            }
+        });
     </script>
 </body>
 </html>
