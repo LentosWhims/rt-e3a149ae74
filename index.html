@@ -2,9 +2,165 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Aug 26 20:30 ET — Hourly revenue pull. Fresh CleanCloud (Aug 26: $281.04, Aug 25: $664.75). Fresh LaundroPortal (Aug 26: $91.65, Aug 25: $223.77). Combined Aug 26: $372.69 vs Aug 25: $888.52 (-58.1%). Machine problems: 3.",
+  "description": "Sept 1 hourly refresh — Sept 1 (fresh): Store POS $539.68 + Machine Cycles $411.22 = $950.90 combined. Yesterday (Aug 31): Store $727.70 + Machine Cycles $570.70 = $1,298.40. Day-over-day: -27.8%. 3 machine problems on location.",
   "mcpTools": [],
   "mcpServerNames": []
 }
 </script>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="user-login" content="LentosWhims"><title>Revenue Dashboard</title><script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;padding:20px}.container{max-width:1400px;margin:0 auto}.header{background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}.header h1{color:#333;margin-bottom:5px}.hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:30px;border-radius:8px;margin-bottom:20px;box-shadow:4px 6px rgba(0,0,0,0.1)}.hero-value{font-size:48px;font-weight:bold;margin:10px 0}.hero-label{font-size:14px;opacity:0.9}.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px}.tile{background:#fff;padding:20px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}.tile-label{color:#999;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}.tile-value{font-size:28px;font-weight:bold;color:#333}.tile-change{font-size:13px;margin-top:8px;color:#666}.footer{background:#fff;padding:20px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1);margin-top:20px}</style></head><body><div class="container"><div class="header"><h1>Revenue Dashboard</h1><div id="lastUpdated">Last updated: Aug 26 20:30 ET</div></div><div class="hero"><div class="hero-label">Combined Revenue</div><div class="hero-value">$372.69</div></div><div class="tiles"><div class="tile"><div class="tile-label">Aug 26 Store</div><div class="tile-value">$281.04</div></div><div class="tile"><div class="tile-label">Aug 26 Machines</div><div class="tile-value">$91.65</div></div></div><div class="footer"><p><strong>Status:</strong> Fresh data as of Aug 26 20:30 ET. Store POS: $281.04 (In-Store $229.77 + Pickup/Delivery $51.27). Machines: $91.65 (Washers $69.00 + Dryers $17.40 + Vending $5.25). Machine problems: 3.</p></div></div></body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="user-login" content="LentosWhims">
+    <title>Revenue Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header h1 { color: #333; margin-bottom: 5px; }
+        .header .timestamp { color: #999; font-size: 13px; }
+        .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 20px; border-radius: 4px; color: #856404; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
+        .hero-value { font-size: 48px; font-weight: bold; margin: 10px 0; }
+        .hero-label { font-size: 14px; opacity: 0.9; }
+        .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .tile { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .tile-label { color: #999; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; }
+        .tile-value { font-size: 28px; font-weight: bold; color: #333; }
+        .tile-change { font-size: 12px; color: #d32f2f; margin-top: 5px; }
+        table { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        th { background: #f9f9f9; padding: 12px; text-align: left; font-weight: 600; font-size: 13px; color: #666; border-bottom: 1px solid #e5e5e5; }
+        td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
+        tr:hover { background: #f9f9f9; }
+        .footer { color: #999; font-size: 12px; text-align: center; margin-top: 30px; padding: 20px; }
+        .neg-change { color: #d32f2f; }
+        .pos-change { color: #388e3c; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Laundry Revenue Dashboard</h1>
+        <div class="timestamp">Last updated: Sept 1, 2026 12:00am ET (automated hourly pull)</div>
+    </div>
+
+    <div class="alert">
+        ℹ️ <strong>Hourly refresh — Sept 1 12:00am:</strong> Both sites responsive. Today (fresh): Store $539.68 + Machines $411.22 = $950.90. Yesterday (Aug 31): Store $727.70 + Machines $570.70 = $1,298.40. Day-over-day: -27.8%. ⚠️ 3 machine problems reported.
+    </div>
+
+    <div class="hero">
+        <div class="hero-label">Today's Revenue (Sept 1)</div>
+        <div class="hero-value">$950.90</div>
+        <div class="hero-label" style="margin-top: 20px;">Store POS: $539.68 | Machines: $411.22</div>
+    </div>
+
+    <div class="tiles">
+        <div class="tile">
+            <div class="tile-label">Store POS - Sept 1</div>
+            <div class="tile-value">$539.68</div>
+            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">In-Store: $319.93 | P&D: $219.75</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Yesterday Total (Aug 31)</div>
+            <div class="tile-value">$1,298.40</div>
+            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">Store: $727.70 + Machines: $570.70</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Machine Cycles - Sept 1</div>
+            <div class="tile-value">$411.22</div>
+            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">Washers $292.00 | Dryers $89.72 | Vending $29.50</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 1 vs Aug 31</div>
+            <div class="tile-value neg-change">-27.8%</div>
+            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">$1,298.40 → $950.90</div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Source</th>
+                <th>Sept 1 (Today)</th>
+                <th>Aug 31 (Yesterday)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Store POS (All Orders)</strong></td>
+                <td>$539.68</td>
+                <td>$727.70</td>
+                <td>Fresh</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">In-Store Orders</td>
+                <td>$319.93</td>
+                <td>$442.16</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">Pickup & Delivery Orders</td>
+                <td>$219.75</td>
+                <td>$285.54</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Machine Payments</strong></td>
+                <td>$595.00</td>
+                <td>$687.00</td>
+                <td>Fresh</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">Cash (5 trans)</td>
+                <td>$9.00</td>
+                <td>$95.00</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">Credit/Debit (28 trans)</td>
+                <td>$586.00</td>
+                <td>$592.00</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Machine Cycle Revenue</strong></td>
+                <td>$411.22</td>
+                <td>$570.70</td>
+                <td>Fresh</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">Washers (40 full)</td>
+                <td>$292.00</td>
+                <td>$415.50</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">Dryers (308 top-off)</td>
+                <td>$89.72</td>
+                <td>$134.20</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 30px;">Vending (6 units)</td>
+                <td>$29.50</td>
+                <td>$21.00</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Combined Daily Revenue</strong></td>
+                <td><strong>$950.90</strong></td>
+                <td><strong>$1,298.40</strong></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        Hourly refresh: Store POS and Machines responsive. Sept 1 (fresh): $539.68 Store + $411.22 Machines = $950.90. Aug 31 (complete): $727.70 Store + $570.70 Machines = $1,298.40. Day-over-day: -27.8%. Location: 3 machine problems reported. Published anonymously to GitHub Pages.
+    </div>
+</div>
+</body>
+</html>
