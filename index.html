@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 1 hourly refresh — Sept 1 (fresh): Store POS $539.68 + Machine Cycles $411.22 = $950.90 combined. Yesterday (Aug 31): Store $727.70 + Machine Cycles $570.70 = $1,298.40. Day-over-day: -27.8%. 3 machine problems on location.",
+  "description": "Sept 11 @ 05:50 AM EDT - Hourly refresh complete. Sept 11 data now available: Store POS $433.53 (In-Store $376.13 + Pickup & Delivery $57.40). Yesterday Sept 10 $342.04. Machine revenue unavailable—LaundroPortal session expired, login required.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -21,15 +21,19 @@
         .header { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .header h1 { color: #333; margin-bottom: 5px; }
         .header .timestamp { color: #999; font-size: 13px; }
-        .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin-bottom: 20px; border-radius: 4px; color: #856404; }
+        .alert { background: #d4edda; border-left: 4px solid #28a745; padding: 12px; margin-bottom: 20px; border-radius: 4px; color: #155724; }
+        .alert.info { background: #d1ecf1; border-left-color: #17a2b8; color: #0c5460; }
+        .alert.warning { background: #fff3cd; border-left-color: #ffc107; color: #856404; }
+        .alert.error { background: #f8d7da; border-left-color: #dc3545; color: #721c24; }
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
         .hero-value { font-size: 48px; font-weight: bold; margin: 10px 0; }
         .hero-label { font-size: 14px; opacity: 0.9; }
+        .hero-secondary { font-size: 13px; opacity: 0.85; margin-top: 8px; }
         .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
         .tile { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .tile-label { color: #999; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; }
         .tile-value { font-size: 28px; font-weight: bold; color: #333; }
-        .tile-change { font-size: 12px; color: #d32f2f; margin-top: 5px; }
+        .tile-change { font-size: 12px; margin-top: 5px; }
         table { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
         th { background: #f9f9f9; padding: 12px; text-align: left; font-weight: 600; font-size: 13px; color: #666; border-bottom: 1px solid #e5e5e5; }
         td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
@@ -37,129 +41,327 @@
         .footer { color: #999; font-size: 12px; text-align: center; margin-top: 30px; padding: 20px; }
         .neg-change { color: #d32f2f; }
         .pos-change { color: #388e3c; }
+        .breakdown { font-size: 12px; color: #666; margin-top: 3px; }
+        h3 { color: #333; margin-bottom: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 1, 2026 12:00am ET (automated hourly pull)</div>
+        <div class="timestamp">Last updated: Sept 11, 2026 05:50 AM EDT (hourly automated refresh)</div>
     </div>
 
-    <div class="alert">
-        ℹ️ <strong>Hourly refresh — Sept 1 12:00am:</strong> Both sites responsive. Today (fresh): Store $539.68 + Machines $411.22 = $950.90. Yesterday (Aug 31): Store $727.70 + Machines $570.70 = $1,298.40. Day-over-day: -27.8%. ⚠️ 3 machine problems reported.
+    <div class="alert error">
+        ⚠ ATTENTION: LaundroPortal session expired. User must log in to https://portal.mitechisys.com in Chrome to restore machine data access. Machine revenue data could not be updated this run.
+    </div>
+
+    <div class="alert info">
+        ✓ CleanCloud data refreshed Sept 11 @ 05:50 AM EDT. Today (Sept 11): Store POS $433.53 (In-Store $376.13 + Pickup & Delivery $57.40). Yesterday Sept 10: Store POS $342.04 confirmed.
+    </div>
+
+    <div class="alert warning">
+        ⚠ Machine status: 4 problems reported as of Sept 11 @ 00:27 AM EDT. Machine data frozen—LaundroPortal login required for access. Combined revenue cannot be calculated.
     </div>
 
     <div class="hero">
-        <div class="hero-label">Today's Revenue (Sept 1)</div>
-        <div class="hero-value">$950.90</div>
-        <div class="hero-label" style="margin-top: 20px;">Store POS: $539.68 | Machines: $411.22</div>
+        <div class="hero-label">Store POS Revenue - Sept 11 (Today)</div>
+        <div class="hero-value">$433.53</div>
+        <div class="hero-secondary">In-Store $376.13 + Pickup & Delivery $57.40. Machine data unavailable—LaundroPortal login required for full combined total.</div>
     </div>
 
     <div class="tiles">
         <div class="tile">
-            <div class="tile-label">Store POS - Sept 1</div>
-            <div class="tile-value">$539.68</div>
-            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">In-Store: $319.93 | P&D: $219.75</div>
+            <div class="tile-label">Sept 11 In-Store</div>
+            <div class="tile-value">$376.13</div>
+            <div class="tile-change">Fresh pull @ 05:50 AM</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Yesterday Total (Aug 31)</div>
-            <div class="tile-value">$1,298.40</div>
-            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">Store: $727.70 + Machines: $570.70</div>
+            <div class="tile-label">Sept 11 Pickup & Delivery</div>
+            <div class="tile-value">$57.40</div>
+            <div class="tile-change">Fresh pull @ 05:50 AM</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Machine Cycles - Sept 1</div>
-            <div class="tile-value">$411.22</div>
-            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">Washers $292.00 | Dryers $89.72 | Vending $29.50</div>
-        </div>
-        <div class="tile">
-            <div class="tile-label">Sept 1 vs Aug 31</div>
-            <div class="tile-value neg-change">-27.8%</div>
-            <div class="tile-label" style="margin-top: 10px; font-size: 11px;">$1,298.40 → $950.90</div>
+            <div class="tile-label">Sept 10 Combined Store</div>
+            <div class="tile-value">$342.04</div>
+            <div class="tile-change">POS confirmed (machines locked)</div>
         </div>
     </div>
 
+    <h3>Daily Store POS Revenue (CleanCloud - Last 30 Days)</h3>
     <table>
         <thead>
             <tr>
-                <th>Source</th>
-                <th>Sept 1 (Today)</th>
-                <th>Aug 31 (Yesterday)</th>
-                <th>Status</th>
+                <th>Date</th>
+                <th>Total Revenue</th>
+                <th>In-Store</th>
+                <th>Pickup & Delivery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #e8f5e9;">
+                <td><strong>Sept 11 (Today)</strong></td>
+                <td><strong>$433.53</strong></td>
+                <td><strong>$376.13</strong></td>
+                <td><strong>$57.40</strong></td>
+            </tr>
+            <tr style="background: #fff3cd;">
+                <td><strong>Sept 10</strong></td>
+                <td><strong>$342.04</strong></td>
+                <td><strong>$342.04</strong></td>
+                <td><strong>$0.00</strong></td>
+            </tr>
+            <tr>
+                <td>Sept 9</td>
+                <td>$700.72</td>
+                <td>$285.66</td>
+                <td>$415.06</td>
+            </tr>
+            <tr>
+                <td>Sept 8</td>
+                <td>$401.70</td>
+                <td>$401.70</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Sept 7</td>
+                <td>$929.55</td>
+                <td>$570.68</td>
+                <td>$358.87</td>
+            </tr>
+            <tr>
+                <td>Sept 6</td>
+                <td>$454.62</td>
+                <td>$454.62</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Sept 5</td>
+                <td>$393.74</td>
+                <td>$302.39</td>
+                <td>$91.35</td>
+            </tr>
+            <tr>
+                <td>Sept 4</td>
+                <td>$693.53</td>
+                <td>$515.04</td>
+                <td>$178.49</td>
+            </tr>
+            <tr>
+                <td>Sept 3</td>
+                <td>$909.44</td>
+                <td>$558.98</td>
+                <td>$350.46</td>
+            </tr>
+            <tr>
+                <td>Sept 2</td>
+                <td>$559.06</td>
+                <td>$392.16</td>
+                <td>$166.90</td>
+            </tr>
+            <tr>
+                <td>Sept 1</td>
+                <td>$539.68</td>
+                <td>$319.93</td>
+                <td>$219.75</td>
+            </tr>
+            <tr>
+                <td>Aug 31</td>
+                <td>$727.70</td>
+                <td>$442.16</td>
+                <td>$285.54</td>
+            </tr>
+            <tr>
+                <td>Aug 30</td>
+                <td>$680.48</td>
+                <td>$600.70</td>
+                <td>$79.78</td>
+            </tr>
+            <tr>
+                <td>Aug 29</td>
+                <td>$838.05</td>
+                <td>$547.37</td>
+                <td>$290.68</td>
+            </tr>
+            <tr>
+                <td>Aug 28</td>
+                <td>$795.04</td>
+                <td>$447.92</td>
+                <td>$347.12</td>
+            </tr>
+            <tr>
+                <td>Aug 27</td>
+                <td>$477.49</td>
+                <td>$333.75</td>
+                <td>$143.74</td>
+            </tr>
+            <tr>
+                <td>Aug 26</td>
+                <td>$402.33</td>
+                <td>$280.30</td>
+                <td>$122.03</td>
+            </tr>
+            <tr>
+                <td>Aug 25</td>
+                <td>$664.75</td>
+                <td>$571.21</td>
+                <td>$93.54</td>
+            </tr>
+            <tr>
+                <td>Aug 24</td>
+                <td>$1,298.51</td>
+                <td>$846.26</td>
+                <td>$452.25</td>
+            </tr>
+            <tr>
+                <td>Aug 23</td>
+                <td>$363.37</td>
+                <td>$299.14</td>
+                <td>$64.23</td>
+            </tr>
+            <tr>
+                <td>Aug 22</td>
+                <td>$684.61</td>
+                <td>$505.19</td>
+                <td>$179.42</td>
+            </tr>
+            <tr>
+                <td>Aug 21</td>
+                <td>$690.01</td>
+                <td>$625.78</td>
+                <td>$64.23</td>
+            </tr>
+            <tr>
+                <td>Aug 20</td>
+                <td>$712.10</td>
+                <td>$623.46</td>
+                <td>$88.64</td>
+            </tr>
+            <tr>
+                <td>Aug 19</td>
+                <td>$1,015.14</td>
+                <td>$597.45</td>
+                <td>$417.69</td>
+            </tr>
+            <tr>
+                <td>Aug 18</td>
+                <td>$503.46</td>
+                <td>$382.98</td>
+                <td>$120.48</td>
+            </tr>
+            <tr>
+                <td>Aug 17</td>
+                <td>$744.76</td>
+                <td>$646.43</td>
+                <td>$98.33</td>
+            </tr>
+            <tr>
+                <td>Aug 16</td>
+                <td>$553.04</td>
+                <td>$474.55</td>
+                <td>$78.49</td>
+            </tr>
+            <tr>
+                <td>Aug 15</td>
+                <td>$431.83</td>
+                <td>$431.83</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Aug 14</td>
+                <td>$858.67</td>
+                <td>$559.10</td>
+                <td>$299.57</td>
+            </tr>
+            <tr>
+                <td>Aug 13</td>
+                <td>$424.90</td>
+                <td>$309.74</td>
+                <td>$115.16</td>
+            </tr>
+            <tr>
+                <td>Aug 12</td>
+                <td>$463.48</td>
+                <td>$397.42</td>
+                <td>$66.06</td>
+            </tr>
+            <tr>
+                <td>Aug 11</td>
+                <td>$526.19</td>
+                <td>$446.40</td>
+                <td>$79.79</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Machine Revenue Breakdown - Sept 10 (Yesterday - Last Successful Pull)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Machine Type</th>
+                <th>Cycles</th>
+                <th>Revenue</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><strong>Store POS (All Orders)</strong></td>
-                <td>$539.68</td>
-                <td>$727.70</td>
-                <td>Fresh</td>
+                <td><strong>Washers</strong></td>
+                <td><strong>40 full</strong></td>
+                <td><strong>$285.50</strong></td>
             </tr>
             <tr>
-                <td style="padding-left: 30px;">In-Store Orders</td>
-                <td>$319.93</td>
-                <td>$442.16</td>
-                <td></td>
+                <td><strong>Dryers</strong></td>
+                <td><strong>222 top-off</strong></td>
+                <td><strong>$50.18</strong></td>
             </tr>
             <tr>
-                <td style="padding-left: 30px;">Pickup & Delivery Orders</td>
-                <td>$219.75</td>
-                <td>$285.54</td>
-                <td></td>
+                <td><strong>Vending</strong></td>
+                <td><strong>1</strong></td>
+                <td><strong>$4.00</strong></td>
+            </tr>
+            <tr style="background: #f0f0f0; font-weight: bold;">
+                <td>Total</td>
+                <td>263 cycles</td>
+                <td>$335.88</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Previous Day Breakdown - Sept 9</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Machine Type</th>
+                <th>Cycles</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Washers</strong></td>
+                <td><strong>29 full</strong></td>
+                <td><strong>$203.50</strong></td>
             </tr>
             <tr>
-                <td><strong>Machine Payments</strong></td>
-                <td>$595.00</td>
-                <td>$687.00</td>
-                <td>Fresh</td>
+                <td><strong>Dryers</strong></td>
+                <td><strong>187 top-off</strong></td>
+                <td><strong>$55.33</strong></td>
             </tr>
             <tr>
-                <td style="padding-left: 30px;">Cash (5 trans)</td>
-                <td>$9.00</td>
-                <td>$95.00</td>
-                <td></td>
+                <td><strong>Vending</strong></td>
+                <td><strong>3</strong></td>
+                <td><strong>$16.50</strong></td>
             </tr>
-            <tr>
-                <td style="padding-left: 30px;">Credit/Debit (28 trans)</td>
-                <td>$586.00</td>
-                <td>$592.00</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><strong>Machine Cycle Revenue</strong></td>
-                <td>$411.22</td>
-                <td>$570.70</td>
-                <td>Fresh</td>
-            </tr>
-            <tr>
-                <td style="padding-left: 30px;">Washers (40 full)</td>
-                <td>$292.00</td>
-                <td>$415.50</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 30px;">Dryers (308 top-off)</td>
-                <td>$89.72</td>
-                <td>$134.20</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 30px;">Vending (6 units)</td>
-                <td>$29.50</td>
-                <td>$21.00</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><strong>Combined Daily Revenue</strong></td>
-                <td><strong>$950.90</strong></td>
-                <td><strong>$1,298.40</strong></td>
-                <td></td>
+            <tr style="background: #f0f0f0; font-weight: bold;">
+                <td>Total</td>
+                <td>219 cycles</td>
+                <td>$275.33</td>
             </tr>
         </tbody>
     </table>
 
     <div class="footer">
-        Hourly refresh: Store POS and Machines responsive. Sept 1 (fresh): $539.68 Store + $411.22 Machines = $950.90. Aug 31 (complete): $727.70 Store + $570.70 Machines = $1,298.40. Day-over-day: -27.8%. Location: 3 machine problems reported. Published anonymously to GitHub Pages.
+        Sept 11 @ 05:50 AM EDT (hourly automated pull). Store POS from CleanCloud (all orders totals with In-Store / Pickup & Delivery breakdown). Machine data status: LOCKED—LaundroPortal session expired, login required to restore. Last successful machine pull: 04:15 AM Sept 11 (Sept 10: $335.88). Sept 11 today: Store POS $433.53 (+26.6% vs Sept 10 $342.04). Sept 10 had no machine data pulled (machines unavailable). Sept 9 combined total (with machines): $976.05 (Store $700.72 + Machines $275.33). Machine status: 4 problems reported (last comm Sept 11 @ 00:27 AM EDT). **ACTION REQUIRED: User must log in to https://portal.mitechisys.com to restore machine revenue data—browser session timed out.**
     </div>
 </div>
 </body>
