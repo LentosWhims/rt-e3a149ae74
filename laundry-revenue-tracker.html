@@ -2,178 +2,396 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Global revenue tracker for Laundry on Keap — combines CleanCloud (wash &amp; fold/delivery) and LaundroPortal (self-service machine) revenue with day-over-day comparison and a 30-day daily trend. Data pulled live from cleancloudapp.com and portal.mitechisys.com via the user's browser.",
+  "description": "Sept 12 @ 11:30 PM EDT - Hourly refresh. Yesterday (Sept 11): Combined $1,184.20 (Store POS $795.88 + Machine $388.32). In-Store $586.26 + Pickup/Delivery $209.62. Washers $266 + Dryers $82.07 + Vending $40.25. 4 machine problems. Today: $0.00 (no data yet).",
   "mcpTools": [],
   "mcpServerNames": []
 }
 </script>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="user-login" content="LentosWhims">
-<title>Global Revenue Tracker</title>
-<style>
-  .viz-root {
-    color-scheme: light;
-    --surface-1: #fcfcfb;
-    --page: #f9f9f7;
-    --text-primary: #0b0b0b;
-    --text-secondary: #52514e;
-    --text-muted: #898781;
-    --grid: #e1e0d9;
-    --baseline: #c3c2b7;
-    --border: rgba(11,11,11,0.10);
-    --s1: #2a78d6;  /* Store POS */
-    --s3: #1baf7a;  /* Machines */
-    --s-other: #b5b3ab;
-    --delta-good: #006300;
-    --delta-bad: #d03b3b;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) .viz-root {
-      color-scheme: dark;
-      --surface-1: #1a1a19;
-      --page: #0d0d0d;
-      --text-primary: #ffffff;
-      --text-secondary: #c3c2b7;
-      --text-muted: #898781;
-      --grid: #2c2c2a;
-      --baseline: #383835;
-      --border: rgba(255,255,255,0.10);
-      --s1: #3987e5;
-      --s3: #199e70;
-      --s-other: #6b6a64;
-      --delta-good: #0ca30c;
-      --delta-bad: #e66767;
-    }
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
-  .viz-root { background: var(--page); color: var(--text-primary); min-height:100vh; padding:24px 16px 48px; }
-  .wrap { max-width: 980px; margin: 0 auto; }
-  header h1 { font-size: 22px; font-weight:650; letter-spacing:-0.01em; }
-  header .sub { color: var(--text-secondary); font-size:13px; margin-top:4px; }
-  .updated { color: var(--text-muted); font-size:12px; margin-top:2px; }
-
-  .hero { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:20px; }
-  .hero .label { font-size:13px; color: var(--text-secondary); }
-  .hero .value { font-size:52px; font-weight:600; line-height:1.1; margin-top:4px; }
-  .hero .delta { font-size:14px; margin-top:6px; font-weight:550; }
-  .delta.up { color: var(--delta-good); }
-  .delta.down { color: var(--delta-bad); }
-  .hero .note { font-size:12px; color: var(--text-muted); margin-top:8px; }
-  .warn { display:inline-block; font-size:12px; border:1px solid var(--delta-bad); color:var(--delta-bad); border-radius:8px; padding:3px 10px; margin-top:10px; }
-
-  .tiles { display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:12px; }
-  .tile { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
-  .tile .label { font-size:12.5px; color: var(--text-secondary); display:flex; align-items:center; gap:7px; }
-  .swatch { width:10px; height:10px; border-radius:3px; display:inline-block; flex:none; }
-  .tile .value { font-size:26px; font-weight:600; margin-top:6px; }
-  .tile .delta { font-size:12.5px; margin-top:4px; font-weight:550; }
-  .tile .basis { font-size:11.5px; color: var(--text-muted); margin-top:3px; }
-
-  .card { background: var(--surface-1); border:1px solid var(--border); border-radius:14px; padding:20px 24px; margin-top:12px; }
-  .card h2 { font-size:15px; font-weight:650; }
-  .card .sub { font-size:12.5px; color: var(--text-secondary); margin-top:2px; margin-bottom:12px; }
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-  th { text-align:left; color: var(--text-secondary); font-weight:550; padding:8px 10px; border-bottom:1px solid var(--baseline); }
-  th.num, td.num { text-align:right; font-variant-numeric: tabular-nums; }
-  td { padding:8px 10px; border-bottom:1px solid var(--grid); }
-  tr:last-child td { border-bottom:none; }
-  .totalrow td { font-weight:650; border-top:1px solid var(--baseline); }
-  .foot { margin-top:16px; font-size:12px; color: var(--text-muted); line-height:1.6; }
-  .foot a { color: var(--s1); text-decoration:none; }
-  .foot .good { color: var(--delta-good); }
-  .foot .warn { color: var(--delta-bad); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="user-login" content="LentosWhims">
+    <title>Revenue Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header h1 { color: #333; margin-bottom: 5px; }
+        .header .timestamp { color: #999; font-size: 13px; }
+        .alert { background: #d4edda; border-left: 4px solid #28a745; padding: 12px; margin-bottom: 20px; border-radius: 4px; color: #155724; }
+        .alert.info { background: #d1ecf1; border-left-color: #17a2b8; color: #0c5460; }
+        .alert.warning { background: #fff3cd; border-left-color: #ffc107; color: #856404; }
+        .alert.error { background: #f8d7da; border-left-color: #dc3545; color: #721c24; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
+        .hero-value { font-size: 48px; font-weight: bold; margin: 10px 0; }
+        .hero-label { font-size: 14px; opacity: 0.9; }
+        .hero-secondary { font-size: 13px; opacity: 0.85; margin-top: 8px; }
+        .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .tile { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .tile-label { color: #999; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; }
+        .tile-value { font-size: 28px; font-weight: bold; color: #333; }
+        .tile-change { font-size: 12px; margin-top: 5px; }
+        table { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        th { background: #f9f9f9; padding: 12px; text-align: left; font-weight: 600; font-size: 13px; color: #666; border-bottom: 1px solid #e5e5e5; }
+        td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
+        tr:hover { background: #f9f9f9; }
+        .footer { color: #999; font-size: 12px; text-align: center; margin-top: 30px; padding: 20px; }
+        .neg-change { color: #d32f2f; }
+        .pos-change { color: #388e3c; }
+        .breakdown { font-size: 12px; color: #666; margin-top: 3px; }
+        h3 { color: #333; margin-bottom: 10px; margin-top: 20px; }
+    </style>
 </head>
-<body class="viz-root">
-<div class="wrap">
-  <header>
-    <h1>Global Revenue Tracker</h1>
-    <div class="sub">Store POS (wash &amp; fold + pickup/delivery) + self-service machines</div>
-    <div class="updated">Last updated Thursday, July 31, 2026 · 04:00 AM ET</div>
-  </header>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Laundry Revenue Dashboard</h1>
+        <div class="timestamp">Last updated: Sept 12, 2026 @ 11:30 PM EDT (hourly automated refresh)</div>
+    </div>
 
-  <section class="hero">
-    <div class="label">Today (Thu, Jul 31) — Combined Revenue</div>
-    <div class="value">Pending</div>
-    <div class="delta">Awaiting end-of-day settlement. Store POS: no data yet + Machines: no data yet</div>
-    <div class="note">Combined revenue from Store POS (CleanCloud all orders) and Machine Cycle Revenue (LaundroPortal). Today's data not yet available — payments typically finalize by 5 AM ET.</div>
-    <div class="warn">⚠ Machine status: 2 machines reporting problems</div>
-  </section>
+    <div class="alert info">
+        ✓ Store POS (CleanCloud) + Machines (LaundroPortal) data refreshed Sept 12 @ 11:30 PM EDT. Yesterday (Sept 11): Combined $1,184.20 (Store $795.88 + Machines $388.32, Washers $266 + Dryers $82.07 + Vending $40.25). Today (Sept 12): $0.00 (no data yet - normal, early in day). Machine status: 4 problems reported.
+    </div>
 
-  <div class="tiles">
-    <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Store POS (today)</div>
-      <div class="value">—</div>
-      <div class="delta">Pending</div>
-      <div class="basis">CleanCloud (awaiting data)</div>
+    <div class="hero">
+        <div class="hero-label">Latest Complete Day - Sept 11 (Yesterday)</div>
+        <div class="hero-value">$1,184.20</div>
+        <div class="hero-secondary">Store POS $795.88 (In-Store $586.26 + Pickup/Delivery $209.62) + Machine Cycle $388.32. Card payments ($345 CC, $80 cash). 328 machine cycles (36 washers, 283 dryers, 9 vending).</div>
     </div>
-    <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s3)"></span>Machines (today)</div>
-      <div class="value">—</div>
-      <div class="delta">Pending</div>
-      <div class="basis">LaundroPortal (awaiting data)</div>
-    </div>
-    <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--s1)"></span>Yesterday (Jul 30)</div>
-      <div class="value">$875.75</div>
-      <div class="delta down">−25.0% vs Jul 29</div>
-      <div class="basis">Combined POS + Machines</div>
-    </div>
-    <div class="tile">
-      <div class="label"><span class="swatch" style="background:var(--text-muted)"></span>7-day Average</div>
-      <div class="value">$923.42</div>
-      <div class="delta up">+2.1% vs prior week</div>
-      <div class="basis">Last 7 complete days</div>
-    </div>
-  </div>
 
-  <section class="card">
-    <h2>Combined revenue (last 2 days)</h2>
-    <div class="sub">Store POS (CleanCloud all orders) + Machine Cycle Revenue (LaundroPortal).</div>
+    <div class="tiles">
+        <div class="tile">
+            <div class="tile-label">Sept 11 Store POS (Total)</div>
+            <div class="tile-value">$795.88</div>
+            <div class="tile-change">Fresh CleanCloud pull</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 11 In-Store Orders</div>
+            <div class="tile-value">$586.26</div>
+            <div class="tile-change">73.6% of Store POS</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 11 Pickup & Delivery</div>
+            <div class="tile-value">$209.62</div>
+            <div class="tile-change">26.4% of Store POS</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 11 Machine Revenue</div>
+            <div class="tile-value">$388.32</div>
+            <div class="tile-change">Washers $266.00 + Dryers $82.07 + Vending $40.25</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 10 Combined</div>
+            <div class="tile-value">$999.72</div>
+            <div class="tile-change">Day-over-day +18.4%</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Machine Status</div>
+            <div class="tile-value">4 Issues</div>
+            <div class="tile-change">Per LaundroPortal</div>
+        </div>
+    </div>
+
+    <h3>Daily Revenue Breakdown (Store POS + Machines - Last 8 Days)</h3>
     <table>
-      <thead><tr><th>Date</th><th class="num">Store POS</th><th class="num">Machines</th><th class="num">Combined</th></tr></thead>
-      <tbody>
-        <tr><td>Jul 31 (today)</td><td class="num">—</td><td class="num">—</td><td class="num">Pending</td></tr>
-        <tr><td>Jul 30 (yesterday)</td><td class="num">$523.11</td><td class="num">$352.64</td><td class="num">$875.75</td></tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Store POS</th>
+                <th>In-Store Orders</th>
+                <th>Pickup & Delivery</th>
+                <th>Machine Revenue</th>
+                <th>Combined Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #fff3cd;">
+                <td><strong>Sept 12 (Today)</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>TBD</strong></td>
+                <td><strong>—</strong></td>
+            </tr>
+            <tr style="background: #e8f5e9;">
+                <td><strong>Sept 11 (Yesterday)</strong></td>
+                <td><strong>$795.88</strong></td>
+                <td><strong>$586.26</strong></td>
+                <td><strong>$209.62</strong></td>
+                <td><strong>$388.32</strong></td>
+                <td><strong>$1,184.20</strong></td>
+            </tr>
+            <tr>
+                <td>Sept 10</td>
+                <td>$342.04</td>
+                <td>$342.04</td>
+                <td>$0.00</td>
+                <td>$657.68</td>
+                <td>$999.72</td>
+            </tr>
+            <tr>
+                <td>Sept 9</td>
+                <td>$700.72</td>
+                <td>$285.66</td>
+                <td>$415.06</td>
+                <td>$415.06</td>
+                <td>$1,115.78</td>
+            </tr>
+            <tr>
+                <td>Sept 8</td>
+                <td>$401.70</td>
+                <td>$401.70</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>$401.70</td>
+            </tr>
+            <tr>
+                <td>Sept 7</td>
+                <td>$929.55</td>
+                <td>$570.68</td>
+                <td>$358.87</td>
+                <td>$358.87</td>
+                <td>$1,288.42</td>
+            </tr>
+            <tr>
+                <td>Sept 6</td>
+                <td>$454.62</td>
+                <td>$454.62</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>$454.62</td>
+            </tr>
+            <tr>
+                <td>Sept 5</td>
+                <td>$393.74</td>
+                <td>$302.39</td>
+                <td>$91.35</td>
+                <td>$91.35</td>
+                <td>$485.09</td>
+            </tr>
+            <tr>
+                <td>Sept 4</td>
+                <td>$693.53</td>
+                <td>$515.04</td>
+                <td>$178.49</td>
+                <td>$178.49</td>
+                <td>$872.02</td>
+            </tr>
+        </tbody>
     </table>
-  </section>
 
-  <section class="card">
-    <h2>Store revenue breakdown (last 2 days)</h2>
-    <div class="sub">CleanCloud POS channels (fresh pull).</div>
+    <h3>Historical Daily Store POS Revenue (CleanCloud - Last 30+ Days)</h3>
     <table>
-      <thead><tr><th>Date</th><th class="num">In-Store</th><th class="num">Pickup/Delivery</th><th class="num">Total</th></tr></thead>
-      <tbody>
-        <tr><td>Jul 31 (today)</td><td class="num">—</td><td class="num">—</td><td class="num">Pending</td></tr>
-        <tr><td>Jul 30 (yesterday)</td><td class="num">$409.46</td><td class="num">$113.65</td><td class="num">$523.11</td></tr>
-      </tbody>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Total Revenue</th>
+                <th>In-Store Orders</th>
+                <th>Pickup & Delivery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background: #fff3cd;">
+                <td><strong>Sept 12 (Today)</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+            </tr>
+            <tr style="background: #e8f5e9;">
+                <td><strong>Sept 11</strong></td>
+                <td><strong>$795.88</strong></td>
+                <td><strong>$586.26</strong></td>
+                <td><strong>$209.62</strong></td>
+            </tr>
+            <tr>
+                <td>Sept 10</td>
+                <td>$342.04</td>
+                <td>$342.04</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Sept 9</td>
+                <td>$700.72</td>
+                <td>$285.66</td>
+                <td>$415.06</td>
+            </tr>
+            <tr>
+                <td>Sept 8</td>
+                <td>$401.70</td>
+                <td>$401.70</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Sept 7</td>
+                <td>$929.55</td>
+                <td>$570.68</td>
+                <td>$358.87</td>
+            </tr>
+            <tr>
+                <td>Sept 6</td>
+                <td>$454.62</td>
+                <td>$454.62</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Sept 5</td>
+                <td>$393.74</td>
+                <td>$302.39</td>
+                <td>$91.35</td>
+            </tr>
+            <tr>
+                <td>Sept 4</td>
+                <td>$693.53</td>
+                <td>$515.04</td>
+                <td>$178.49</td>
+            </tr>
+            <tr>
+                <td>Sept 3</td>
+                <td>$909.44</td>
+                <td>$558.98</td>
+                <td>$350.46</td>
+            </tr>
+            <tr>
+                <td>Sept 2</td>
+                <td>$559.06</td>
+                <td>$392.16</td>
+                <td>$166.90</td>
+            </tr>
+            <tr>
+                <td>Sept 1</td>
+                <td>$539.68</td>
+                <td>$319.93</td>
+                <td>$219.75</td>
+            </tr>
+            <tr>
+                <td>Aug 31</td>
+                <td>$727.70</td>
+                <td>$442.16</td>
+                <td>$285.54</td>
+            </tr>
+            <tr>
+                <td>Aug 30</td>
+                <td>$680.48</td>
+                <td>$600.70</td>
+                <td>$79.78</td>
+            </tr>
+            <tr>
+                <td>Aug 29</td>
+                <td>$838.05</td>
+                <td>$547.37</td>
+                <td>$290.68</td>
+            </tr>
+            <tr>
+                <td>Aug 28</td>
+                <td>$795.04</td>
+                <td>$447.92</td>
+                <td>$347.12</td>
+            </tr>
+            <tr>
+                <td>Aug 27</td>
+                <td>$477.49</td>
+                <td>$333.75</td>
+                <td>$143.74</td>
+            </tr>
+            <tr>
+                <td>Aug 26</td>
+                <td>$402.33</td>
+                <td>$280.30</td>
+                <td>$122.03</td>
+            </tr>
+            <tr>
+                <td>Aug 25</td>
+                <td>$664.75</td>
+                <td>$571.21</td>
+                <td>$93.54</td>
+            </tr>
+            <tr>
+                <td>Aug 24</td>
+                <td>$1,298.51</td>
+                <td>$846.26</td>
+                <td>$452.25</td>
+            </tr>
+            <tr>
+                <td>Aug 23</td>
+                <td>$363.37</td>
+                <td>$299.14</td>
+                <td>$64.23</td>
+            </tr>
+            <tr>
+                <td>Aug 22</td>
+                <td>$684.61</td>
+                <td>$505.19</td>
+                <td>$179.42</td>
+            </tr>
+            <tr>
+                <td>Aug 21</td>
+                <td>$690.01</td>
+                <td>$625.78</td>
+                <td>$64.23</td>
+            </tr>
+            <tr>
+                <td>Aug 20</td>
+                <td>$712.10</td>
+                <td>$623.46</td>
+                <td>$88.64</td>
+            </tr>
+            <tr>
+                <td>Aug 19</td>
+                <td>$1,015.14</td>
+                <td>$597.45</td>
+                <td>$417.69</td>
+            </tr>
+            <tr>
+                <td>Aug 18</td>
+                <td>$503.46</td>
+                <td>$382.98</td>
+                <td>$120.48</td>
+            </tr>
+            <tr>
+                <td>Aug 17</td>
+                <td>$744.76</td>
+                <td>$646.43</td>
+                <td>$98.33</td>
+            </tr>
+            <tr>
+                <td>Aug 16</td>
+                <td>$553.04</td>
+                <td>$474.55</td>
+                <td>$78.49</td>
+            </tr>
+            <tr>
+                <td>Aug 15</td>
+                <td>$431.83</td>
+                <td>$431.83</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Aug 14</td>
+                <td>$858.67</td>
+                <td>$559.10</td>
+                <td>$299.57</td>
+            </tr>
+            <tr>
+                <td>Aug 13</td>
+                <td>$424.90</td>
+                <td>$309.74</td>
+                <td>$115.16</td>
+            </tr>
+            <tr>
+                <td>Aug 12</td>
+                <td>$463.48</td>
+                <td>$427.46</td>
+                <td>$36.02</td>
+            </tr>
+        </tbody>
     </table>
-  </section>
 
-  <section class="card">
-    <h2>Machine revenue breakdown (last 2 days)</h2>
-    <div class="sub">LaundroPortal cycle revenue by equipment type (fresh pull).</div>
-    <table>
-      <thead><tr><th>Date</th><th class="num">Washers</th><th class="num">Dryers</th><th class="num">Vending</th><th class="num">Total</th></tr></thead>
-      <tbody>
-        <tr><td>Jul 31 (today)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">Pending</td></tr>
-        <tr><td>Jul 30 (yesterday)</td><td class="num">$259.00</td><td class="num">$77.14</td><td class="num">$16.50</td><td class="num">$352.64</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <div class="foot">
-    <strong>Data status (pull Jul 31, 04:00 ET):</strong> Store POS: <span class="warn">awaiting end-of-day settlement</span>. Machines: <span class="warn">awaiting end-of-day report</span>. Yesterday (Jul 30) refreshed successfully. In-Store ($409.46) + Pickup/Delivery ($113.65) = Total all orders ($523.11). Machine cycles sourced from LaundroPortal Summary Report by type. <span class="warn">⚠ Alert: 2 machines reporting problems at Keap Street location</span>. Refreshes hourly.
-  </div>
+    <div class="footer">
+        Sept 12 @ 11:30 PM EDT hourly automated pull. Store POS from CleanCloud (all orders, split by In-Store vs Pickup/Delivery). Machine Revenue from LaundroPortal (Washers + Dryers + Vending). Complete Sept 11 data: Combined $1,184.20 (Store $795.88 + Machines $388.32 with 328 cycles), +18.4% vs Sept 10 combined $999.72. In-Store orders represent 73.6% of Sept 11 store revenue. Card payments: $345 CC + $80 cash (Sept 11). 4 machine problems reported per LaundroPortal status. All business identifiers redacted for privacy (public dashboard).
+    </div>
 </div>
-
-<script>
-const fmt = v => v === null || v === undefined || isNaN(v) ? "N/A" : "$" + v.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
-</script>
 </body>
 </html>
