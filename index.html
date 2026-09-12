@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 11 @ 10:25 PM EDT - Hourly refresh. Today: Combined $995.21 (Store POS $643.66 + Machines $351.55). Yesterday: $677.92. Machine data from LaundroPortal: 4 problems reported.",
+  "description": "Sept 11 @ 11:35 PM EDT - Hourly refresh. Today: Store POS $795.88 (+132% vs Sept 10). Combined with machines: $1,609.20. In-Store $586.26 + Pickup/Delivery $209.62 (Store). Machine Cycle $388.32 (Washers $266 + Dryers $82.07 + Vending $40.25). 4 machine problems.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -49,44 +49,44 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 11, 2026 @ 10:25 PM EDT (hourly automated refresh)</div>
+        <div class="timestamp">Last updated: Sept 11, 2026 @ 11:35 PM EDT (hourly automated refresh)</div>
     </div>
 
     <div class="alert info">
-        ✓ Store POS (CleanCloud) + Machines (LaundroPortal) data refreshed Sept 11 @ 10:25 PM EDT. Today (Sept 11): Combined $995.21 (Store $643.66 + Machines $351.55). Yesterday Sept 10: Combined $677.92 (+46.7% increase day-over-day). Machine status: 4 problems reported.
+        ✓ Store POS (CleanCloud) + Machines (LaundroPortal) data refreshed Sept 11 @ 11:35 PM EDT. Today (Sept 11): Combined $1,609.20 (Store $795.88 + Machines $813.32, +144.6% vs Sept 10 combined $657.68). In-Store orders $586.26 (73.6% of store revenue). Machine status: 4 problems reported.
     </div>
 
     <div class="hero">
         <div class="hero-label">Combined Revenue - Sept 11 (Today)</div>
-        <div class="hero-value">$995.21</div>
-        <div class="hero-secondary">Store POS $643.66 (In-Store $586.26 + Pickup/Delivery $57.40) + Machine Cycle $351.55. Card payments: $310.00 (machines) + $310.00 (store) = $620.00. Cash: $80.00 (machines) + $0.00 (store) = $80.00.</div>
+        <div class="hero-value">$1,609.20</div>
+        <div class="hero-secondary">Store POS $795.88 (In-Store $586.26 + Pickup/Delivery $209.62) + Machine Cycle $813.32. Card payments & cash breakdown available in store/machine reports.</div>
     </div>
 
     <div class="tiles">
         <div class="tile">
             <div class="tile-label">Sept 11 Store POS (Total)</div>
-            <div class="tile-value">$643.66</div>
+            <div class="tile-value">$795.88</div>
             <div class="tile-change">Fresh CleanCloud pull</div>
         </div>
         <div class="tile">
             <div class="tile-label">Sept 11 In-Store Orders</div>
             <div class="tile-value">$586.26</div>
-            <div class="tile-change">91.1% of Store POS</div>
+            <div class="tile-change">73.6% of Store POS</div>
         </div>
         <div class="tile">
             <div class="tile-label">Sept 11 Pickup & Delivery</div>
-            <div class="tile-value">$57.40</div>
-            <div class="tile-change">8.9% of Store POS</div>
+            <div class="tile-value">$209.62</div>
+            <div class="tile-change">26.4% of Store POS</div>
         </div>
         <div class="tile">
             <div class="tile-label">Sept 11 Machine Revenue</div>
-            <div class="tile-value">$351.55</div>
-            <div class="tile-change">Washers $252 + Dryers $78.30 + Vending $21.25</div>
+            <div class="tile-value">$813.32</div>
+            <div class="tile-change">Washers $266 + Dryers $82.07 + Vending $40.25 + Payments $425</div>
         </div>
         <div class="tile">
             <div class="tile-label">Sept 10 Combined</div>
-            <div class="tile-value">$677.92</div>
-            <div class="tile-change">Day-over-day +46.7%</div>
+            <div class="tile-value">$657.68</div>
+            <div class="tile-change">Day-over-day +144.6%</div>
         </div>
         <div class="tile">
             <div class="tile-label">Machine Status</div>
@@ -110,19 +110,19 @@
         <tbody>
             <tr style="background: #e8f5e9;">
                 <td><strong>Sept 11 (Today)</strong></td>
-                <td><strong>$643.66</strong></td>
+                <td><strong>$795.88</strong></td>
                 <td><strong>$586.26</strong></td>
-                <td><strong>$57.40</strong></td>
-                <td><strong>$351.55</strong></td>
-                <td><strong>$995.21</strong></td>
+                <td><strong>$209.62</strong></td>
+                <td><strong>$813.32</strong></td>
+                <td><strong>$1,609.20</strong></td>
             </tr>
             <tr style="background: #fff3cd;">
                 <td><strong>Sept 10</strong></td>
                 <td><strong>$342.04</strong></td>
                 <td><strong>$342.04</strong></td>
                 <td><strong>$0.00</strong></td>
-                <td><strong>$335.88</strong></td>
-                <td><strong>$677.92</strong></td>
+                <td><strong>$657.68</strong></td>
+                <td><strong>$999.72</strong></td>
             </tr>
             <tr>
                 <td>Sept 9</td>
@@ -188,9 +188,9 @@
         <tbody>
             <tr style="background: #e8f5e9;">
                 <td><strong>Sept 11 (Today)</strong></td>
-                <td><strong>$643.66</strong></td>
+                <td><strong>$795.88</strong></td>
                 <td><strong>$586.26</strong></td>
-                <td><strong>$57.40</strong></td>
+                <td><strong>$209.62</strong></td>
             </tr>
             <tr style="background: #fff3cd;">
                 <td><strong>Sept 10</strong></td>
@@ -370,7 +370,7 @@
     </table>
 
     <div class="footer">
-        Sept 11 @ 10:25 PM EDT hourly automated pull. Store POS from Store POS (all orders, split by In-Store vs Pickup/Delivery). Machine Revenue from Machines (Washers, Dryers, Vending). Fresh data Sept 11: Combined $995.21 (Store $643.66 + Machines $351.55, +46.7% vs Sept 10). In-Store orders represent 91.1% of today's Store POS revenue. 4 machine problems reported per LaundroPortal status. All business identifiers redacted for privacy (public dashboard).
+        Sept 11 @ 11:35 PM EDT hourly automated pull. Store POS from Store POS (all orders, split by In-Store vs Pickup/Delivery). Machine Revenue from Machines (Washers $266 + Dryers $82.07 + Vending $40.25) + Payments $425.00. Fresh data Sept 11: Combined $1,609.20 (Store $795.88 + Machines $813.32, +144.6% vs Sept 10 combined $657.68). In-Store orders represent 73.6% of Sept 11 store revenue. 4 machine problems reported per LaundroPortal status. All business identifiers redacted for privacy (public dashboard).
     </div>
 </div>
 </body>
