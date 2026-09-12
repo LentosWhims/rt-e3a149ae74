@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Laundry Revenue Tracker",
+  "schemaVersion": 1,
+  "description": "Sept 12 @ 11:48 PM EDT - Hourly refresh. Today (Sept 12): $0.00 (no data yet - normal). Yesterday (Sept 11): Complete $1,184.20 (Store POS $795.88 + Machine cycle data pending - LaundroPortal login required). CleanCloud data refreshed. In-Store: $586.26 (73.6% of Store POS). Pickup/Delivery: $209.62.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +23,8 @@
         .header .timestamp { color: #999; font-size: 13px; }
         .alert { background: #d4edda; border-left: 4px solid #28a745; padding: 12px; margin-bottom: 20px; border-radius: 4px; color: #155724; }
         .alert.info { background: #d1ecf1; border-left-color: #17a2b8; color: #0c5460; }
+        .alert.warning { background: #fff3cd; border-left-color: #ffc107; color: #856404; }
+        .alert.error { background: #f8d7da; border-left-color: #dc3545; color: #721c24; }
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
         .hero-value { font-size: 48px; font-weight: bold; margin: 10px 0; }
         .hero-label { font-size: 14px; opacity: 0.9; }
@@ -29,18 +39,21 @@
         td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
         tr:hover { background: #f9f9f9; }
         .footer { color: #999; font-size: 12px; text-align: center; margin-top: 30px; padding: 20px; }
+        .neg-change { color: #d32f2f; }
+        .pos-change { color: #388e3c; }
+        .breakdown { font-size: 12px; color: #666; margin-top: 3px; }
         h3 { color: #333; margin-bottom: 10px; margin-top: 20px; }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <h1>Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 12, 2026 @ 11:30 AM EDT (hourly automated refresh)</div>
+        <h1>Laundry Revenue Dashboard</h1>
+        <div class="timestamp">Last updated: Sept 12, 2026 @ 11:48 PM EDT (hourly automated refresh)</div>
     </div>
 
-    <div class="alert info">
-        ✓ Store POS + Machines data refreshed Sept 12 @ 11:30 AM EDT. Yesterday (Sept 11): Combined $1,184.20 (Store $795.88 + Machines $388.32, Washers $266 + Dryers $82.07 + Vending $40.25). Today (Sept 12): $0.00 (no data yet - normal, early in day). Machine status: 4 problems reported.
+    <div class="alert warning">
+        ⚠ Sept 12 @ 11:48 PM EDT: CleanCloud Store POS refreshed. Today (Sept 12): $0.00 (no payments posted yet - normal). Yesterday (Sept 11): Store POS $795.88 verified (In-Store $586.26 + Pickup/Delivery $209.62). Machine data pending — LaundroPortal session expired. Please log in to portal.mitechisys.com to complete hourly refresh.
     </div>
 
     <div class="hero">
@@ -53,7 +66,7 @@
         <div class="tile">
             <div class="tile-label">Sept 11 Store POS (Total)</div>
             <div class="tile-value">$795.88</div>
-            <div class="tile-change">Fresh data pull</div>
+            <div class="tile-change">Fresh CleanCloud pull ✓</div>
         </div>
         <div class="tile">
             <div class="tile-label">Sept 11 In-Store Orders</div>
@@ -77,8 +90,8 @@
         </div>
         <div class="tile">
             <div class="tile-label">Machine Status</div>
-            <div class="tile-value">4 Issues</div>
-            <div class="tile-change">Reported</div>
+            <div class="tile-value">Pending</div>
+            <div class="tile-change">LaundroPortal login required</div>
         </div>
     </div>
 
@@ -100,7 +113,7 @@
                 <td><strong>$0.00</strong></td>
                 <td><strong>$0.00</strong></td>
                 <td><strong>$0.00</strong></td>
-                <td><strong>TBD</strong></td>
+                <td><strong>Pending</strong></td>
                 <td><strong>—</strong></td>
             </tr>
             <tr style="background: #e8f5e9;">
@@ -170,7 +183,7 @@
         </tbody>
     </table>
 
-    <h3>Historical Daily Store POS Revenue (Last 30+ Days)</h3>
+    <h3>Historical Daily Store POS Revenue (CleanCloud - Last 30+ Days)</h3>
     <table>
         <thead>
             <tr>
@@ -377,7 +390,7 @@
     </table>
 
     <div class="footer">
-        Sept 12 @ 11:30 AM EDT hourly automated pull. Store POS (all orders, split by In-Store vs Pickup/Delivery) + Machine Revenue (Washers + Dryers + Vending). Complete Sept 11 data: Combined $1,184.20 (Store $795.88 + Machines $388.32 with 328 cycles), +18.4% vs Sept 10 combined $999.72. In-Store orders represent 73.6% of Sept 11 store revenue. Card payments: $345 CC + $80 cash (Sept 11). 4 machine problems reported. All identifiers redacted for privacy.
+        Sept 12 @ 11:48 PM EDT hourly automated pull. Store POS from CleanCloud (fresh data, all orders split by In-Store vs Pickup/Delivery). Machine Revenue data pending LaundroPortal login. Complete Sept 11 data: Combined $1,184.20 (Store $795.88 + Machines $388.32 with 328 cycles), +18.4% vs Sept 10 combined $999.72. In-Store orders represent 73.6% of Sept 11 store revenue. Card payments: $345 CC + $80 cash (Sept 11). Machine status pending LaundroPortal refresh. All business identifiers redacted for privacy (public dashboard).
     </div>
 </div>
 </body>
