@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 12 @ 11:15 PM EDT - Hourly automated refresh. Today (Sept 12): Store POS $633.52 (In-Store $566.07 + Pickup/Delivery $67.45). Yesterday (Sept 11) Complete & Verified: $795.88 (In-Store $586.26 + Pickup/Delivery $209.62). Machine Revenue data unavailable this run (system login required). Day-over-day: -20.4%.",
+  "description": "Sept 13 @ 1:45 PM EDT - Hourly automated refresh. Sept 12 Complete: Combined Revenue $1,045.43 (Store POS $633.52 + Machine $411.91). Store breakdown: In-Store $566.07 + Pickup/Delivery $67.45. Payments $555.00. Sept 13 In Progress: Store POS data updating throughout day (currently $0.00). Machine data: 4 equipment issues reported.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -49,145 +49,186 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 12, 2026 11:15 PM EDT — automated hourly refresh complete</div>
+        <div class="timestamp">Last updated: Sept 13, 2026 1:45 PM EDT — automated hourly refresh complete</div>
     </div>
 
     <div class="alert warning">
-        ⚠ Sept 12 Hourly Update (11:15 PM): Store POS data fresh from system. Today (Sept 12): $633.52 (In-Store $566.07 + Pickup/Delivery $67.45). Yesterday (Sept 11) Complete & Verified: $795.88 (In-Store $586.26 + Pickup/Delivery $209.62). Machine Revenue unavailable this run (system login required). Day-over-day: -20.4%.
+        ⚠ Sept 13 Hourly Update (1:45 PM): Sept 12 Complete & Verified: Combined Revenue $1,045.43 (Store POS $633.52 + Machine Cycle $411.91). Store breakdown: In-Store $566.07 + Pickup/Delivery $67.45. Payments $555.00. Sept 13 In Progress: Store POS currently updating ($0.00 posted so far). Equipment Status: 4 machines reported issues.
     </div>
 
     <div class="hero">
-        <div class="hero-label">Latest Complete Day - Sept 11 (Yesterday)</div>
-        <div class="hero-value">$795.88</div>
-        <div class="hero-secondary">Store POS: In-Store $586.26 + Pickup/Delivery $209.62. Machine Revenue data not available this run.</div>
+        <div class="hero-label">Latest Complete Day - Sept 12 (Yesterday)</div>
+        <div class="hero-value">$1,045.43</div>
+        <div class="hero-secondary">Combined: Store POS $633.52 (In-Store $566.07 + P&D $67.45) + Machine Revenue $411.91. Payments: $555.00.</div>
     </div>
 
     <div class="tiles">
         <div class="tile">
-            <div class="tile-label">Sept 12 Store POS</div>
+            <div class="tile-label">Sept 12 Store POS + Machines</div>
+            <div class="tile-value">$1,045.43</div>
+            <div class="tile-change">Store $633.52 + Machines $411.91</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 12 Store POS Only</div>
             <div class="tile-value">$633.52</div>
             <div class="tile-change">In-Store $566.07 + P&D $67.45</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Sept 12 Day-over-Day</div>
-            <div class="tile-value"><span class="neg-change">-20.4%</span></div>
-            <div class="tile-change">vs Sept 11 ($795.88)</div>
+            <div class="tile-label">Sept 12 Machine Revenue</div>
+            <div class="tile-value">$411.91</div>
+            <div class="tile-change">Washers $315.00 + Dryers $80.91 + Vending $16.00</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Sept 11 Store POS</div>
-            <div class="tile-value">$795.88</div>
-            <div class="tile-change">In-Store $586.26 + P&D $209.62</div>
-        </div>
-        <div class="tile">
-            <div class="tile-label">Sept 11 Order Breakdown</div>
-            <div class="tile-value">73.6% In-Store</div>
-            <div class="tile-change">26.4% Pickup/Delivery</div>
+            <div class="tile-label">Sept 12 Payments</div>
+            <div class="tile-value">$555.00</div>
+            <div class="tile-change">Cash $17.00 + Card $538.00</div>
         </div>
     </div>
 
-    <h3>Daily Store POS Revenue (Last 15 Days)</h3>
+    <h3>Daily Combined Revenue (Last 15 Days)</h3>
     <table>
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Total Revenue</th>
-                <th>In-Store Orders</th>
+                <th>Store POS</th>
+                <th>In-Store</th>
                 <th>Pickup & Delivery</th>
+                <th>Machines</th>
+                <th>Combined Total</th>
             </tr>
         </thead>
         <tbody>
             <tr style="background: #fff3cd;">
-                <td><strong>Sept 12 (Today)</strong></td>
+                <td><strong>Sept 13 (Today)</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>No data yet</strong></td>
+                <td><strong>No data yet</strong></td>
+            </tr>
+            <tr style="background: #e8f5e9;">
+                <td><strong>Sept 12</strong></td>
                 <td><strong>$633.52</strong></td>
                 <td><strong>$566.07</strong></td>
                 <td><strong>$67.45</strong></td>
+                <td><strong>$411.91</strong></td>
+                <td><strong>$1,045.43</strong></td>
             </tr>
-            <tr style="background: #e8f5e9;">
-                <td><strong>Sept 11</strong></td>
-                <td><strong>$795.88</strong></td>
-                <td><strong>$586.26</strong></td>
-                <td><strong>$209.62</strong></td>
+            <tr>
+                <td>Sept 11</td>
+                <td>$795.88</td>
+                <td>$586.26</td>
+                <td>$209.62</td>
+                <td>—</td>
+                <td>$795.88*</td>
             </tr>
             <tr>
                 <td>Sept 10</td>
                 <td>$342.04</td>
                 <td>$342.04</td>
                 <td>$0.00</td>
+                <td>—</td>
+                <td>$342.04*</td>
             </tr>
             <tr>
                 <td>Sept 9</td>
                 <td>$700.72</td>
                 <td>$285.66</td>
                 <td>$415.06</td>
+                <td>—</td>
+                <td>$700.72*</td>
             </tr>
             <tr>
                 <td>Sept 8</td>
                 <td>$401.70</td>
                 <td>$401.70</td>
                 <td>$0.00</td>
+                <td>—</td>
+                <td>$401.70*</td>
             </tr>
             <tr>
                 <td>Sept 7</td>
                 <td>$929.55</td>
                 <td>$570.68</td>
                 <td>$358.87</td>
+                <td>—</td>
+                <td>$929.55*</td>
             </tr>
             <tr>
                 <td>Sept 6</td>
                 <td>$454.62</td>
                 <td>$454.62</td>
                 <td>$0.00</td>
+                <td>—</td>
+                <td>$454.62*</td>
             </tr>
             <tr>
                 <td>Sept 5</td>
                 <td>$393.74</td>
                 <td>$302.39</td>
                 <td>$91.35</td>
+                <td>—</td>
+                <td>$393.74*</td>
             </tr>
             <tr>
                 <td>Sept 4</td>
                 <td>$693.53</td>
                 <td>$515.04</td>
                 <td>$178.49</td>
+                <td>—</td>
+                <td>$693.53*</td>
             </tr>
             <tr>
                 <td>Sept 3</td>
                 <td>$909.44</td>
                 <td>$558.98</td>
                 <td>$350.46</td>
+                <td>—</td>
+                <td>$909.44*</td>
             </tr>
             <tr>
                 <td>Sept 2</td>
                 <td>$559.06</td>
                 <td>$392.16</td>
                 <td>$166.90</td>
+                <td>—</td>
+                <td>$559.06*</td>
             </tr>
             <tr>
                 <td>Sept 1</td>
                 <td>$539.68</td>
                 <td>$319.93</td>
                 <td>$219.75</td>
+                <td>—</td>
+                <td>$539.68*</td>
             </tr>
             <tr>
                 <td>Aug 31</td>
                 <td>$727.70</td>
                 <td>$442.16</td>
                 <td>$285.54</td>
+                <td>—</td>
+                <td>$727.70*</td>
             </tr>
             <tr>
                 <td>Aug 30</td>
                 <td>$680.48</td>
                 <td>$600.70</td>
                 <td>$79.78</td>
+                <td>—</td>
+                <td>$680.48*</td>
             </tr>
             <tr>
                 <td>Aug 29</td>
                 <td>$838.05</td>
                 <td>$547.37</td>
                 <td>$290.68</td>
+                <td>—</td>
+                <td>$838.05*</td>
             </tr>
         </tbody>
     </table>
+    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">* Store POS data only (Machine data available only for Sept 12 this update)</div>
 
     <h3>Extended Daily Store POS Revenue History (30+ Days)</h3>
     <table>
@@ -201,16 +242,22 @@
         </thead>
         <tbody>
             <tr style="background: #fff3cd;">
+                <td><strong>Sept 13</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$0.00</strong></td>
+            </tr>
+            <tr style="background: #e8f5e9;">
                 <td><strong>Sept 12</strong></td>
                 <td><strong>$633.52</strong></td>
                 <td><strong>$566.07</strong></td>
                 <td><strong>$67.45</strong></td>
             </tr>
-            <tr style="background: #e8f5e9;">
-                <td><strong>Sept 11</strong></td>
-                <td><strong>$795.88</strong></td>
-                <td><strong>$586.26</strong></td>
-                <td><strong>$209.62</strong></td>
+            <tr>
+                <td>Sept 11</td>
+                <td>$795.88</td>
+                <td>$586.26</td>
+                <td>$209.62</td>
             </tr>
             <tr>
                 <td>Sept 10</td>
@@ -390,7 +437,7 @@
     </table>
 
     <div class="footer">
-        Sept 12 11:15 PM EDT automated hourly pull. Store POS data fresh: Sept 12 $633.52 (In-Store $566.07 + Pickup/Delivery $67.45); Sept 11 $795.88 (In-Store $586.26 + Pickup/Delivery $209.62). Machine Revenue data unavailable this run (system login required). Day-over-day change: -20.4%. All business identifiers redacted for privacy (public dashboard).
+        Sept 13 1:45 PM EDT automated hourly pull. Sept 12 Complete: Combined Revenue $1,045.43 (Store POS $633.52 + Machine Cycle $411.91). Store breakdown: In-Store $566.07 + Pickup/Delivery $67.45. Payments: $555.00. Sept 13 In Progress: Store POS currently $0.00 (payments posting throughout day). Machine status: 4 equipment issues reported. All business identifiers redacted for privacy (public dashboard).
     </div>
 </div>
 </body>
