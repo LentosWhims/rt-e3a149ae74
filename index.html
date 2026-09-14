@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 13 @ 11:58 PM EDT - Hourly automated refresh. Combined revenue verified: Sept 13 $1,272.87 (POS $664.43 + Machines $608.44), Sept 12 $1,045.43 (POS $633.52 + Machines $411.91). Day-over-day +$227.44 (+21.7%). Machine status: 4 problems reported.",
+  "description": "Sept 14 @ 4:28 AM EDT - Hourly automated refresh. Sept 13 verified: CleanCloud $872.80 + Machines $817.94 (Washers $590.00 + Dryers $159.44 + Vending $68.50) = Combined $1,690.74. Sept 14: No data yet (early morning, payments pending). Machine status: 4 problems reported.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -49,24 +49,24 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 13, 2026 11:58 PM EDT — automated hourly refresh</div>
+        <div class="timestamp">Last updated: Sept 14, 2026 4:28 AM EDT — automated hourly refresh</div>
     </div>
 
     <div class="alert">
-        ✓ Sept 13 11:58 PM: Combined revenue verified. Store POS (Sept 13): $664.43 | Sept 12: $633.52. Machine Cycle (Sept 13): $608.44 | Sept 12: $411.91. Machine status: 4 problems reported.
+        ✓ Sept 14 4:28 AM: Sept 13 combined revenue verified. Store POS $872.80 | Machine Cycle $817.94 | Combined $1,690.74. Yesterday Sept 12: $1,045.43. Change: +61.5%. Machine status: 4 problems noted.
     </div>
 
     <div class="hero">
         <div class="hero-label">Sept 13 - Combined Revenue (Verified)</div>
-        <div class="hero-value">$1,272.87</div>
-        <div class="hero-secondary">Store POS $664.43 + Machine Cycle $608.44. Yesterday Sept 12: $1,045.43</div>
+        <div class="hero-value">$1,690.74</div>
+        <div class="hero-secondary">Store POS $872.80 + Machine Cycle $817.94. Yesterday Sept 12: $1,045.43</div>
     </div>
 
     <div class="tiles">
         <div class="tile">
             <div class="tile-label">Sept 13 Combined</div>
-            <div class="tile-value">$1,272.87</div>
-            <div class="tile-change">POS $664.43 + Machines $608.44</div>
+            <div class="tile-value">$1,690.74</div>
+            <div class="tile-change">POS $872.80 + Machines $817.94</div>
         </div>
         <div class="tile">
             <div class="tile-label">Sept 12 Combined</div>
@@ -75,13 +75,13 @@
         </div>
         <div class="tile">
             <div class="tile-label">Day-over-Day Change</div>
-            <div class="tile-value pos-change">+21.7%</div>
-            <div class="tile-change pos-change">+$227.44 (within normal range)</div>
+            <div class="tile-value pos-change">+61.5%</div>
+            <div class="tile-change pos-change">+$645.31 (strong growth)</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Machine Status</div>
-            <div class="tile-value">4</div>
-            <div class="tile-change">Problems reported</div>
+            <div class="tile-label">Today (Sept 14)</div>
+            <div class="tile-value">No data yet</div>
+            <div class="tile-change">Early morning, payments pending</div>
         </div>
     </div>
 
@@ -90,7 +90,8 @@
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Store POS</th>
+                <th>Store In-Store</th>
+                <th>Store P&D</th>
                 <th>Washers</th>
                 <th>Dryers</th>
                 <th>Vending</th>
@@ -100,17 +101,19 @@
         </thead>
         <tbody>
             <tr style="background: #e8f5e9;">
-                <td><strong>Sept 13 (Today)</strong></td>
-                <td><strong>$664.43</strong></td>
-                <td><strong>$437.00</strong></td>
-                <td><strong>$125.94</strong></td>
-                <td><strong>$45.50</strong></td>
-                <td><strong>$608.44</strong></td>
-                <td><strong>$1,272.87</strong></td>
+                <td><strong>Sept 13</strong></td>
+                <td><strong>$615.12</strong></td>
+                <td><strong>$257.68</strong></td>
+                <td><strong>$590.00</strong></td>
+                <td><strong>$159.44</strong></td>
+                <td><strong>$68.50</strong></td>
+                <td><strong>$817.94</strong></td>
+                <td><strong>$1,690.74</strong></td>
             </tr>
             <tr style="background: #e8f5e9;">
                 <td><strong>Sept 12</strong></td>
                 <td><strong>$633.52</strong></td>
+                <td><strong>$0.00</strong></td>
                 <td><strong>$315.00</strong></td>
                 <td><strong>$80.91</strong></td>
                 <td><strong>$10.00</strong></td>
@@ -119,10 +122,10 @@
             </tr>
         </tbody>
     </table>
-    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">All data verified from source systems this hour. Store POS from CleanCloud. Machine cycles from LaundroPortal.</div>
+    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">All data verified from source systems this hour. Store POS from CleanCloud (In-Store + Pickup & Delivery breakdown). Machine cycles from LaundroPortal Summary Report.</div>
 
     <div class="footer">
-        Sept 13 11:58 PM EDT automated hourly pull. Combined revenue Sept 13: $1,272.87 (POS $664.43 + Machines $608.44). Sept 12: $1,045.43 (POS $633.52 + Machines $411.91). Machine Cycle detail Sept 13: Washers 57 full $437.00, Dryers 426 top-off $125.94, Vending 8 $45.50. Sept 12: Washers 48 full $315.00, Dryers 279 top-off $80.91, Vending 2 $10.00. Machine status: 4 problems, Last communication 2026-09-13 18:25:25 EDT. Anonymized dashboard for public sharing.
+        Sept 14 4:28 AM EDT automated hourly pull. Sept 13 combined: $1,690.74 (POS $872.80 + Machines $817.94). Sept 12: $1,045.43 (POS $633.52 + Machines $411.91). Store breakdown Sept 13: In-Store $615.12, Pickup & Delivery $257.68. Machine detail Sept 13: Washers 79 full $590.00, Dryers 576 top-off $159.44, Vending 10 $68.50. Sept 12: In-Store $633.52, Washers 48 full $315.00, Dryers 279 top-off $80.91, Vending 2 $10.00. Anonymized dashboard for public sharing. Refresh interval: hourly. Machine status: 4 problems reported in current check.
     </div>
 </div>
 </body>
