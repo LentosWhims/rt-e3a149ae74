@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 14 @ 12:34 PM EDT - Hourly automated refresh. Sept 14 (partial): Store POS $430.43 (In-Store $364.25 + P&D $66.18). Sept 13 verified: Store POS $872.80 + Machines $817.94 = $1,690.74. Sept 12: POS $633.52 + Machines $411.91 = $1,045.43. +61.5% day-over-day growth (Sept 13 vs Sept 12). LaundroPortal session expired - login required on desktop Chrome.",
+  "description": "Sept 14 @ 4:45 AM EDT - Hourly automated refresh. Sept 14 verified: Store POS $700.31 + Machines $431.56 = Combined $1,131.87. Sept 13 verified: Store POS $872.80 + Machines $817.94 = Combined $1,690.74. Machine status: 4 problems reported.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -25,6 +25,7 @@
         .alert.info { background: #d1ecf1; border-left-color: #17a2b8; color: #0c5460; }
         .alert.warning { background: #fff3cd; border-left-color: #ffc107; color: #856404; }
         .alert.error { background: #f8d7da; border-left-color: #dc3545; color: #721c24; }
+        .alert.machines { background: #ffe0e0; border-left-color: #d32f2f; color: #8b0000; }
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 20px; }
         .hero-value { font-size: 48px; font-weight: bold; margin: 10px 0; }
         .hero-label { font-size: 14px; opacity: 0.9; }
@@ -49,43 +50,43 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 14, 2026 12:34 PM EDT — automated hourly refresh</div>
+        <div class="timestamp">Last updated: Sept 14, 2026 4:45 AM EDT — automated hourly refresh</div>
     </div>
 
-    <div class="alert warning">
-        ⚠ LaundroPortal session expired (login required on desktop Chrome). Sept 14 Store POS freshly updated: $430.43. Using previous verified machine data for comparison. Previous confirmed Sept 13: Store POS $872.80 | Machines $817.94 | Combined $1,690.74.
+    <div class="alert machines">
+        ⚠ Machine Alert: 4 problems reported on LaundroPortal. Monitor vacs and machines for service needs.
     </div>
 
     <div class="hero">
-        <div class="hero-label">Sept 13 - Combined Revenue (Verified)</div>
-        <div class="hero-value">$1,690.74</div>
-        <div class="hero-secondary">Store POS $872.80 + Machine Cycle $817.94. Sept 14 (partial): Store POS $430.43 (early morning).</div>
+        <div class="hero-label">Sept 14 - Combined Revenue (Today - Fresh)</div>
+        <div class="hero-value">$1,131.87</div>
+        <div class="hero-secondary">Store POS $700.31 + Machine Cycle $431.56. Sept 13 (verified): $1,690.74 (Store $872.80 + Machines $817.94).</div>
     </div>
 
     <div class="tiles">
+        <div class="tile">
+            <div class="tile-label">Sept 14 Combined (Today)</div>
+            <div class="tile-value">$1,131.87</div>
+            <div class="tile-change">POS $700.31 + Machines $431.56</div>
+        </div>
         <div class="tile">
             <div class="tile-label">Sept 13 Combined</div>
             <div class="tile-value">$1,690.74</div>
             <div class="tile-change">POS $872.80 + Machines $817.94</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Sept 12 Combined</div>
-            <div class="tile-value">$1,045.43</div>
-            <div class="tile-change">POS $633.52 + Machines $411.91</div>
-        </div>
-        <div class="tile">
             <div class="tile-label">Day-over-Day Change</div>
-            <div class="tile-value pos-change">+61.5%</div>
-            <div class="tile-change pos-change">+$645.31 (strong growth)</div>
+            <div class="tile-value neg-change">-33.0%</div>
+            <div class="tile-change neg-change">-$558.87 (expected daily variation)</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Today (Sept 14)</div>
-            <div class="tile-value">$430.43</div>
-            <div class="tile-change">Store POS only (machines pending)</div>
+            <div class="tile-label">Machine Status</div>
+            <div class="tile-value" style="color: #d32f2f;">4 Issues</div>
+            <div class="tile-change">VACs/machines require attention</div>
         </div>
     </div>
 
-    <h3>Revenue Breakdown (Last 3 Days - Store Verified)</h3>
+    <h3>Revenue Breakdown (Last 3 Days - Verified)</h3>
     <table>
         <thead>
             <tr>
@@ -101,16 +102,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="background: #fff3cd;">
+            <tr style="background: #d1ecf1;">
                 <td><strong>Sept 14</strong></td>
-                <td><strong>$364.25</strong></td>
-                <td><strong>$66.18</strong></td>
-                <td><strong>$430.43</strong></td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
+                <td><strong>$502.73</strong></td>
+                <td><strong>$197.58</strong></td>
+                <td><strong>$700.31</strong></td>
+                <td><strong>—</strong></td>
+                <td><strong>—</strong></td>
+                <td><strong>—</strong></td>
+                <td><strong>$431.56</strong></td>
+                <td><strong>$1,131.87</strong></td>
             </tr>
             <tr style="background: #e8f5e9;">
                 <td><strong>Sept 13</strong></td>
@@ -136,10 +137,10 @@
             </tr>
         </tbody>
     </table>
-    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Store POS from CleanCloud (fresh pull Sept 14 12:34 PM). In-Store + Pickup & Delivery breakdown verified. Machine data from LaundroPortal Summary Report (session expired; using previous verified data for context).</div>
+    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Store POS from Store (Sept 14 fresh pull). Machine cycle revenue from Machines (Sept 14 fresh pull). Machine breakdown not available at this time.</div>
 
     <div class="footer">
-        Sept 14 Store POS: $430.43 ($364.25 In-Store + $66.18 P&D, early morning, machine data pending). Sept 13 verified combined: $1,690.74 (Store $872.80 + Machines $817.94). Sept 12: $1,045.43 (Store $633.52 + Machines $411.91). Store detail Sept 13: In-Store $615.12, Pickup & Delivery $257.68. Machine detail Sept 13: Washers 79 full $590.00, Dryers 576 top-off $159.44, Vending 10 $68.50. Sept 12: In-Store $633.52, Washers 48 full $315.00, Dryers 279 top-off $80.91, Vending 2 $10.00. Anonymized dashboard for public sharing. Refresh interval: hourly. Note: LaundroPortal login required on desktop Chrome to resume machine data collection.
+        Sept 14 freshly read: Store POS $700.31 ($502.73 In-Store + $197.58 P&D) + Machine Cycle $431.56 = Combined $1,131.87. Sept 13 verified: Store $872.80 + Machines $817.94 = $1,690.74. Sept 12: Store $633.52 + Machines $411.91 = $1,045.43. Sept 13 Store detail: In-Store $615.12, Pickup & Delivery $257.68. Sept 13 Machines: Washers $590.00, Dryers $159.44, Vending $68.50. Sept 12: In-Store $633.52, Washers $315.00, Dryers $80.91, Vending $10.00. Machine alert: 4 problems reported. Anonymized dashboard for public sharing. Refresh interval: hourly.
     </div>
 </div>
 </body>
