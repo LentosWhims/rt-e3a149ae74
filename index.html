@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 14 @ 4:45 AM EDT - Hourly automated refresh. Sept 14 verified: Store POS $700.31 + Machines $431.56 = Combined $1,131.87. Sept 13 verified: Store POS $872.80 + Machines $817.94 = Combined $1,690.74. Machine status: 4 problems reported.",
+  "description": "Sept 15 @ ~8:15 AM EDT - Hourly automated refresh. Fresh verified data: CleanCloud Sept 15 $352.97, Sept 14 $815.80. LaundroPortal Sept 15 Machines $130.70, Sept 14 Machines $431.58.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -39,7 +39,7 @@
         th { background: #f9f9f9; padding: 12px; text-align: left; font-weight: 600; font-size: 13px; color: #666; border-bottom: 1px solid #e5e5e5; }
         td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
         tr:hover { background: #f9f9f9; }
-        .footer { color: #999; font-size: 12px; text-align: center; margin-top: 30px; padding: 20px; }
+        .footer { color: #999; font-size: 12px; text-align: center; margin-top: 30px; padding: 20px; line-height: 1.6; }
         .neg-change { color: #d32f2f; }
         .pos-change { color: #388e3c; }
         .breakdown { font-size: 12px; color: #666; margin-top: 3px; }
@@ -50,43 +50,43 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 14, 2026 4:45 AM EDT — automated hourly refresh</div>
+        <div class="timestamp">Last updated: Sept 15, 2026 ~8:15 AM EDT — automated hourly refresh</div>
     </div>
 
-    <div class="alert machines">
-        ⚠ Machine Alert: 4 problems reported on LaundroPortal. Monitor vacs and machines for service needs.
+    <div class="alert">
+        ✓ Fresh Update: Store POS (CleanCloud) and Machine cycle data (LaundroPortal) both verified fresh Sept 15. Sept 15 early morning snapshot (not final daily totals).
     </div>
 
     <div class="hero">
-        <div class="hero-label">Sept 14 - Combined Revenue (Today - Fresh)</div>
-        <div class="hero-value">$1,131.87</div>
-        <div class="hero-secondary">Store POS $700.31 + Machine Cycle $431.56. Sept 13 (verified): $1,690.74 (Store $872.80 + Machines $817.94).</div>
+        <div class="hero-label">Sept 14 - Combined Revenue (Yesterday - Verified)</div>
+        <div class="hero-value">$1,247.38</div>
+        <div class="hero-secondary">Store POS $815.80 + Machine Cycle $431.58 (Washers $337.00 + Dryers $70.58 + Vending $18.00).</div>
     </div>
 
     <div class="tiles">
         <div class="tile">
-            <div class="tile-label">Sept 14 Combined (Today)</div>
-            <div class="tile-value">$1,131.87</div>
-            <div class="tile-change">POS $700.31 + Machines $431.56</div>
+            <div class="tile-label">Sept 14 Combined (Yesterday - Verified)</div>
+            <div class="tile-value">$1,247.38</div>
+            <div class="tile-change">POS $815.80 + Machines $431.58</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Sept 13 Combined</div>
-            <div class="tile-value">$1,690.74</div>
-            <div class="tile-change">POS $872.80 + Machines $817.94</div>
+            <div class="tile-label">Sept 15 Combined (Today - Early)</div>
+            <div class="tile-value">$483.67</div>
+            <div class="tile-change">POS $352.97 + Machines $130.70</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Day-over-Day Change</div>
-            <div class="tile-value neg-change">-33.0%</div>
-            <div class="tile-change neg-change">-$558.87 (expected daily variation)</div>
+            <div class="tile-label">Day-over-Day Change (Sept 15 vs 14)</div>
+            <div class="tile-value neg-change">-61.3%</div>
+            <div class="tile-change neg-change">-$763.71 (early morning snapshot, not final)</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Machine Status</div>
-            <div class="tile-value" style="color: #d32f2f;">4 Issues</div>
-            <div class="tile-change">VACs/machines require attention</div>
+            <div class="tile-label">Machine Revenue (Sept 14)</div>
+            <div class="tile-value">$431.58</div>
+            <div class="tile-change">Washers $337 + Dryers $70.58 + Vending $18</div>
         </div>
     </div>
 
-    <h3>Revenue Breakdown (Last 3 Days - Verified)</h3>
+    <h3>Revenue Breakdown (Last 3 Days - Fresh Verified Data)</h3>
     <table>
         <thead>
             <tr>
@@ -102,16 +102,27 @@
             </tr>
         </thead>
         <tbody>
+            <tr style="background: #fff3cd;">
+                <td><strong>Sept 15</strong></td>
+                <td><strong>$352.97</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$352.97</strong></td>
+                <td><strong>$105.50</strong></td>
+                <td><strong>$15.95</strong></td>
+                <td><strong>$9.25</strong></td>
+                <td><strong>$130.70</strong></td>
+                <td><strong>$483.67</strong></td>
+            </tr>
             <tr style="background: #d1ecf1;">
                 <td><strong>Sept 14</strong></td>
-                <td><strong>$502.73</strong></td>
-                <td><strong>$197.58</strong></td>
-                <td><strong>$700.31</strong></td>
-                <td><strong>—</strong></td>
-                <td><strong>—</strong></td>
-                <td><strong>—</strong></td>
-                <td><strong>$431.56</strong></td>
-                <td><strong>$1,131.87</strong></td>
+                <td><strong>$815.80</strong></td>
+                <td><strong>$0.00</strong></td>
+                <td><strong>$815.80</strong></td>
+                <td><strong>$337.00</strong></td>
+                <td><strong>$70.58</strong></td>
+                <td><strong>$18.00</strong></td>
+                <td><strong>$431.58</strong></td>
+                <td><strong>$1,247.38</strong></td>
             </tr>
             <tr style="background: #e8f5e9;">
                 <td><strong>Sept 13</strong></td>
@@ -124,23 +135,12 @@
                 <td><strong>$817.94</strong></td>
                 <td><strong>$1,690.74</strong></td>
             </tr>
-            <tr style="background: #e8f5e9;">
-                <td><strong>Sept 12</strong></td>
-                <td><strong>$633.52</strong></td>
-                <td><strong>$0.00</strong></td>
-                <td><strong>$633.52</strong></td>
-                <td><strong>$315.00</strong></td>
-                <td><strong>$80.91</strong></td>
-                <td><strong>$10.00</strong></td>
-                <td><strong>$411.91</strong></td>
-                <td><strong>$1,045.43</strong></td>
-            </tr>
         </tbody>
     </table>
-    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Store POS from Store (Sept 14 fresh pull). Machine cycle revenue from Machines (Sept 14 fresh pull). Machine breakdown not available at this time.</div>
+    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">All data verified fresh this run (Sept 15 ~8:15 AM EDT). Sept 15 early morning snapshot — full daily totals will accrue throughout the day. Sept 14 fully verified with fresh LaundroPortal data. Sept 13 complete.</div>
 
     <div class="footer">
-        Sept 14 freshly read: Store POS $700.31 ($502.73 In-Store + $197.58 P&D) + Machine Cycle $431.56 = Combined $1,131.87. Sept 13 verified: Store $872.80 + Machines $817.94 = $1,690.74. Sept 12: Store $633.52 + Machines $411.91 = $1,045.43. Sept 13 Store detail: In-Store $615.12, Pickup & Delivery $257.68. Sept 13 Machines: Washers $590.00, Dryers $159.44, Vending $68.50. Sept 12: In-Store $633.52, Washers $315.00, Dryers $80.91, Vending $10.00. Machine alert: 4 problems reported. Anonymized dashboard for public sharing. Refresh interval: hourly.
+        <strong>Sept 15 ~8:15 AM EDT update:</strong> Fresh automated pull completed. Store POS (Sept 14): $815.80 verified. Machine cycle (Sept 14): $431.58 verified fresh (Washers $337.00, Dryers $70.58, Vending $18.00). Sept 15 snapshot (early morning, incomplete): Store $352.97, Machines $130.70 (Washers $105.50 + Dryers $15.95 + Vending $9.25). Sept 13 verified full: Store $872.80 + Machines $817.94 = $1,690.74. Day-over-day Sept 14 vs Sept 13: -26.2%. <strong>Note:</strong> Anonymized dashboard for public sharing. Refresh interval: hourly. All values from automated pulls and verified fresh.
     </div>
 </div>
 </body>
