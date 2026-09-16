@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 15 @ hourly automated refresh. Sept 15 fresh pull: POS $803.47 | Machines $364.52 (Washers $293.50 + Dryers $61.77 + Vending $8.25). Sept 14 verified: POS $815.80 (In-Store $556.52 + P&D $259.28) + Machines $431.50 = $1,247.30 combined.",
+  "description": "Sept 15, 2026 ~4:40 AM EDT - Hourly automated refresh complete. Fresh data verified: CleanCloud Sept 15 confirmed $803.47 (In-Store $713.37 + P&D $90.10). LaundroPortal Sept 15 Machine Cycle $364.52 (Washers $293.50 + Dryers $61.77 + Vending $9.25). Yesterday Sept 14 confirmed: POS $815.80, Machines $431.50. Machine status: 4 problems reported. Day-over-day Sept 15 vs 14: -6.4% (-$79.31).",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -50,17 +50,21 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 15, 2026 ~8:00 AM EDT — automated hourly refresh (Sept 15 fresh pull complete)</div>
+        <div class="timestamp">Last updated: Sept 15, 2026 ~4:40 AM EDT — automated hourly refresh complete</div>
+    </div>
+
+    <div class="alert machines">
+        ⚠ Machine Status: 4 problems reported. Last Communication: Sept 15, 2026 22:40 EDT.
     </div>
 
     <div class="alert info">
-        ✓ Hourly pull completed Sept 15 with fresh data: LaundroPortal Sept 15 machine cycle revenue now captured ($364.52 fresh read). CleanCloud POS data for Sept 15 confirmed ($803.47 total). Both systems active and responding.
+        ✓ Hourly pull completed Sept 15 with fresh data verified from both systems. CleanCloud POS $803.47 (In-Store $713.37 + P&D $90.10). LaundroPortal Machine Cycle $364.52 (fresh read: Washers $293.50 + Dryers $61.77 + Vending $9.25).
     </div>
 
     <div class="hero">
         <div class="hero-label">Sept 15 - Fresh Daily Revenue (Today's Pull)</div>
         <div class="hero-value">$1,167.99</div>
-        <div class="hero-secondary">Store POS $803.47 + Machine Cycle $364.52 (Washers $293.50 + Dryers $61.77 + Vending $8.25).</div>
+        <div class="hero-secondary">Store POS $803.47 + Machine Cycle $364.52 (Washers $293.50 + Dryers $61.77 + Vending $9.25).</div>
     </div>
 
     <div class="tiles">
@@ -82,7 +86,7 @@
         <div class="tile">
             <div class="tile-label">Machine Revenue (Sept 15)</div>
             <div class="tile-value">$364.52</div>
-            <div class="tile-change">Washers $293.50 + Dryers $61.77 + Vending $8.25</div>
+            <div class="tile-change">Washers $293.50 + Dryers $61.77 + Vending $9.25</div>
         </div>
     </div>
 
@@ -92,6 +96,8 @@
             <tr>
                 <th>Date</th>
                 <th>Store POS</th>
+                <th>In-Store</th>
+                <th>P&D Orders</th>
                 <th>Washers</th>
                 <th>Dryers</th>
                 <th>Vending</th>
@@ -103,17 +109,21 @@
             <tr style="background: #d1ecf1;">
                 <td><strong>Sept 15 (Fresh)</strong></td>
                 <td><strong>$803.47</strong></td>
+                <td><strong>$713.37</strong></td>
+                <td><strong>$90.10</strong></td>
                 <td><strong>$293.50</strong></td>
                 <td><strong>$61.77</strong></td>
-                <td><strong>$8.25</strong></td>
+                <td><strong>$9.25</strong></td>
                 <td><strong>$364.52</strong></td>
                 <td><strong>$1,167.99</strong></td>
             </tr>
             <tr style="background: #e8f5e9;">
                 <td><strong>Sept 14 (Verified)</strong></td>
                 <td><strong>$815.80</strong></td>
+                <td><strong>$556.52</strong></td>
+                <td><strong>$259.28</strong></td>
                 <td><strong>$337.00</strong></td>
-                <td><strong>$78.50</strong></td>
+                <td><strong>$76.50</strong></td>
                 <td><strong>$18.00</strong></td>
                 <td><strong>$431.50</strong></td>
                 <td><strong>$1,247.30</strong></td>
@@ -121,6 +131,8 @@
             <tr style="background: #f5f5f5;">
                 <td><strong>Sept 13 (Historical)</strong></td>
                 <td><strong>$872.80</strong></td>
+                <td><strong>$615.12</strong></td>
+                <td><strong>$257.68</strong></td>
                 <td><strong>$590.00</strong></td>
                 <td><strong>$159.44</strong></td>
                 <td><strong>$68.50</strong></td>
@@ -129,10 +141,10 @@
             </tr>
         </tbody>
     </table>
-    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Sept 15 fresh data: POS total $803.47 (CleanCloud), Machines $364.52 (LaundroPortal fresh read). Sept 14 fully verified with machine cycle breakdown. Sept 13 historical complete.</div>
+    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Fresh Sept 15 pull: POS total verified $803.47 (In-Store $713.37 + P&D $90.10). Machine cycle $364.52 (Washers 39 full $293.50 + Dryers 213 top-off $61.77 + Vending 3 $9.25). Sept 14 fully verified. Sept 13 historical complete.</div>
 
     <div class="footer">
-        <strong>Status:</strong> Sept 15 hourly pull completed successfully. Fresh machine revenue data from LaundroPortal now captured for Sept 15 ($364.52). CleanCloud POS data confirmed. Both systems remain active and responsive. <strong>Dashboard anonymized</strong> for public sharing. Refresh interval: hourly.
+        <strong>Status:</strong> Sept 15 hourly pull completed successfully ~4:40 AM EDT. Fresh POS and machine revenue data captured and verified from both systems. Store POS breakdown included (In-Store vs Pickup&Delivery). Machine cycle breakdown confirmed (Washers/Dryers/Vending). 4 machine problems reported at location. <strong>Dashboard anonymized</strong> for public sharing — system names and identifiers removed. Refresh interval: hourly.
     </div>
 </div>
 </body>
