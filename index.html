@@ -2,7 +2,7 @@
 {
   "name": "Laundry Revenue Tracker",
   "schemaVersion": 1,
-  "description": "Sept 16, 2026 16:15 UTC - Hourly automated refresh. CleanCloud Sept 16: $0.00 (payments not posted). CleanCloud Sept 15: $803.47 verified (In-Store $713.37 + P&D $90.10). Machine data unavailable - LaundroPortal login required.",
+  "description": "Sept 16, 2026 17:20 UTC - Hourly automated refresh. Today: $559.95 combined ($254.83 Store POS + $305.12 Machines: Washers $204 + Dryers $88.12 + Vending $15). Yesterday complete: $1,167.99 ($803.47 Store + $364.52 Machines). Machines: 4 problems.",
   "mcpTools": [],
   "mcpServerNames": []
 }
@@ -50,81 +50,78 @@
 <div class="container">
     <div class="header">
         <h1>Laundry Revenue Dashboard</h1>
-        <div class="timestamp">Last updated: Sept 16, 2026 16:15 UTC — automated hourly refresh</div>
+        <div class="timestamp">Last updated: Sept 16, 2026 ~17:20 EDT — automated hourly refresh</div>
     </div>
 
     <div class="alert warning">
-        ⚠ Machine Data Unavailable: LaundroPortal login required. Store POS data only reflects today's pull. Machine cycle revenue from previous day shown for reference.
+        ⚠ Machine status: 4 problems reported at location. Fresh machine data captured Sept 16 ~17:20 EDT.
     </div>
 
     <div class="alert info">
-        ✓ Hourly pull completed Sept 16 with fresh Store POS data verified from CleanCloud. Sept 16 (today): $0.00 (no payments posted yet - normal). Sept 15 (yesterday verified): $803.47 Store POS (In-Store $713.37 + P&D $90.10). Machine revenue unavailable this run.
+        ✓ Hourly pull Sept 16 ~17:20 EDT. Today fresh (active/ongoing): Store POS $254.83 + Machines $305.12 (Washers 25 full $204 + Dryers 278 top-off $88.12 + Vending 3 $15) = $559.95 combined. Yesterday verified complete: Store POS $803.47 + Machines $364.52 (Washers 39 $293.50 + Dryers 213 $61.77 + Vending 3 $9.25) = $1,167.99 combined.
     </div>
 
     <div class="hero">
-        <div class="hero-label">Sept 15 - Store POS Revenue (Latest Complete Day)</div>
-        <div class="hero-value">$803.47</div>
-        <div class="hero-secondary">In-Store $713.37 + Pickup&Delivery $90.10. (Sept 16 shows $0.00 - payments not yet posted)</div>
+        <div class="hero-label">Sept 15 - Combined Revenue (Store POS + Machines)</div>
+        <div class="hero-value">$1,167.99</div>
+        <div class="hero-secondary">Store POS $803.47 + Machines $364.52 (Washers $293.50 + Dryers $61.77 + Vending $9.25)</div>
     </div>
 
     <div class="tiles">
         <div class="tile">
-            <div class="tile-label">Sept 16 Store POS (Today - Incomplete)</div>
-            <div class="tile-value">$0.00</div>
-            <div class="tile-change">No payments posted yet (normal)</div>
+            <div class="tile-label">Sept 16 Combined (Today - Active)</div>
+            <div class="tile-value">$559.95</div>
+            <div class="tile-change">Store POS $254.83 + Machines $305.12</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Sept 15 Store POS (Complete)</div>
+            <div class="tile-label">Sept 15 Combined (Complete)</div>
+            <div class="tile-value">$1,167.99</div>
+            <div class="tile-change">Store $803.47 + Machines $364.52</div>
+        </div>
+        <div class="tile">
+            <div class="tile-label">Sept 15 Store POS Only</div>
             <div class="tile-value">$803.47</div>
-            <div class="tile-change">In-Store $713.37 + P&D $90.10</div>
+            <div class="tile-change">All channels combined</div>
         </div>
         <div class="tile">
-            <div class="tile-label">Day-over-Day (Sept 15 vs 14)</div>
-            <div class="tile-value neg-change">-1.5%</div>
-            <div class="tile-change neg-change">-$12.33</div>
-        </div>
-        <div class="tile">
-            <div class="tile-label">Sept 14 Store POS (Reference)</div>
-            <div class="tile-value">$815.80</div>
-            <div class="tile-change">In-Store $556.52 + P&D $259.28</div>
+            <div class="tile-label">Sept 15 Machines Only</div>
+            <div class="tile-value">$364.52</div>
+            <div class="tile-change">Washers $293.50 + Dryers $61.77 + Vending $9.25</div>
         </div>
     </div>
 
-    <h3>Store POS Revenue Breakdown (Last 3 Days)</h3>
+    <h3>Combined Revenue Breakdown (Last 2 Days)</h3>
     <table>
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Store POS Total</th>
-                <th>In-Store</th>
-                <th>P&D Orders</th>
+                <th>Store POS</th>
+                <th>Machines</th>
+                <th>Combined Total</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             <tr style="background: #fff9e6;">
-                <td><strong>Sept 16 (Fresh Today - Incomplete)</strong></td>
-                <td><strong>$0.00</strong></td>
-                <td><strong>$0.00</strong></td>
-                <td><strong>$0.00</strong></td>
+                <td><strong>Sept 16 (Fresh Today - Active)</strong></td>
+                <td><strong>$254.83</strong></td>
+                <td><strong>$305.12</strong></td>
+                <td><strong>$559.95</strong></td>
+                <td>Store POS verified $254.83 | Machines: Washers 25 full $204.00 + Dryers 278 top-off $88.12 + Vending 3 $15.00</td>
             </tr>
             <tr style="background: #d1ecf1;">
                 <td><strong>Sept 15 (Fresh - Complete)</strong></td>
                 <td><strong>$803.47</strong></td>
-                <td><strong>$713.37</strong></td>
-                <td><strong>$90.10</strong></td>
-            </tr>
-            <tr style="background: #e8f5e9;">
-                <td><strong>Sept 14 (Reference)</strong></td>
-                <td><strong>$815.80</strong></td>
-                <td><strong>$556.52</strong></td>
-                <td><strong>$259.28</strong></td>
+                <td><strong>$364.52</strong></td>
+                <td><strong>$1,167.99</strong></td>
+                <td>Store: All channels $803.47 | Machines: Washers 39 $293.50 + Dryers 213 $61.77 + Vending 3 $9.25 (255 total cycles)</td>
             </tr>
         </tbody>
     </table>
-    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Fresh Sept 16 pull: Store POS data confirmed $0.00 (In-Store $0.00 + P&D $0.00 - payments not yet posted, this is normal behavior). Sept 15 verified complete $803.47 (In-Store $713.37 + P&D $90.10). Sept 14 complete reference $815.80 (In-Store $556.52 + P&D $259.28). Machine revenue unavailable - LaundroPortal authentication required.</div>
+    <div style="font-size: 12px; color: #999; margin-top: -10px; margin-bottom: 20px;">Fresh Sept 16 ~17:20 EDT pull: Store POS verified from CleanCloud ($254.83 today, $803.47 yesterday complete). Machines verified from Portal (Today: Washers 25 $204 + Dryers 278 $88.12 + Vending 3 $15 = $305.12. Yesterday: Washers 39 $293.50 + Dryers 213 $61.77 + Vending 3 $9.25 = $364.52). Machine status: 4 problems reported. Dashboard anonymized for public sharing.</div>
 
     <div class="footer">
-        <strong>Status:</strong> Sept 16 hourly pull completed successfully at 16:15 UTC. Fresh Store POS data captured and verified from CleanCloud only. Sept 16 shows $0.00 (no payments posted yet - normal). Sept 15 complete verified at $803.47. Machine revenue unavailable this run due to LaundroPortal login requirement. <strong>Dashboard anonymized</strong> for public sharing — business names, locations, and system identifiers removed. Refresh interval: hourly.
+        <strong>Status:</strong> Sept 16 ~17:20 EDT hourly pull completed. Fresh data: Store POS $254.83 today + Machines $305.12 today = $559.95 combined (active). Yesterday complete: Store POS $803.47 + Machines $364.52 = $1,167.99 combined. Yesterday machine breakdown: 39 washer cycles ($293.50) + 213 dryer cycles ($61.77) + 3 vending ($9.25) = 255 total cycles. Machine status: 4 problems at location. <strong>Dashboard anonymized</strong> for public sharing — business names, locations, and system identifiers removed. Refresh interval: hourly.
     </div>
 </div>
 </body>
